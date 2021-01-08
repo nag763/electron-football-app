@@ -4,18 +4,24 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "check": "eslint js/**  > reports/eslint.txt",
+    "fix": "eslint js/**  --fix"
   },
   "keywords": [],
   "author": "Loic",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^11.1.1"
+    "electron": "^11.1.1",
+    "eslint": "^7.17.0",
+    "eslint-config-google": "^0.14.0",
+    "mocha": "^8.2.1"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "dateformat": "^4.4.1",
+    "electron-mocha": "^10.0.0",
     "fs": "0.0.1-security",
     "jquery": "^3.5.1",
     "popper": "^1.0.1",

@@ -1,6 +1,6 @@
 const dateFormat = require('dateformat');
 
-function Fixture(country, league, homeTeamName, awayTeamName, goalsHomeTeam, goalsAwayTeam, eventDate, elapsedTime, status){
+function Fixture(country, league, homeTeamName, awayTeamName, goalsHomeTeam, goalsAwayTeam, eventDate, elapsedTime, status) {
   this.country = country;
   this.league = league;
   this.homeTeamName = homeTeamName;
@@ -12,24 +12,24 @@ function Fixture(country, league, homeTeamName, awayTeamName, goalsHomeTeam, goa
   this.status = status;
 }
 
-Fixture.prototype.preciseLeague = function(){
+Fixture.prototype.preciseLeague = function() {
   return `${this.country} ${this.league}`;
-}
+};
 
-Fixture.prototype.fullscore = function(){
-  if([this.goalsHomeTeam, this.goalsAwayTeam].some(element => null == element)){
-    return "N/A";
+Fixture.prototype.fullscore = function() {
+  if ([this.goalsHomeTeam, this.goalsAwayTeam].some((element) => null == element)) {
+    return 'N/A';
   } else {
     return `${this.goalsHomeTeam}-${this.goalsAwayTeam}`;
   }
-}
+};
 
-Fixture.prototype.eventHourTime = function(){
-  dateFormat(this.eventDate, "HH:MM")
-}
+Fixture.prototype.eventHourTime = function() {
+  dateFormat(this.eventDate, 'HH:MM');
+};
 
 Fixture.prototype.toTableData = function() {
-  let tableData = new Array();
+  const tableData = new Array();
   tableData.push(this.preciseLeague());
   tableData.push(this.homeTeamName);
   tableData.push(this.awayTeamName);
@@ -38,6 +38,6 @@ Fixture.prototype.toTableData = function() {
   tableData.push(this.elapsedTime);
   tableData.push(this.status);
   return tableData;
-}
+};
 
 export {Fixture};

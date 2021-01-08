@@ -1,18 +1,18 @@
 const dateFormat = require('dateformat');
-const app = require('electron').app
-const path = require("path");
+const app = require('electron').app;
+const path = require('path');
 const $ = require('jquery');
 
-import {generateHTMLtr, generateHTMLtd, displayScore} from "./utils/htmlutils.js";
-import {generateGetRequest} from "./utils/httputils.js";
-import {Fixture} from "./classes/fixture.js";
+import {generateHTMLtr, generateHTMLtd, displayScore} from './utils/htmlutils.js';
+import {generateGetRequest} from './utils/httputils.js';
+import {Fixture} from './classes/fixture.js';
 
-const url = `https://api-football-v1.p.rapidapi.com/v2/fixtures/date/${dateFormat(new Date(), "yyyy-mm-dd")}`;
+const url = `https://api-football-v1.p.rapidapi.com/v2/fixtures/date/${dateFormat(new Date(), 'yyyy-mm-dd')}`;
 
-generateGetRequest(url).then(res => {
+generateGetRequest(url).then((res) => {
   const jsonBody = res.data;
-  Array.from(jsonBody.api.fixtures).forEach(element => {
-    let fixture = new Fixture();
+  Array.from(jsonBody.api.fixtures).forEach((element) => {
+    const fixture = new Fixture();
     fixture.country = element.league.country;
     fixture.league = element.league.name;
     fixture.homeTeamName = element.homeTeam.team_name;
@@ -23,7 +23,7 @@ generateGetRequest(url).then(res => {
     fixture.elapsedTime = element.elapsed;
     fixture.status = element.status;
     // TODO : optimised ?
-    $("#fixtures").append(generateHTMLtr(fixture.toTableData()));
+    $('#fixtures').append(generateHTMLtr(fixture.toTableData()));
   });
-  }
+},
 );
