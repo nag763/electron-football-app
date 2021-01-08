@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
   "keywords": [],
   "author": "Loic",
@@ -12,7 +12,12 @@
   "devDependencies": {
     "electron": "^11.1.1"
   },
-  "scripts": {
-    "start":"electron ."
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "dateformat": "^4.4.1",
+    "fs": "0.0.1-security",
+    "jquery": "^3.5.1",
+    "popper": "^1.0.1",
+    "popper.js": "^1.16.1"
   }
 }
