@@ -25,6 +25,7 @@
     "fs": "0.0.1-security",
     "jquery": "^3.5.1",
     "popper": "^1.0.1",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "querystring": "^0.2.0"
   }
 }

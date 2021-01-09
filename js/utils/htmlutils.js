@@ -9,4 +9,15 @@ function generateHTMLtr(dataList) {
       .concat(`</tr>`);
 }
 
-export {generateHTMLtr, generateHTMLtd};
+function generateHTMLtable(headers, datas) {
+  return `<table>
+            <tr>
+            ${headers.map((element) => `<th>${element}</th>`).join('\n')}
+            </tr>
+            <tbody>
+            ${datas.map((element) => generateHTMLtr(element)).join('\n')}
+            </tbody>
+            </table>`;
+}
+
+export {generateHTMLtr, generateHTMLtd, generateHTMLtable};

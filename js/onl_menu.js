@@ -24,7 +24,7 @@ $('#searchLeague').keypress(function(e) {
         response.data.api.leagues.sort(function(a, b) {
           return b.season - a.season;
         }).forEach((element) => {
-          $('#results').append(`<li>[${element.season}]${element.name}, ${element.country}</li>`);
+          $('#results').append(`<li><a href='./onl_league.html?id=${element.league_id}'>[${element.season}]${element.name}, ${element.country}</a></li>`);
         });
       });
     }
@@ -32,7 +32,7 @@ $('#searchLeague').keypress(function(e) {
 });
 
 $('#searchTeam').keypress(function(e) {
-  if (e.which==enterKey) {
+  if (e.which == enterKey) {
     const userInput = $(this).val();
     $('#results').empty();
     if (2 < userInput.length) {
