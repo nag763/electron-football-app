@@ -25,7 +25,7 @@ Fixture.prototype.fullscore = function() {
 };
 
 Fixture.prototype.eventHourTime = function() {
-  dateFormat(this.eventDate, 'HH:MM');
+  return dateFormat(this.eventDate, 'HH:MM');
 };
 
 Fixture.prototype.toTableData = function() {
