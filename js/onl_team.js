@@ -27,7 +27,6 @@ generateGetRequest(urlTeam).then((response) => {
 const urlLastFixtures = `fixtures/team/${idToDisplay}/last/5`;
 
 generateGetRequest(urlLastFixtures).then((response) => {
-  console.log(response.data);
   const table = $('#latestFixtures');
   response.data.api.fixtures.forEach((element) => {
     const fixture = new Fixture();
@@ -46,7 +45,6 @@ generateGetRequest(urlLastFixtures).then((response) => {
 const urlNextFixtures = `fixtures/team/${idToDisplay}/next/5`;
 
 generateGetRequest(urlLastFixtures).then((response) => {
-  console.log(response.data);
   const table = $('#nextFixtures');
   response.data.api.fixtures.forEach((element) => {
     const fixture = new Fixture();

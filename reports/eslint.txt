@@ -1,9 +1,12 @@
 
 /home/usr/Documents/ESIG/NODEJS/js/classes/fixture.js
-   3:1   error  This line has a length of 125. Maximum allowed is 80  max-len
+   3:1   error  This line has a length of 159. Maximum allowed is 80  max-len
    3:1   error  Missing JSDoc comment                                 require-jsdoc
-  20:1   error  This line has a length of 84. Maximum allowed is 80   max-len
-  32:21  error  The array literal notation [] is preferable           no-array-constructor
+  23:1   error  This line has a length of 84. Maximum allowed is 80   max-len
+  35:21  error  The array literal notation [] is preferable           no-array-constructor
+  39:1   error  This line has a length of 98. Maximum allowed is 80   max-len
+  44:1   error  This line has a length of 95. Maximum allowed is 80   max-len
+  49:1   error  This line has a length of 95. Maximum allowed is 80   max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/utils/htmlutils.js
    1:1  error  Missing JSDoc comment  require-jsdoc
@@ -18,5 +21,5 @@
   29:2  error  Mixed spaces and tabs                      no-mixed-spaces-and-tabs
   29:3  error  Unexpected tab character                   no-tabs
 
-✖ 13 problems (13 errors, 0 warnings)
+✖ 16 problems (16 errors, 0 warnings)
 

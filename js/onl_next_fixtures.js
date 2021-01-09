@@ -43,12 +43,16 @@ function displayFixtures(url, header) {
 
   generateGetRequest(url).then((res) => {
     const jsonBody = res.data;
+    console.log(jsonBody);
     Array.from(jsonBody.api.fixtures).forEach((element) => {
       const fixture = new Fixture();
       fixture.country = element.league.country;
       fixture.league = element.league.name;
+      fixture.leagueId = element.league_id;
       fixture.homeTeamName = element.homeTeam.team_name;
+      fixture.homeTeamId = element.homeTeam.team_id;
       fixture.awayTeamName = element.awayTeam.team_name;
+      fixture.awayTeamId = element.awayTeam.team_id;
       fixture.goalsHomeTeam = element.goalsHomeTeam;
       fixture.goalsAwayTeam = element.goalsAwayTeam;
       fixture.eventDate = element.event_date;
