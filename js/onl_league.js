@@ -27,11 +27,18 @@ generateGetRequest(urlForTable).then((response) => {
   response.data.api.standings.forEach((table) => {
     console.log(table);
     $('#rankings').append(
-        generateHTMLtable(rankingHeadersTable, table.map((team) => [team.rank, `<a href='./onl_team.html?id=${team.team_id}'>${team.teamName}</a>`, team.points, team.all.matchsPlayed, team.all.win, team.all.draw, team.all.lose, team.all.goalsFor, team.all.goalsAgainst, (team.all.goalsFor - team.all.goalsAgainst)], table.map(team => team.team_id))),
+        generateHTMLtable(rankingHeadersTable, table.map((team) => [team.rank, `<a href='./onl_team.html?id=${team.team_id}'>${team.teamName}</a>`, team.points, team.all.matchsPlayed, team.all.win, team.all.draw, team.all.lose, team.all.goalsFor, team.all.goalsAgainst, (team.all.goalsFor - team.all.goalsAgainst)], table.map((team) => team.team_id))),
     );
   });
 });
 
+const urlForRounds = `fixtures/rounds/${idToDisplay}`;
+
+generateGetRequest(urlForRounds).then((response) => {
+  response.data.api.fixtures.forEach((fixture, index) => {
+    $('#rounds').append(`<li><a href='./next_fixtures.html?league=${idToDisplay}&fixture=${fixture}&mdnumber=${index}'>Match day ${index}</li>`);
+  });
+});
 
 $('#go_back').click( () => {
   $(location).attr('href', './menu.html');
