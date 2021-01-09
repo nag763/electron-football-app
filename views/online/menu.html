@@ -6,18 +6,19 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 		<!-- Import dependencies from node-->
   <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
-  <script src="../../js/off_menu.js"></script>
+  <script type="module" src="../../js/onl_menu.js"></script>
 </head>
 <body style="background: lightgray;">
     <h1 class="text-center">Mon application</h1>
 		<p class="text-center">Choisissez la ligue que vous desirez.</p>
-    <buton type="button" class="btn">Ligue1</button>
-    <buton type="button" class="btn">La Liga</button>
-    <buton type="button" class="btn">Premier League</button>
-    <buton type="button" class="btn">Bundesliga</button>
-    <buton type="button" class="btn">Serie A</button>
-    <buton type="button" class="btn" onclick="location.href='./next_fixtures.html'">Prochain matchs</button>
-		<button type="button" class="btn btn-danger" onclick="location.href='../index.html'">Retour à la page d'accueil</button>
-
+    <div>
+    <buton id="next_fixtures" type="button" class="btn">Today fixtures</button></br>
+    </div>
+      <!-- Search form -->
+<div class="md-form mt-0">
+  <input id="searchLeague" class="form-control" type="text" placeholder="Search per league or country" aria-label="Search">
+  <input id="searchCountry" class="form-control" type="text" placeholder="Search a team" aria-label="Search">
+</div>
+		<button id="home_page" type="button" class="btn btn-danger">Retour à la page d'accueil</button>
 </body>
 </html>

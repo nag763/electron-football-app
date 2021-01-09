@@ -3,8 +3,9 @@ const http = require('https');
 const path = require('path');
 
 const key = function readApiKey() {
-  return fs
-      .readFileSync(path.resolve(__dirname, ['..', '..', 'api.key'].join(path.sep)), 'utf-8').trim();
+  return fs.readFileSync(
+      path.resolve(__dirname, ['..', '..', 'api.key'].join(path.sep)), 'utf-8')
+      .trim();
 }();
 
 async function generateGetRequest(url) {

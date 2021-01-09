@@ -4,7 +4,9 @@ function generateHTMLtd(data) {
 
 function generateHTMLtr(dataList) {
   // We have to concat, which is prefered over escaping the bakslash
-  return `<tr>${dataList.map((element) => generateHTMLtd(element)).join('\n')}`.concat(`</tr>`);
+  return `<tr>
+              ${dataList.map((element) => generateHTMLtd(element)).join('\n')}`
+      .concat(`</tr>`);
 }
 
 function displayScore(homeTeam, awayTeam) {

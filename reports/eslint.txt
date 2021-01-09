@@ -5,27 +5,18 @@
   20:1   error  This line has a length of 84. Maximum allowed is 80   max-len
   32:21  error  The array literal notation [] is preferable           no-array-constructor
 
-/home/usr/Documents/ESIG/NODEJS/js/onl_next_fixtures.js
-  2:7   error  'app' is assigned a value but never used             no-unused-vars
-  3:7   error  'path' is assigned a value but never used            no-unused-vars
-  6:1   error  This line has a length of 82. Maximum allowed is 80  max-len
-  6:25  error  'generateHTMLtd' is defined but never used           no-unused-vars
-  6:41  error  'displayScore' is defined but never used             no-unused-vars
-
 /home/usr/Documents/ESIG/NODEJS/js/utils/htmlutils.js
-   1:1  error  Missing JSDoc comment                                require-jsdoc
-   5:1  error  Missing JSDoc comment                                require-jsdoc
-   7:1  error  This line has a length of 96. Maximum allowed is 80  max-len
-  10:1  error  Missing JSDoc comment                                require-jsdoc
+   1:1  error  Missing JSDoc comment  require-jsdoc
+   5:1  error  Missing JSDoc comment  require-jsdoc
+  12:1  error  Missing JSDoc comment  require-jsdoc
 
 /home/usr/Documents/ESIG/NODEJS/js/utils/httputils.js
-   2:7  error  'http' is assigned a value but never used             no-unused-vars
-   7:1  error  This line has a length of 101. Maximum allowed is 80  max-len
-  10:1  error  Missing JSDoc comment                                 require-jsdoc
-  24:2  error  Mixed spaces and tabs                                 no-mixed-spaces-and-tabs
-  24:3  error  Unexpected tab character                              no-tabs
-  26:2  error  Mixed spaces and tabs                                 no-mixed-spaces-and-tabs
-  26:3  error  Unexpected tab character                              no-tabs
+   2:7  error  'http' is assigned a value but never used  no-unused-vars
+  11:1  error  Missing JSDoc comment                      require-jsdoc
+  25:2  error  Mixed spaces and tabs                      no-mixed-spaces-and-tabs
+  25:3  error  Unexpected tab character                   no-tabs
+  27:2  error  Mixed spaces and tabs                      no-mixed-spaces-and-tabs
+  27:3  error  Unexpected tab character                   no-tabs
 
-✖ 20 problems (20 errors, 0 warnings)
+✖ 13 problems (13 errors, 0 warnings)
 

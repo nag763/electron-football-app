@@ -1,5 +1,4 @@
 const dateFormat = require('dateformat');
-const app = require('electron').app;
 const path = require('path');
 const $ = require('jquery');
 
@@ -27,3 +26,18 @@ generateGetRequest(url).then((res) => {
   });
 },
 );
+
+$('#go_back').click( () => {
+  $(location).attr('href', './menu.html');
+});
+
+// Not mine, taken directly from w3s
+$(document).ready(function() {
+  $('#searchBar').on('keyup', function() {
+    const value = $(this).val().toLowerCase();
+    $('#fixtures tr').filter(function() {
+      console.log($(this).text());
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+});

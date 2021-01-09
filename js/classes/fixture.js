@@ -13,7 +13,7 @@ function Fixture(country, league, homeTeamName, awayTeamName, goalsHomeTeam, goa
 }
 
 Fixture.prototype.preciseLeague = function() {
-  return `${this.country} ${this.league}`;
+  return `${this.country}, ${this.league}`;
 };
 
 Fixture.prototype.fullscore = function() {

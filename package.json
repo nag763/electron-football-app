@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "check": "eslint js/**  > reports/eslint.txt",
+    "check": "eslint js/** -o reports/eslint.txt",
     "fix": "eslint js/**  --fix"
   },
   "keywords": [],
