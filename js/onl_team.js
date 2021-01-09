@@ -22,6 +22,11 @@ generateGetRequest(url).then((response) => {
   infosTable.append(generateHTMLtr(['Ville', team.venue_city]));
   infosTable.append(generateHTMLtr(['Capacité stade', team.venue_capacity]));
 });
+const urlFixtures = `fixtures/team/${idToDisplay}/10`;
+
+generateGetRequest(urlFixtures).then(response => {
+    console.log(response.data)
+})
 
 $('#go_back').click( () => {
   $(location).attr('href', './menu.html');
