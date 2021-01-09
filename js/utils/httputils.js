@@ -8,8 +8,10 @@ const key = function readApiKey() {
       .trim();
 }();
 
-async function generateGetRequest(url) {
+async function generateGetRequest(path) {
   const axios = require('axios').default;
+
+  const url = 'https://api-football-v1.p.rapidapi.com/v2/'.concat(path);
 
   const options = {
     method: 'GET',
@@ -25,6 +27,7 @@ async function generateGetRequest(url) {
   	return response;
   }).catch(function(error) {
   	console.error(error);
+    return response;
   });
 }
 

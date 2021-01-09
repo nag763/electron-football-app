@@ -9,12 +9,4 @@ function generateHTMLtr(dataList) {
       .concat(`</tr>`);
 }
 
-function displayScore(homeTeam, awayTeam) {
-  if ([homeTeam, awayTeam].some((element) => null == element)) {
-    return 'N/A';
-  } else {
-    return `${homeTeam}-${awayTeam}`;
-  }
-}
-
-export {generateHTMLtr, generateHTMLtd, displayScore};
+export {generateHTMLtr, generateHTMLtd};
