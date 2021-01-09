@@ -9,13 +9,13 @@ function generateHTMLtr(dataList) {
       .concat(`</tr>`);
 }
 
-function generateHTMLtable(headers, datas) {
+function generateHTMLtable(headers, data) {
   return `<table>
             <tr>
             ${headers.map((element) => `<th>${element}</th>`).join('\n')}
             </tr>
             <tbody>
-            ${datas.map((element) => generateHTMLtr(element)).join('\n')}
+            ${data.map((element) => generateHTMLtr(element)).join('\n')}
             </tbody>
             </table>`;
 }

@@ -25,8 +25,9 @@ const rankingHeadersTable = ['Rank', 'Team', 'Point', 'MP', 'Wins', 'Draw', 'Los
 
 generateGetRequest(urlForTable).then((response) => {
   response.data.api.standings.forEach((table) => {
+    console.log(table);
     $('#rankings').append(
-        generateHTMLtable(rankingHeadersTable, table.map((team) => [team.rank, team.teamName, team.points, team.all.matchsPlayed, team.all.win, team.all.draw, team.all.lose, team.all.goalsFor, team.all.goalsAgainst, (team.all.goalsFor - team.all.goalsAgainst)])),
+        generateHTMLtable(rankingHeadersTable, table.map((team) => [team.rank, `<a href='./onl_team.html?id=${team.team_id}'>${team.teamName}</a>`, team.points, team.all.matchsPlayed, team.all.win, team.all.draw, team.all.lose, team.all.goalsFor, team.all.goalsAgainst, (team.all.goalsFor - team.all.goalsAgainst)], table.map(team => team.team_id))),
     );
   });
 });

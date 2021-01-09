@@ -38,7 +38,7 @@ $('#searchTeam').keypress(function(e) {
     if (2 < userInput.length) {
       generateGetRequest(pathSearchTeam.concat(userInput)).then((response) => {
         response.data.api.teams.forEach((element) => {
-          $('#results').append(`<li>${element.name}</li>`);
+          $('#results').append(`<li><a href='./onl_team.html?id=${element.team_id}'>${element.name}</a></li>`);
         });
       });
     }
