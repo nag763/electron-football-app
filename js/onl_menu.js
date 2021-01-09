@@ -20,7 +20,6 @@ $('#searchLeague').keypress(function(e) {
     $('#results').empty();
     if (2 < userInput.length) {
       generateGetRequest(pathSearchLeague.concat(userInput)).then((response) => {
-        console.log(response.data.api.leagues);
         response.data.api.leagues.sort(function(a, b) {
           return b.season - a.season;
         }).forEach((element) => {
