@@ -44,7 +44,7 @@ generateGetRequest(urlLastFixtures).then((response) => {
 
 const urlNextFixtures = `fixtures/team/${idToDisplay}/next/5`;
 
-generateGetRequest(urlLastFixtures).then((response) => {
+generateGetRequest(urlNextFixtures).then((response) => {
   const table = $('#nextFixtures');
   response.data.api.fixtures.forEach((element) => {
     const fixture = new Fixture();
