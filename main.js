@@ -14,7 +14,7 @@ function createWindow() {
     }
   })
   win.setMenuBarVisibility(false)
-  win.loadFile(`views${path.sep}online${path.sep}menu.html`)
+  win.loadFile(`views${path.sep}menu.html`)
 }
 
 app.whenReady().then(createWindow)

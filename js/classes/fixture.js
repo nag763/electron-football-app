@@ -36,17 +36,17 @@ Fixture.prototype.toTableData = function() {
   if (this.leagueId == undefined) {
     tableData.push(this.preciseLeague());
   } else {
-    tableData.push(`<a href='./onl_league.html?id=${this.leagueId}'>${this.preciseLeague()}</a>`);
+    tableData.push(`<a href='./league.html?id=${this.leagueId}'>${this.preciseLeague()}</a>`);
   }
   if (this.homeTeamId == undefined) {
     tableData.push(this.homeTeamName);
   } else {
-    tableData.push(`<a href='./onl_team.html?id=${this.homeTeamId}'>${this.homeTeamName}</a>`);
+    tableData.push(`<a href='./team.html?id=${this.homeTeamId}'>${this.homeTeamName}</a>`);
   }
   if (this.awayTeamId == undefined) {
     tableData.push(this.awayTeamName);
   } else {
-    tableData.push(`<a href='./onl_team.html?id=${this.awayTeamId}'>${this.awayTeamName}</a>`);
+    tableData.push(`<a href='./team.html?id=${this.awayTeamId}'>${this.awayTeamName}</a>`);
   }
   tableData.push(this.fullscore());
   tableData.push(this.eventHourTime());

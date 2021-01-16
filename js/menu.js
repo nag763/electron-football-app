@@ -13,12 +13,8 @@ const {
 } = require('electron');
 const fs = require('fs');
 
-$('#home_page').click(() => {
-  $(location).attr('href', '../index.html');
-});
-
 $('#next_fixtures').click(() => {
-  $(location).attr('href', './next_fixtures.html');
+  $(location).attr('href', './fixtures.html');
 });
 
 $('#get_an_api_key').click(() => {
@@ -39,36 +35,6 @@ $('#write_key').keypress((e) => {
   }
 });
 
-$('#searchLeague').keypress(function(e) {
-  if (e.which == enterKey) {
-    const userInput = $(this).val();
-    $('#results').empty();
-    if (2 < userInput.length) {
-      generateGetRequest(pathSearchLeague.concat(userInput)).then((response) => {
-        response.data.api.leagues.sort(function(a, b) {
-          return b.season - a.season;
-        }).forEach((element) => {
-          $('#results').append(`<li><a href='./onl_league.html?id=${element.league_id}'>[${element.season}]${element.name}, ${element.country}</a></li>`);
-        });
-      });
-    }
-  }
-});
-
-$('#searchTeam').keypress(function(e) {
-  if (e.which == enterKey) {
-    const userInput = $(this).val();
-    $('#results').empty();
-    if (2 < userInput.length) {
-      generateGetRequest(pathSearchTeam.concat(userInput)).then((response) => {
-        response.data.api.teams.forEach((element) => {
-          $('#results').append(`<li><a href='./onl_team.html?id=${element.team_id}'>${element.name}</a></li>`);
-        });
-      });
-    }
-  }
-});
-
 $('#searchbar').keypress(function(e) {
   const userInput = $(this).val();
   if ($('#searchbar').val().length == 0) {
@@ -81,16 +47,17 @@ $('#searchbar').keypress(function(e) {
       $('#latest_news li').remove();
       generateGetRequest(pathSearchTeam.concat(userInput)).then((response) => {
         response.data.api.teams.forEach((element) => {
-          $('#latest_news').append(`<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff"><a href='./onl_team.html?id=${element.team_id}'>${element.name}</a></li>`);
+          $('#latest_news').append(`<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff"><a href='./team.html?id=${element.team_id}'>${element.name}</a></li>`);
         });
         generateGetRequest(pathSearchLeague.concat(userInput)).then((response) => {
           response.data.api.leagues.sort(function(a, b) {
             return b.season - a.season;
           }).forEach((element) => {
-            $('#latest_news').append(`<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff"><a href='./onl_league.html?id=${element.league_id}'>[${element.season}]${element.name}, ${element.country}</a></li>`);
+            $('#latest_news').append(`<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff"><a href='./league.html?id=${element.league_id}'>[${element.season}]${element.name}, ${element.country}</a></li>`);
           });
         });
       });
+      $('#title').text('Search results');
     }
   }
 });

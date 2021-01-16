@@ -47,7 +47,7 @@ generateGetRequest(urlLatestFixtures).then((response) => {
     fixture.eventDate = element.event_date;
     fixture.leagueName = element.league.name;
     fixture.leagueId = element.league_id;
-    table.append(generateHTMLtr([fixture.eventHourTime(), `<a href='./onl_team.html?id=${fixture.homeTeamId}'>${fixture.homeTeamName}</a>`, `<a href='./onl_team.html?id=${fixture.awayTeamId}'>${fixture.awayTeamName}</a>`, fixture.fullscore(), `<a href='./onl_league.html?id=${fixture.leagueId}'>${fixture.leagueName}</a>`]));
+    table.append(generateHTMLtr([fixture.eventHourTime(), `<a href='./team.html?id=${fixture.homeTeamId}'>${fixture.homeTeamName}</a>`, `<a href='./team.html?id=${fixture.awayTeamId}'>${fixture.awayTeamName}</a>`, fixture.fullscore(), `<a href='./league.html?id=${fixture.leagueId}'>${fixture.leagueName}</a>`]));
   });
 });
 
@@ -65,7 +65,7 @@ generateGetRequest(urlNextFixtures).then((response) => {
     fixture.eventDate = element.event_date;
     fixture.leagueName = element.league.name;
     fixture.leagueId = element.league_id;
-    table.append(generateHTMLtr([fixture.eventHourTime(), `<a href='./onl_team.html?id=${fixture.homeTeamId}'>${fixture.homeTeamName}</a>`, `<a href='./onl_team.html?id=${fixture.awayTeamId}'>${fixture.awayTeamName}</a>`, `<a href='./onl_league.html?id=${fixture.leagueId}'>${fixture.leagueName}</a>`]));
+    table.append(generateHTMLtr([fixture.eventHourTime(), `<a href='./team.html?id=${fixture.homeTeamId}'>${fixture.homeTeamName}</a>`, `<a href='./team.html?id=${fixture.awayTeamId}'>${fixture.awayTeamName}</a>`, `<a href='./league.html?id=${fixture.leagueId}'>${fixture.leagueName}</a>`]));
   });
 });
 
