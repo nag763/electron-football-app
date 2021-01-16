@@ -52,7 +52,7 @@ Fixture.prototype.toTableData = function() {
   tableData.push(this.eventHourTime());
   tableData.push(this.elapsedTime);
   tableData.push(this.status);
-  tableData.push(`<a href='./match.html?id=${this.fixtureId}'> More informations</a>`)
+  tableData.push(`<a href='./match.html?id=${this.fixtureId}'> More informations</a>`);
   return tableData;
 };
 
