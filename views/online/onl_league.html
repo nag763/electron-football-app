@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>UnFootball</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-		<!-- Import dependencies from node-->
-  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <meta charset="UTF-8">
+  <title>UnFootball</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <!-- Import dependencies from node-->
+  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <script type="module" src="../../js/onl_league.js"></script>
 </head>
-<body style="background: lightgray;">
-    <h1 id="title" class="text-center">League</h1>
-    <div>
-      <table>
-      <tbody id="infos">
-      </tbody>
-      </table>
-    </div>
-      <br/>
-      <div id="rankings">
-      </div>
-      <div>
-        <h3> Rounds </h3>
-        <ul id="rounds">
 
-        </ul>
-      </div>
-      <div>
-        <button id="go_back" type="button" class="btn btn-danger" >Menu</button>
-      </div>
+<body style="background: black;">
+  <nav class="navbar navbar-dark" style="background-color: #1a1a1a">
+    <a class="navbar-brand" href="./menu.html">
+      <img src="../../icons/icon.png" width="30" height="30" class="d-inline-block align-top" alt=""> UnFootball
+    </a>
+  </nav>
+  </br>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <img id="logo" class="card-img-top" alt="league logo" style="max-width: 150px; max-height: 200px">
+    </div>
+    <br />
+    <h1 id="title" class="text-center" style="color:white">League</h1>
+    <br />
+    <h3 id="subtitle" class="text-center" style="color:white">Subtitle</h3>
+    <br />
+    <br />
+    <h3 style="color:white">Ranking</h3>
+    <div id="rankings">
+    </div>
+    <br />
+    <h3 style="color:white">Rounds</h3>
+    <div class="card" style="background-color: #2b2b2b">
+      <ul id="next_rounds" class="list-group list-group-flush" style="background-color: #ffffff">
+      </ul>
+    </div>
+  </div>
+  <br />
 </body>
+
 </html>

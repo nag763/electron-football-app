@@ -1,27 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>UnFootball</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-		<!-- Import dependencies from node-->
-  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <meta charset="UTF-8">
+  <title>UnFootball</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <!-- Import dependencies from node-->
+  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <script type="module" src="../../js/onl_menu.js"></script>
 </head>
-<body style="background: lightgray;">
-    <h1 class="text-center">Online menu</h1>
-		<p class="text-center">Pick a league or a team</p>
-    <div>
-    <buton id="next_fixtures" type="button" class="btn">Today fixtures</button></br>
+
+<body style="background: #000000;">
+  <nav class="navbar navbar-dark" style="background-color: #1a1a1a">
+    <a class="navbar-brand">
+      <img src="../../icons/icon.png" width="30" height="30" class="d-inline-block align-top" alt=""> UnFootball
+        <buton id="next_fixtures" type="button" style="color: #ffffff" class="btn">Today fixtures</button></br>
+    </a>
+    <form class="form-inline my-2 my-lg-0">
+      <input id="write_key" class="form-control mr-sm-2" type="password" placeholder="Change the api key" style="background: #000000; border-color: #2b2b2b" aria-label="Search">
+      <small><a id="get_an_api_key" href="#">Get an api key</a></small>
+    </form>
+    <div class="dropdown">
+      <div id="myDropdown" class="dropdown-content">
+        <input id="searchbar" class="form-control mr-sm-2" type="search" placeholder="Search" style="background: #000000; border-color: #2b2b2b" aria-label="Search">
+      </div>
     </div>
-      <!-- Search form -->
-<div class="md-form mt-0">
-  <input id="searchLeague" class="form-control" type="text" placeholder="Search per league or country" aria-label="Search">
-  <input id="searchTeam" class="form-control" type="text" placeholder="Search a team" aria-label="Search">
-</div>
-    <div>
-      <ul id="results"></ul>
+  </nav>
+  <br />
+  <div class="container">
+    <h1 id="title" class="text-center" style="color: #ffffff">Latest news</h1>
+    <div class="card" style="background-color: #2b2b2b">
+      <ul id="latest_news" class="list-group list-group-flush" style="background-color: #ffffff">
+      </ul>
     </div>
-		<button id="home_page" type="button" class="btn btn-danger">Back to home</button>
+    <div>
+    </div>
+  </div>
 </body>
+
 </html>

@@ -19,14 +19,18 @@
     "mocha": "^8.2.1"
   },
   "dependencies": {
+    "awesome-notifications": "^3.1.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "dateformat": "^4.4.1",
+    "electron-alert": "^0.1.11",
     "electron-mocha": "^10.0.0",
+    "electron-toaster": "^2.0.4",
     "fs": "0.0.1-security",
     "jquery": "^3.5.1",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
-    "querystring": "^0.2.0"
+    "querystring": "^0.2.0",
+    "rss-parser": "^3.10.0"
   }
 }

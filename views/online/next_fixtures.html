@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>UnFootball</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-		<!-- Import dependencies from node-->
-  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <meta charset="UTF-8">
+  <title>UnFootball</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <!-- Import dependencies from node-->
+  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <script type="module" src="../../js/onl_next_fixtures.js"></script>
 </head>
-<body style="background: lightgray;">
-    <h1 id="title" class="text-center">Fixtures</h1>
-    <table style="width:100%">
-     <tr>
-       <th>League</th>
-       <th>Home Team</th>
-       <th>Away Team</th>
-       <th>Score</th>
-       <th>Start time</th>
-       <th>Time elapsed</th>
-       <th>Status</th>
-     </tr>
-     <tbody id="fixtures">
-     </tbody>
-     <p>
-    <button id="next" type="button" class="btn btn-info">Next</button>
-    <button id="previous" type="button" class="btn btn-success">Previous</button>
-		<button id="go_back" type="button" class="btn btn-danger" >Menu</button>
-    <input id="searchBar" type="text" placeholder="Search">
+
+<body style="background: black;">
+  <nav class="navbar navbar-dark" style="background-color: #1a1a1a">
+    <a class="navbar-brand" href="./menu.html">
+      <img src="../../icons/icon.png" width="30" height="30" class="d-inline-block align-top" alt=""> UnFootball
+    </a>
+  </nav>
+  <br />
+  <div class="container">
+    <h1 id="title" class="text-center" style="color: white">Fixtures</h1>
+    <table class="table table-bordered" style="width:100%">
+      <thead class="thead-dark" style="border-color: white">
+        <tr>
+          <th style="border-color: #f3f4f5; border-width: 1px">League</th>
+          <th style="border-color: #f3f4f5; border-width: 1px">Home Team</th>
+          <th style="border-color: #f3f4f5; border-width: 1px">Away Team</th>
+          <th style="border-color: #f3f4f5; border-width: 1px">Score</th>
+          <th style="border-color: #f3f4f5; border-width: 1px">Start time</th>
+          <th style="border-color: #f3f4f5; border-width: 1px">Time elapsed</th>
+          <th style="border-color: #f3f4f5; border-width: 1px">Status</th>
+        </tr>
+      </thead>
+      <tbody id="fixtures" style="background: #1a1a1a; color:#f3f4f5;" id="latestFixtures">
+      </tbody>
+    </br>
+      <div class="row">
+        <div class="col-sm">
+          <input type="date" id="datepicker" name="trip-start" min="2000-01-01" max="2021-10-10" style="background: #2b2b2b;">
+          <button id="previous" type="button" class="btn btn-success">Previous</button>
+          <button id="next" type="button" class="btn btn-info">Next</button>
+        </div>
+        <div class="col-sm">
+              <form class="form-inline my-2 my-lg-0">
+          <input id="searchBar" type="text" class="form-control mr-sm-2" placeholder="Search for one element in particular" style="background: #000000; border-color: #2b2b2b" >
+        </form>
+        </div>
+      </div>
+    </br>
+  </div>
 
 </body>
+
 </html>

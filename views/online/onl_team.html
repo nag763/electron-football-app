@@ -1,45 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>UnFootball</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-		<!-- Import dependencies from node-->
-  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <meta charset="UTF-8">
+  <title>UnFootball</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <!-- Import dependencies from node-->
+  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <script type="module" src="../../js/onl_team.js"></script>
 </head>
-<body style="background: lightgray;">
-    <h1 id="title" class="text-center">Team</h1>
-    <div>
-      <table>
-      <tbody id="infos">
-      </tbody>
-      </table>
+
+<body style="background: #000000;">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <img id="logo" class="card-img-top" alt="team logo" style="max-width: 150px; max-height: 150px">
     </div>
+    <br />
+    <div class="row justify-content-md-center">
+      <h2 id="clubName" style="color:#f3f4f5;" class="d-flex justify-content-center"><b>Team name.</b></h2>
+    </div>
+    <br/>
+    <p class="card-text" style="color:#f3f4f5;" id="desc">Team description.</p>
     <div>
-      <h3>Latest fixtures</h3>
-      <table>
-        <th>Date</th>
-        <th>Home team</th>
-        <th>Away team</th>
-        <th>Final score</th>
-        <th>League</th>
-        <tbody id="latestFixtures">
+      <h3 style="color:#f3f4f5;">Latest fixtures</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Date</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Home team</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Away team</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Final score</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">League</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="latestFixtures">
         </tbody>
       </table>
       <div>
-    <div>
-      <h3>Next fixtures</h3>
-      <table>
-        <th>Date</th>
-        <th>Home team</th>
-        <th>Away team</th>
-        <th>League</th>
-        <tbody id="nextFixtures">
-        </tbody>
-      </table>
-      <div>
-          <button id="go_back" type="button" class="btn btn-danger" >Menu</button>
+        <div>
+          <h3 style="color:#f3f4f5;">Next fixtures</h3>
+          <table class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th style="border-color: #f3f4f5; border-width: 1px">Date</th>
+                <th style="border-color: #f3f4f5; border-width: 1px">Home team</th>
+                <th style="border-color: #f3f4f5; border-width: 1px">Away team</th>
+                <th style="border-color: #f3f4f5; border-width: 1px">League</th>
+              </tr>
+            <tbody style="background: #1a1a1a; color:#f3f4f5" id="nextFixtures">
+            </tbody>
+          </table>
+          <div>
+            <button id="go_back" type="button" class="btn btn-danger">Menu</button>
+          </div>
+        </div>
       </div>
 </body>
+
 </html>

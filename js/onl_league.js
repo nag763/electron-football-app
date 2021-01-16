@@ -11,13 +11,10 @@ const urlForInfo = `leagues/league/${idToDisplay}`;
 
 generateGetRequest(urlForInfo).then((response) => {
   const leagueToDisplay = response.data.api.leagues[0];
-  const infosTable = $('#infos');
 
   $('#title').text(leagueToDisplay.name);
-  infosTable.append(generateHTMLtr(['Country', `${leagueToDisplay.country} <img src='${leagueToDisplay.flag}'/>`]));
-  infosTable.append(generateHTMLtr(['Type', leagueToDisplay.type]));
-  infosTable.append(generateHTMLtr(['Season', leagueToDisplay.season]));
-  infosTable.append(generateHTMLtr(['logo', `<img src='${leagueToDisplay.logo}'/>`]));
+  $('#logo').attr('src', leagueToDisplay.logo);
+  $('#subtitle').text(`${leagueToDisplay.type} played in ${leagueToDisplay.country}`)
 });
 
 const urlForTable = `leagueTable/${idToDisplay}`;
@@ -35,7 +32,7 @@ const urlForRounds = `fixtures/rounds/${idToDisplay}`;
 
 generateGetRequest(urlForRounds).then((response) => {
   response.data.api.fixtures.forEach((fixture, index) => {
-    $('#rounds').append(`<li><a href='./next_fixtures.html?league=${idToDisplay}&fixture=${fixture}&mdnumber=${index}'>Match day ${index}</li>`);
+    $('#next_rounds').append(`<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff"><a href='./next_fixtures.html?league=${idToDisplay}&fixture=${fixture}&mdnumber=${index}'>Match day ${index}</li>`);
   });
 });
 

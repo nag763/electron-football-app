@@ -9,7 +9,15 @@ import {Fixture} from './classes/fixture.js';
 
 const query = querystring.parse(global.location.search);
 
-const dateDisplayed = new Date();
+let dateDisplayed = new Date();
+
+$("#datepicker").change(function (field) {
+  dateDisplayed = new Date($(this).val());
+  displayFixtures(getDateUrl(), getDateHeader());
+})
+
+$("#datepicker").attr("max", dateFormat(new Date(new Date().setFullYear(new Date().getFullYear() + 1)), 'yyyy-mm-dd'))
+                .attr("value", dateFormat(dateDisplayed, 'yyyy-mm-dd'))
 
 function getDateHeader() {
   return `Matchs being played on  ${dateFormat(dateDisplayed, 'dddd dd/mm/yyyy')}`;
@@ -37,13 +45,12 @@ if (isMatchDay) {
   leagueFixtureHeader = `Fixture for Match Day ${number}`;
 }
 
-
 function displayFixtures(url, header) {
   $('#title').text(header);
 
   generateGetRequest(url).then((res) => {
     const jsonBody = res.data;
-    console.log(jsonBody);
+    $('#fixtures tr').remove();
     Array.from(jsonBody.api.fixtures).forEach((element) => {
       const fixture = new Fixture();
       fixture.country = element.league.country;
@@ -83,10 +90,6 @@ if (isMatchDay) {
     displayFixtures(getDateUrl(), getDateHeader());
   });
 }
-
-$('#go_back').click( () => {
-  $(location).attr('href', isMatchDay?`./onl_league.html?id=${league}`:'./menu.html');
-});
 
 // Not mine, taken directly from w3s
 $('#searchBar').on('keyup', function() {
