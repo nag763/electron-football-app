@@ -38,7 +38,6 @@ $('#write_key').keypress((e) => {
 $('#searchbar').keypress(function(e) {
   const userInput = $(this).val();
   if ($('#searchbar').val().length == 0) {
-    $('#title').text('Latest news');
     getLatestRedditRSS();
   } else if (userInput.length < 2) {
     $('#title').text('You need to search with at least 2 characters, press enter to research.');
@@ -62,11 +61,24 @@ $('#searchbar').keypress(function(e) {
   }
 });
 
+$('#lock').click(() => {
+  const state = $('#lock');
+  const api_key_field = $('#write_key')
+  if(state.attr("class").localeCompare('fa fa-lock') == 0){
+    state.attr('class', 'fa fa-unlock')
+    api_key_field.removeAttr('disabled')
+  } else {
+    state.attr('class', 'fa fa-lock')
+    api_key_field.attr('disabled', 'disabled')
+  }
+}
+)
 
 async function getLatestRedditRSS() {
   const now = new Date();
 
   const parser = new Parser();
+  $('#title').text('Latest news');
   const feed = await parser.parseURL('https://www.reddit.com/r/soccer/new.rss');
   $('#latest_news li').remove();
   feed.items.slice(0, 10).forEach((item) => {
