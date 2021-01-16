@@ -75,8 +75,9 @@ function displaySquad(date) {
   generateGetRequest(`players/squad/${idToDisplay}/${date}`).then((response) => {
     if (response.data.api.results =! 0) {
       const players = response.data.api.players;
+      console.log(players)
       players.sort((a, b) => (a.lastname.localeCompare(b.lastname))).forEach((player) => {
-        $('#squad').append(generateHTMLtr([`${player.firstname} ${player.lastname}`, `${player.position}`, `${player.nationality}`, `${player.age}`, `${player.birth_place}`, player.height, player.weight]));
+        $('#squad').append(generateHTMLtr([`<a href=./player.html?id=${player.player_id}>${player.firstname} ${player.lastname}</a>`, `${player.position}`, `${player.nationality}`, `${player.age}`, `${player.birth_place}`, player.height, player.weight]));
       });
     } else {
       // Date like 2020

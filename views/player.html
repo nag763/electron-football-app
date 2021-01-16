@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>UnFootball</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <!-- Import dependencies from node-->
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <script type="module" src="../js/player.js"></script>
+</head>
+
+<body style="background: #000000;">
+  <nav class="navbar navbar-dark" style="background-color: #1a1a1a">
+    <a class="navbar-brand" href="./menu.html">
+      <img src="../icons/icon.png" width="30" height="30" class="d-inline-block align-top" alt=""> UnFootball
+    </a>
+  </nav>
+  <div class="container">
+    <br />
+    <div class="row justify-content-md-center">
+      <h2 id="playerName" style="color:#f3f4f5;" class="d-flex justify-content-center"><b>Player name.</b></h2>
+    </div>
+    <br />
+    <div>
+      <p class="card-text" style="color:#f3f4f5;" id="desc">Player description.</p>
+      <select id="select" class="form-select" aria-label="Default select example">
+      </select>
+      <h3 style="color:#f3f4f5;" id="statsdesc">Stats description.</h3>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Games</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Appearences</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Minutes</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Line ups</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Captain</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="games">
+        </tbody>
+      </table>
+      </div>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Substitutes</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">In</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Out</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Bench</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="substitutes">
+        </tbody>
+      </table>
+      </div>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Cards</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Yellow</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Second yellow</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Straight red</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="cards">
+        </tbody>
+      </table>
+      </div>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Goals</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Total</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Conceded</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Assist</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Save</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="goals">
+        </tbody>
+      </table>
+      </div>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Passes</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Total</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Key</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Accuracy</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="passes">
+        </tbody>
+      </table>
+      </div>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Shots</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Total</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">On target</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="shots">
+        </tbody>
+      </table>
+      </div>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Penalties</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Won</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Commited</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Success</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Missed</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Saved</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="penalties">
+        </tbody>
+      </table>
+      </div>
+      </div>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Dribbles</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Attempts</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Success</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="dribbles">
+        </tbody>
+      </table>
+      </div>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Duels</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Total</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Won</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="duels">
+        </tbody>
+      </table>
+      </div>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Tackles</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Total</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Blocks</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Interception</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="tackles">
+        </tbody>
+      </table>
+      </div>
+      <br/>
+      <div>
+      <h3 style="color:#f3f4f5;" >Fouls</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Drawn</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Commited</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="fouls">
+        </tbody>
+      </table>
+      </div>
+</body>
+
+</html>
