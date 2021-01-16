@@ -11,6 +11,11 @@
 </head>
 
 <body style="background: #000000;">
+  <nav class="navbar navbar-dark" style="background-color: #1a1a1a">
+    <a class="navbar-brand" href="./menu.html">
+      <img src="../icons/icon.png" width="30" height="30" class="d-inline-block align-top" alt=""> UnFootball
+    </a>
+  </nav>
   <div class="container">
     <div class="row justify-content-md-center">
       <img id="logo" class="card-img-top" alt="team logo" style="max-width: 150px; max-height: 150px">
@@ -21,6 +26,24 @@
     </div>
     <br/>
     <p class="card-text" style="color:#f3f4f5;" id="desc">Team description.</p>
+    <div>
+      <h3 style="color:#f3f4f5;">Current squad</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Name</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Position</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Nationality</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Age</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Birth date</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Size</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Weight</th>
+          </tr>
+        </thead>
+        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="squad">
+        </tbody>
+      </table>
+      <div>
     <div>
       <h3 style="color:#f3f4f5;">Latest fixtures</h3>
       <table class="table table-bordered">
@@ -50,9 +73,6 @@
             <tbody style="background: #1a1a1a; color:#f3f4f5" id="nextFixtures">
             </tbody>
           </table>
-          <div>
-            <button id="go_back" type="button" class="btn btn-danger">Menu</button>
-          </div>
         </div>
       </div>
 </body>

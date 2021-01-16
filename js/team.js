@@ -20,7 +20,6 @@ const urlTeam = `teams/team/${idToDisplay}`;
 generateGetRequest(urlTeam).then((response) => {
   const team = response.data.api.teams[0];
   const infosTable = $('#infos');
-
   $('#title').text(team.name);
   $('#clubName').text(team.name);
   $('#logo').attr('src', team.logo);
@@ -35,19 +34,19 @@ const urlLatestFixtures = `fixtures/team/${idToDisplay}/last/5`;
 generateGetRequest(urlLatestFixtures).then((response) => {
   const table = $('#latestFixtures');
   response.data.api.fixtures.forEach((element) => {
-    console.log(element);
     const fixture = new Fixture();
     fixture.league = element.league.name;
     fixture.homeTeamName = element.homeTeam.team_name;
     fixture.homeTeamId = element.homeTeam.team_id;
+    fixture.leagueLogo = element.league.logo;
+    fixture.homeTeamLogo = element.homeTeam.logo;
     fixture.awayTeamName = element.awayTeam.team_name;
     fixture.awayTeamId = element.awayTeam.team_id;
-    fixture.goalsHomeTeam = element.goalsHomeTeam;
-    fixture.goalsAwayTeam = element.goalsAwayTeam;
+    fixture.awayTeamLogo = element.awayTeam.logo;
     fixture.eventDate = element.event_date;
     fixture.leagueName = element.league.name;
     fixture.leagueId = element.league_id;
-    table.append(generateHTMLtr([fixture.eventHourTime(), `<a href='./team.html?id=${fixture.homeTeamId}'>${fixture.homeTeamName}</a>`, `<a href='./team.html?id=${fixture.awayTeamId}'>${fixture.awayTeamName}</a>`, fixture.fullscore(), `<a href='./league.html?id=${fixture.leagueId}'>${fixture.leagueName}</a>`]));
+    table.append(generateHTMLtr([fixture.eventHourTime(), `<a href='./team.html?id=${fixture.homeTeamId}'><img src="${fixture.homeTeamLogo}" width=15 height=15/> ${fixture.homeTeamName}</a>`, `<a href='./team.html?id=${fixture.awayTeamId}'><img src="${fixture.awayTeamLogo}" width=15 height=15/> ${fixture.awayTeamName}</a>`, fixture.fullscore(), `<a href='./league.html?id=${fixture.leagueId}'><img src="${fixture.leagueLogo}" width=15 height=15/> ${fixture.leagueName}</a>`]));
   });
 });
 
@@ -60,15 +59,34 @@ generateGetRequest(urlNextFixtures).then((response) => {
     fixture.league = element.league.name;
     fixture.homeTeamName = element.homeTeam.team_name;
     fixture.homeTeamId = element.homeTeam.team_id;
+    fixture.leagueLogo = element.league.logo;
+    fixture.homeTeamLogo = element.homeTeam.logo;
     fixture.awayTeamName = element.awayTeam.team_name;
     fixture.awayTeamId = element.awayTeam.team_id;
+    fixture.awayTeamLogo = element.awayTeam.logo;
     fixture.eventDate = element.event_date;
     fixture.leagueName = element.league.name;
     fixture.leagueId = element.league_id;
-    table.append(generateHTMLtr([fixture.eventHourTime(), `<a href='./team.html?id=${fixture.homeTeamId}'>${fixture.homeTeamName}</a>`, `<a href='./team.html?id=${fixture.awayTeamId}'>${fixture.awayTeamName}</a>`, `<a href='./league.html?id=${fixture.leagueId}'>${fixture.leagueName}</a>`]));
+    table.append(generateHTMLtr([fixture.eventHourTime(), `<a href='./team.html?id=${fixture.homeTeamId}'><img src="${fixture.homeTeamLogo}" width=15 height=15/> ${fixture.homeTeamName}</a>`, `<a href='./team.html?id=${fixture.awayTeamId}'><img src="${fixture.awayTeamLogo}" width=15 height=15/> ${fixture.awayTeamName}</a>`, `<a href='./league.html?id=${fixture.leagueId}'><img src="${fixture.leagueLogo}" width=15 height=15/> ${fixture.leagueName}</a>`]));
   });
 });
 
-$('#go_back').click(() => {
-  $(location).attr('href', './menu.html');
-});
+function displaySquad(date){
+  generateGetRequest(`players/squad/${idToDisplay}/${date}`).then((response) => {
+    if(response.data.api.results =! 0){
+    const players = response.data.api.players;
+    players.sort((a, b) => (a.lastname.localeCompare(b.lastname))).forEach(player => {
+      $('#squad').append(generateHTMLtr([`${player.firstname} ${player.lastname}`, `${player.position}`, `${player.nationality}`, `${player.age}`, `${player.birth_place}`, player.height, player.weight]))
+    })} else {
+      // Date like 2020
+      if(date.length == 4) {
+          displaySquad(`${parseInt(data)-1}-${date}`)
+      // Date like 2020-2021
+      } else if (date.length == 9) {
+          displaySquad(date.substring(0, 4))
+      }
+    }
+  })
+}
+
+displaySquad('2020-2021')
