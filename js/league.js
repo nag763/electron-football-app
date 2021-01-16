@@ -9,6 +9,7 @@ const idToDisplay = JSON.parse(query['?id']);
 
 const urlForInfo = `leagues/league/${idToDisplay}`;
 
+
 generateGetRequest(urlForInfo).then((response) => {
   const leagueToDisplay = response.data.api.leagues[0];
 
@@ -23,7 +24,7 @@ const rankingHeadersTable = ['Rank', 'Team', 'Point', 'MP', 'Wins', 'Draw', 'Los
 generateGetRequest(urlForTable).then((response) => {
   response.data.api.standings.forEach((table) => {
     $('#rankings').append(
-        generateHTMLtable(rankingHeadersTable, table.map((team) => [team.rank, `<a href='./team.html?id=${team.team_id}'>${team.teamName}</a>`, team.points, team.all.matchsPlayed, team.all.win, team.all.draw, team.all.lose, team.all.goalsFor, team.all.goalsAgainst, (team.all.goalsFor - team.all.goalsAgainst)], table.map((team) => team.team_id))),
+        generateHTMLtable(rankingHeadersTable, table.map((team) => [team.rank, `<a href='./team.html?id=${team.team_id}'><img src="${team.logo}" width=15 height=15/> ${team.teamName}</a>`, team.points, team.all.matchsPlayed, team.all.win, team.all.draw, team.all.lose, team.all.goalsFor, team.all.goalsAgainst, (team.all.goalsFor - team.all.goalsAgainst)], table.map((team) => team.team_id))),
     );
   });
 });

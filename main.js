@@ -15,6 +15,7 @@ function createWindow() {
   })
   win.setMenuBarVisibility(false)
   win.loadFile(`views${path.sep}menu.html`)
+  win.maximize();
 }
 
 app.whenReady().then(createWindow)

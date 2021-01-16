@@ -56,10 +56,13 @@ function displayFixtures(url, header) {
       fixture.country = element.league.country;
       fixture.league = element.league.name;
       fixture.leagueId = element.league_id;
+      fixture.leagueLogo = element.league.logo;
       fixture.homeTeamName = element.homeTeam.team_name;
       fixture.homeTeamId = element.homeTeam.team_id;
+      fixture.homeTeamLogo = element.homeTeam.logo;
       fixture.awayTeamName = element.awayTeam.team_name;
       fixture.awayTeamId = element.awayTeam.team_id;
+      fixture.awayTeamLogo = element.awayTeam.logo;
       fixture.goalsHomeTeam = element.goalsHomeTeam;
       fixture.goalsAwayTeam = element.goalsAwayTeam;
       fixture.eventDate = element.event_date;
