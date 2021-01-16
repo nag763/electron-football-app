@@ -42,7 +42,7 @@ if (isMatchDay) {
   fixture = query['fixture'];
   number = JSON.parse(query['mdnumber']);
   leagueFixtureUrl = `fixtures/league/${league}/${fixture}`;
-  leagueFixtureHeader = `Fixture for Match Day ${number}`;
+  leagueFixtureHeader = `Fixtures for Match Day ${number}`;
 }
 
 function displayFixtures(url, header) {
@@ -68,6 +68,7 @@ function displayFixtures(url, header) {
       fixture.eventDate = element.event_date;
       fixture.elapsedTime = element.elapsed;
       fixture.status = element.status;
+      fixture.fixtureId = element.fixture_id;
       // TODO : optimised ?
       $('#fixtures').append(generateHTMLtr(fixture.toTableData()));
     });

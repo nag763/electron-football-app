@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>UnFootball</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <!-- Import dependencies from node-->
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <script type="module" src="../js/match.js"></script>
+</head>
+
+<body style="background: black;">
+  <nav class="navbar navbar-dark" style="background-color: #1a1a1a">
+    <a class="navbar-brand" href="./menu.html">
+      <img src="../icons/icon.png" width="30" height="30" class="d-inline-block align-top" alt=""> UnFootball
+    </a>
+  </nav>
+  <br />
+  <div class="container">
+    <h1 id="title" class="text-center" style="color: white">Match</h1>
+    <br />
+      <h3 style="color: #ffffff">Events</h3>
+      <div class="card" style="background-color: #2b2b2b">
+        <ul id="events" class="list-group list-group-flush" style="background-color: #ffffff">
+        </ul>
+      </div>
+    <div>
+      <br />
+      <h3 style="color: white">Coachs</h3>
+      <table class="table table-bordered" style="width:100%">
+        <thead class="thead-dark" style="border-color: white">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Home Team</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Away Team</th>
+          </tr>
+        </thead>
+        <tbody id="coachs" style="background: #1a1a1a; color:#f3f4f5;">
+        </tbody>
+      </table>
+    </div>
+    <br/>
+    <div>
+      <br />
+      <h3 style="color: white">Starting XI</h3>
+      <table class="table table-bordered" style="width:100%">
+        <thead class="thead-dark" style="border-color: white">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Home Team</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Away Team</th>
+          </tr>
+        </thead>
+        <tbody id="lineups" style="background: #1a1a1a; color:#f3f4f5;">
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <br />
+      <h3 style="color: white">Substitutes</h3>
+      <table class="table table-bordered" style="width:100%">
+        <thead class="thead-dark" style="border-color: white">
+          <tr>
+            <th style="border-color: #f3f4f5; border-width: 1px">Home Team</th>
+            <th style="border-color: #f3f4f5; border-width: 1px">Away Team</th>
+          </tr>
+        </thead>
+        <tbody id="substitutes" style="background: #1a1a1a; color:#f3f4f5;">
+        </tbody>
+      </table>
+    </div>
+    <br/>
+  </div>
+
+</body>
+
+</html>
