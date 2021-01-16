@@ -63,16 +63,16 @@ $('#searchbar').keypress(function(e) {
 
 $('#lock').click(() => {
   const state = $('#lock');
-  const api_key_field = $('#write_key')
-  if(state.attr("class").localeCompare('fa fa-lock') == 0){
-    state.attr('class', 'fa fa-unlock')
-    api_key_field.removeAttr('disabled')
+  const api_key_field = $('#write_key');
+  if (state.attr('class').localeCompare('fa fa-lock') == 0) {
+    state.attr('class', 'fa fa-unlock');
+    api_key_field.removeAttr('disabled');
   } else {
-    state.attr('class', 'fa fa-lock')
-    api_key_field.attr('disabled', 'disabled')
+    state.attr('class', 'fa fa-lock');
+    api_key_field.attr('disabled', 'disabled');
   }
-}
-)
+},
+);
 
 async function getLatestRedditRSS() {
   const now = new Date();

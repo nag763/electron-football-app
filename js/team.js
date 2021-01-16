@@ -71,22 +71,23 @@ generateGetRequest(urlNextFixtures).then((response) => {
   });
 });
 
-function displaySquad(date){
+function displaySquad(date) {
   generateGetRequest(`players/squad/${idToDisplay}/${date}`).then((response) => {
-    if(response.data.api.results =! 0){
-    const players = response.data.api.players;
-    players.sort((a, b) => (a.lastname.localeCompare(b.lastname))).forEach(player => {
-      $('#squad').append(generateHTMLtr([`${player.firstname} ${player.lastname}`, `${player.position}`, `${player.nationality}`, `${player.age}`, `${player.birth_place}`, player.height, player.weight]))
-    })} else {
+    if (response.data.api.results =! 0) {
+      const players = response.data.api.players;
+      players.sort((a, b) => (a.lastname.localeCompare(b.lastname))).forEach((player) => {
+        $('#squad').append(generateHTMLtr([`${player.firstname} ${player.lastname}`, `${player.position}`, `${player.nationality}`, `${player.age}`, `${player.birth_place}`, player.height, player.weight]));
+      });
+    } else {
       // Date like 2020
-      if(date.length == 4) {
-          displaySquad(`${parseInt(data)-1}-${date}`)
+      if (date.length == 4) {
+        displaySquad(`${parseInt(data)-1}-${date}`);
       // Date like 2020-2021
       } else if (date.length == 9) {
-          displaySquad(date.substring(0, 4))
+        displaySquad(date.substring(0, 4));
       }
     }
-  })
+  });
 }
 
-displaySquad('2020-2021')
+displaySquad('2020-2021');
