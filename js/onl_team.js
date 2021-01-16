@@ -2,13 +2,13 @@ const querystring = require('querystring');
 const $ = require('jquery');
 
 import {
-  generateGetRequest
+  generateGetRequest,
 } from './utils/httputils.js';
 import {
-  generateHTMLtr
+  generateHTMLtr,
 } from './utils/htmlutils.js';
 import {
-  Fixture
+  Fixture,
 } from './classes/fixture.js';
 
 const query = querystring.parse(global.location.search);

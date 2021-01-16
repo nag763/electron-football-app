@@ -14,7 +14,7 @@ generateGetRequest(urlForInfo).then((response) => {
 
   $('#title').text(leagueToDisplay.name);
   $('#logo').attr('src', leagueToDisplay.logo);
-  $('#subtitle').text(`${leagueToDisplay.type} played in ${leagueToDisplay.country}`)
+  $('#subtitle').text(`${leagueToDisplay.type} played in ${leagueToDisplay.country}`);
 });
 
 const urlForTable = `leagueTable/${idToDisplay}`;

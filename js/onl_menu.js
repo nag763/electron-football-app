@@ -2,14 +2,14 @@ const $ = require('jquery');
 const Parser = require('rss-parser');
 
 import {
-  generateGetRequest
+  generateGetRequest,
 } from './utils/httputils.js';
 
 const enterKey = 13;
 const pathSearchLeague = 'leagues/search/';
 const pathSearchTeam = 'teams/search/';
 const {
-  shell
+  shell,
 } = require('electron');
 const fs = require('fs');
 
@@ -21,23 +21,23 @@ $('#next_fixtures').click(() => {
   $(location).attr('href', './next_fixtures.html');
 });
 
-$("#get_an_api_key").click(() => {
-  shell.openExternal('https://www.api-football.com/')
-})
+$('#get_an_api_key').click(() => {
+  shell.openExternal('https://www.api-football.com/');
+});
 
-$("#write_key").keypress((e) => {
+$('#write_key').keypress((e) => {
   if (e.which == 13) {
-    const userInput = $("#write_key").val();
-    $("#write_key").val("");
-    $("#write_key").attr("placeholder", "Key written!")
-    fs.writeFile("./api.key", userInput, (err) => {
+    const userInput = $('#write_key').val();
+    $('#write_key').val('');
+    $('#write_key').attr('placeholder', 'Key written!');
+    fs.writeFile('./api.key', userInput, (err) => {
       if (err) {
         return console.log(err);
       };
       console.log('Key written');
     });
   }
-})
+});
 
 $('#searchLeague').keypress(function(e) {
   if (e.which == enterKey) {
@@ -71,11 +71,11 @@ $('#searchTeam').keypress(function(e) {
 
 $('#searchbar').keypress(function(e) {
   const userInput = $(this).val();
-  if($('#searchbar').val().length == 0){
-    $('#title').text('Latest news')
+  if ($('#searchbar').val().length == 0) {
+    $('#title').text('Latest news');
     getLatestRedditRSS();
   } else if (userInput.length < 2) {
-    $('#title').text('You need to search with at least 2 characters, press enter to research.')
+    $('#title').text('You need to search with at least 2 characters, press enter to research.');
   } else {
     if (e.which == enterKey) {
       $('#latest_news li').remove();
@@ -96,22 +96,20 @@ $('#searchbar').keypress(function(e) {
 });
 
 
-async function getLatestRedditRSS(){
-
+async function getLatestRedditRSS() {
   const now = new Date();
 
   const parser = new Parser();
   const feed = await parser.parseURL('https://www.reddit.com/r/soccer/new.rss');
   $('#latest_news li').remove();
-  feed.items.slice(0, 10).forEach(item => {
+  feed.items.slice(0, 10).forEach((item) => {
     const diffMs = (now - new Date(item.pubDate));
     // Yes, I stole that from internet
     const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
     $('#latest_news').append(
-      `<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff">${item.title} (${diffMins} mns ago)</li>`
+        `<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff">${item.title} (${diffMins} mns ago)</li>`,
     );
   });
-
 };
 
 getLatestRedditRSS();

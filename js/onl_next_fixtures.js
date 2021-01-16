@@ -11,13 +11,13 @@ const query = querystring.parse(global.location.search);
 
 let dateDisplayed = new Date();
 
-$("#datepicker").change(function (field) {
+$('#datepicker').change(function(field) {
   dateDisplayed = new Date($(this).val());
   displayFixtures(getDateUrl(), getDateHeader());
-})
+});
 
-$("#datepicker").attr("max", dateFormat(new Date(new Date().setFullYear(new Date().getFullYear() + 1)), 'yyyy-mm-dd'))
-                .attr("value", dateFormat(dateDisplayed, 'yyyy-mm-dd'))
+$('#datepicker').attr('max', dateFormat(new Date(new Date().setFullYear(new Date().getFullYear() + 1)), 'yyyy-mm-dd'))
+    .attr('value', dateFormat(dateDisplayed, 'yyyy-mm-dd'));
 
 function getDateHeader() {
   return `Matchs being played on  ${dateFormat(dateDisplayed, 'dddd dd/mm/yyyy')}`;
