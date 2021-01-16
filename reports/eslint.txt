@@ -32,14 +32,35 @@
 [0m  [2m36:1[22m   [31merror[39m  This line has a length of 242. Maximum allowed is 80  [2mmax-len[22m[0m
 [0m[0m
 [0m[4m/home/usr/Documents/ESIG/NODEJS/js/menu.js[24m[0m
-[0m  [2m39:23[22m  [31merror[39m  Unexpected 'this'                                     [2mno-invalid-this[22m[0m
-[0m  [2m43:1[22m   [31merror[39m  This line has a length of 96. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m49:1[22m   [31merror[39m  This line has a length of 208. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m51:1[22m   [31merror[39m  This line has a length of 83. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m55:1[22m   [31merror[39m  This line has a length of 253. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m66:9[22m   [31merror[39m  Identifier 'api_key_field' is not in camel case       [2mcamelcase[22m[0m
-[0m  [2m77:1[22m   [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m  [2m89:1[22m   [31merror[39m  This line has a length of 152. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m40:23[22m  [31merror[39m  Unexpected 'this'                                     [2mno-invalid-this[22m[0m
+[0m  [2m44:1[22m   [31merror[39m  This line has a length of 96. Maximum allowed is 80   [2mmax-len[22m[0m
+[0m  [2m50:1[22m   [31merror[39m  This line has a length of 208. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m53:1[22m   [31merror[39m  This line has a length of 81. Maximum allowed is 80   [2mmax-len[22m[0m
+[0m  [2m56:1[22m   [31merror[39m  This line has a length of 251. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m59:1[22m   [31merror[39m  This line has a length of 81. Maximum allowed is 80   [2mmax-len[22m[0m
+[0m  [2m61:1[22m   [31merror[39m  This line has a length of 237. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m71:9[22m   [31merror[39m  Identifier 'api_key_field' is not in camel case       [2mcamelcase[22m[0m
+[0m  [2m82:1[22m   [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
+[0m  [2m94:1[22m   [31merror[39m  This line has a length of 152. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m[0m
+[0m[4m/home/usr/Documents/ESIG/NODEJS/js/player.js[24m[0m
+[0m  [2m15:1[22m  [31merror[39m  This line has a length of 97. Maximum allowed is 80   [2mmax-len[22m[0m
+[0m  [2m19:1[22m  [31merror[39m  This line has a length of 163. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m20:1[22m  [31merror[39m  This line has a length of 131. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m21:1[22m  [31merror[39m  This line has a length of 109. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m25:1[22m  [31merror[39m  This line has a length of 119. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m29:1[22m  [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
+[0m  [2m30:1[22m  [31merror[39m  This line has a length of 152. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m31:1[22m  [31merror[39m  This line has a length of 209. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m32:1[22m  [31merror[39m  This line has a length of 128. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m33:1[22m  [31merror[39m  This line has a length of 115. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m34:1[22m  [31merror[39m  This line has a length of 99. Maximum allowed is 80   [2mmax-len[22m[0m
+[0m  [2m35:1[22m  [31merror[39m  This line has a length of 120. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m36:1[22m  [31merror[39m  This line has a length of 101. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m38:1[22m  [31merror[39m  This line has a length of 152. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m39:1[22m  [31merror[39m  This line has a length of 91. Maximum allowed is 80   [2mmax-len[22m[0m
+[0m  [2m41:1[22m  [31merror[39m  This line has a length of 113. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m42:1[22m  [31merror[39m  This line has a length of 81. Maximum allowed is 80   [2mmax-len[22m[0m
 [0m[0m
 [0m[4m/home/usr/Documents/ESIG/NODEJS/js/team.js[24m[0m
 [0m  [2m22:9[22m  [31merror[39m  'infosTable' is assigned a value but never used       [2mno-unused-vars[22m[0m
@@ -48,8 +69,8 @@
 [0m  [2m70:1[22m  [31merror[39m  This line has a length of 458. Maximum allowed is 80  [2mmax-len[22m[0m
 [0m  [2m74:1[22m  [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
 [0m  [2m75:1[22m  [31merror[39m  This line has a length of 81. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m78:1[22m  [31merror[39m  This line has a length of 90. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m79:1[22m  [31merror[39m  This line has a length of 206. Maximum allowed is 80  [2mmax-len[22m[0m
+[0m  [2m79:1[22m  [31merror[39m  This line has a length of 90. Maximum allowed is 80   [2mmax-len[22m[0m
+[0m  [2m80:1[22m  [31merror[39m  This line has a length of 255. Maximum allowed is 80  [2mmax-len[22m[0m
 [0m[0m
 [0m[4m/home/usr/Documents/ESIG/NODEJS/js/utils/htmlutils.js[24m[0m
 [0m   [2m1:1[22m  [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
@@ -65,5 +86,5 @@
 [0m  [2m29:2[22m  [31merror[39m  Mixed spaces and tabs                      [2mno-mixed-spaces-and-tabs[22m[0m
 [0m  [2m29:3[22m  [31merror[39m  Unexpected tab character                   [2mno-tabs[22m[0m
 [0m[0m
-[0m[31m[1m✖ 52 problems (52 errors, 0 warnings)[22m[39m[0m
+[0m[31m[1m✖ 71 problems (71 errors, 0 warnings)[22m[39m[0m
 [0m[31m[1m[22m[39m[0m

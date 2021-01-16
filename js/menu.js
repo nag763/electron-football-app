@@ -51,7 +51,7 @@ $('#searchbar').keypress(function(e) {
         });
       });
       generateGetRequest(pathSearchLeague.concat(userInput)).then((response) => {
-        response.data.api.leagues.sort((a, b) => (b.season - a.season)
+        response.data.api.leagues.sort((a, b) => (b.season - a.season),
         ).forEach((element) => {
           $('#latest_news').append(`<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff"><a href='./league.html?id=${element.league_id}'>[${element.season}]${element.name}, ${element.country}</a></li>`);
         });
