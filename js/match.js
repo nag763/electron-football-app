@@ -26,6 +26,7 @@ generateGetRequest(`events/${idToDisplay}`).then(response => {
   if(events.length != 0){
   events.forEach(event => {
     let display;
+    // All icons come from flaticon.com
     if(event.type.localeCompare('Goal') == 0){
       if (event.assist == null){
       display = `<img src='../icons/football-ball.svg' width='15px' height='15px'> (${event.elapsed}') Goal for ${event.teamName}, <a href='./player.html?id=${event.player_id}'>${event.player}</a> scored.`
