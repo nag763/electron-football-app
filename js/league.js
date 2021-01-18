@@ -9,6 +9,8 @@ const idToDisplay = JSON.parse(query['?id']);
 
 const urlForInfo = `leagues/league/${idToDisplay}`;
 
+const fs = require('fs');
+const path = require('path');
 
 generateGetRequest(urlForInfo).then((response) => {
   const leagueToDisplay = response.data.api.leagues[0];
@@ -40,3 +42,38 @@ generateGetRequest(urlForRounds).then((response) => {
 $('#go_back').click( () => {
   $(location).attr('href', './menu.html');
 });
+
+
+let profile = JSON.parse(function readProfile() {
+  return fs.readFileSync(
+      path.resolve(__dirname, ['..', 'profile.json'].join(path.sep)), 'utf-8')
+      .trim();
+}());
+
+if(profile.favoriteLeagues == undefined || profile.favoriteLeagues == null) {
+  profile.favoriteLeagues = new Array();
+  $('#profiling').text('Add league to profile')
+} else if (!profile.favoriteLeagues.map(league => league.id).includes(idToDisplay)) {
+  $('#profiling').text('Add league to profile')
+} else {
+  $('#profiling').text('Remove league from profile')
+}
+
+$('#profiling').click(() => {
+  const textInTag = $('#profiling').text();
+  const object = {"id":idToDisplay, "name":$('#title').text()};
+  if(textInTag.localeCompare('Add league to profile') == 0){
+    $('#profiling').text('Remove league from profile')
+    profile.favoriteLeagues.push(object)
+  } else {
+    $('#profiling').text('Add league to profile')
+    const index = profile.favoriteLeagues.indexOf(object);
+    profile.favoriteLeagues.splice(index, 1);
+  }
+  fs.writeFile('./profile.json', JSON.stringify(profile), (err) => {
+    if (err) {
+      return console.log(err);
+    };
+    console.log('Profile updated');
+  });
+})

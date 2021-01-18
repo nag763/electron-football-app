@@ -1,5 +1,4 @@
 const fs = require('fs');
-const http = require('https');
 const path = require('path');
 
 const key = function readApiKey() {
