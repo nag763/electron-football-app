@@ -1,15 +1,30 @@
 const dateFormat = require('dateformat');
-const path = require('path');
 const $ = require('jquery');
 const querystring = require('querystring');
+const fs = require('fs');
+const path = require('path');
 
-import {generateHTMLtr, generateHTMLtd} from './utils/htmlutils.js';
-import {generateGetRequest} from './utils/httputils.js';
-import {Fixture} from './classes/fixture.js';
+import {
+  generateHTMLtr,
+  generateHTMLtd,
+} from './utils/htmlutils.js';
+import {
+  generateGetRequest,
+} from './utils/httputils.js';
+import {
+  Fixture,
+} from './classes/fixture.js';
 
 const query = querystring.parse(global.location.search);
 
 let dateDisplayed = new Date();
+
+const profile = JSON.parse(function readProfile() {
+  return fs.readFileSync(
+      path.resolve(__dirname, ['..', 'profile.json'].join(path.sep)), 'utf-8')
+      .trim();
+}());
+
 
 $('#datepicker').change(function(field) {
   dateDisplayed = new Date($(this).val());
@@ -19,6 +34,10 @@ $('#datepicker').change(function(field) {
 $('#datepicker').attr('max', dateFormat(new Date(new Date().setFullYear(new Date().getFullYear() + 1)), 'yyyy-mm-dd'))
     .attr('value', dateFormat(dateDisplayed, 'yyyy-mm-dd'));
 
+$('#favs').click(() => {
+  displayAllOrFavorites();
+});
+
 function getDateHeader() {
   return `Matchs being played on  ${dateFormat(dateDisplayed, 'dddd dd/mm/yyyy')}`;
 }
@@ -27,7 +46,12 @@ function getDateUrl() {
   return `fixtures/date/${dateFormat(dateDisplayed, 'yyyy-mm-dd')}`;
 }
 
-let league; let fixture; let number; let leagueFixtureUrl; let leagueFixtureHeader;
+let league;
+let fixture;
+let number;
+let leagueFixtureUrl;
+let leagueFixtureHeader;
+let favorites;
 
 const isMatchDay = function displayableIsMatchday() {
   if (['?league', 'fixture', 'mdnumber'].every((element) => element in query)) {
@@ -72,27 +96,52 @@ function displayFixtures(url, header) {
       // TODO : optimised ?
       $('#fixtures').append(generateHTMLtr(fixture.toTableData()));
     });
-  },
-  );
+    filterFavoritesIfAppliable();
+  });
 }
 
 if (isMatchDay) {
   displayFixtures(leagueFixtureUrl, leagueFixtureHeader);
-  $('#next').add('#previous').toggle();
+  $('#next').add('#previous').add('#favs').toggle();
 } else {
   displayFixtures(getDateUrl(), getDateHeader());
 
-  $('#next').click( () => {
+  $('#next').click(() => {
     $('#fixtures').empty();
     dateDisplayed.setDate(dateDisplayed.getDate() + 1);
     displayFixtures(getDateUrl(), getDateHeader());
   });
 
-  $('#previous').click( () => {
+  $('#previous').click(() => {
     $('#fixtures').empty();
-    dateDisplayed.setDate(dateDisplayed.getDate() + - 1);
+    dateDisplayed.setDate(dateDisplayed.getDate() + -1);
     displayFixtures(getDateUrl(), getDateHeader());
   });
+}
+
+function displayAllOrFavorites() {
+  const favs = $('#favs');
+  if (favs.text().localeCompare('Only my favorites') == 0) {
+    favs.text('Show all');
+  } else {
+    favs.text('Only my favorites');
+  }
+  filterFavoritesIfAppliable();
+}
+
+function filterFavoritesIfAppliable() {
+  const favs = $('#favs');
+  if (favs.text().localeCompare('Only my favorites') == 0) {
+    const favorites = profile.favoriteTeams.concat(profile.favoriteLeagues).map((element) => element.name);
+    $('#fixtures tr').filter(function() {
+      const arrayOfDisplayed = $(this).children('td').slice(0, 3).map(function() {
+        return $(this).text().trim();
+      }).get();
+      $(this).toggle(favorites.some((element) => arrayOfDisplayed.includes(element)));
+    });
+  } else {
+    $('#fixtures tr').toggle(true);
+  }
 }
 
 // Not mine, taken directly from w3s

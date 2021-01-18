@@ -1,108 +1,120 @@
-[0m[0m
-[0m[4m/home/usr/Documents/ESIG/NODEJS/js/classes/fixture.js[24m[0m
-[0m   [2m3:1[22m   [31merror[39m  This line has a length of 159. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m   [2m3:1[22m   [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m  [2m23:1[22m   [31merror[39m  This line has a length of 84. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m35:21[22m  [31merror[39m  The array literal notation [] is preferable           [2mno-array-constructor[22m[0m
-[0m  [2m39:1[22m   [31merror[39m  This line has a length of 145. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m44:1[22m   [31merror[39m  This line has a length of 144. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m49:1[22m   [31merror[39m  This line has a length of 144. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m55:1[22m   [31merror[39m  This line has a length of 87. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m[0m
-[0m[4m/home/usr/Documents/ESIG/NODEJS/js/fixtures.js[24m[0m
-[0m    [2m2:7[22m   [31merror[39m  'path' is assigned a value but never used             [2mno-unused-vars[22m[0m
-[0m    [2m6:25[22m  [31merror[39m  'generateHTMLtd' is defined but never used            [2mno-unused-vars[22m[0m
-[0m   [2m15:30[22m  [31merror[39m  Unexpected 'this'                                     [2mno-invalid-this[22m[0m
-[0m   [2m19:1[22m   [31merror[39m  This line has a length of 118. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m   [2m22:1[22m   [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m   [2m23:1[22m   [31merror[39m  This line has a length of 83. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m   [2m26:1[22m   [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m   [2m30:1[22m   [31merror[39m  This line has a length of 83. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m   [2m48:1[22m   [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m  [2m100:19[22m  [31merror[39m  Unexpected 'this'                                     [2mno-invalid-this[22m[0m
-[0m  [2m102:7[22m   [31merror[39m  Unexpected 'this'                                     [2mno-invalid-this[22m[0m
-[0m  [2m102:22[22m  [31merror[39m  Unexpected 'this'                                     [2mno-invalid-this[22m[0m
-[0m[0m
-[0m[4m/home/usr/Documents/ESIG/NODEJS/js/league.js[24m[0m
-[0m   [2m5:1[22m   [31merror[39m  This line has a length of 87. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m   [2m5:9[22m   [31merror[39m  'generateHTMLtr' is defined but never used            [2mno-unused-vars[22m[0m
-[0m   [2m5:25[22m  [31merror[39m  'generateHTMLtd' is defined but never used            [2mno-unused-vars[22m[0m
-[0m  [2m18:1[22m   [31merror[39m  This line has a length of 86. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m22:1[22m   [31merror[39m  This line has a length of 110. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m27:1[22m   [31merror[39m  This line has a length of 393. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m36:1[22m   [31merror[39m  This line has a length of 242. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m[0m
-[0m[4m/home/usr/Documents/ESIG/NODEJS/js/match.js[24m[0m
-[0m   [2m5:1[22m   [31merror[39m  This line has a length of 87. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m   [2m5:25[22m  [31merror[39m  'generateHTMLtd' is defined but never used            [2mno-unused-vars[22m[0m
-[0m   [2m5:41[22m  [31merror[39m  'generateHTMLtable' is defined but never used         [2mno-unused-vars[22m[0m
-[0m  [2m13:1[22m   [31merror[39m  This line has a length of 199. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m14:1[22m   [31merror[39m  This line has a length of 88. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m16:1[22m   [31merror[39m  This line has a length of 391. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m19:1[22m   [31merror[39m  This line has a length of 419. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m25:1[22m   [31merror[39m  This line has a length of 82. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m32:1[22m   [31merror[39m  This line has a length of 210. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m34:1[22m   [31merror[39m  This line has a length of 295. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m38:1[22m   [31merror[39m  This line has a length of 192. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m40:1[22m   [31merror[39m  This line has a length of 189. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m43:1[22m   [31merror[39m  This line has a length of 240. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m45:1[22m   [31merror[39m  This line has a length of 146. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m48:1[22m   [31merror[39m  This line has a length of 147. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m[0m
-[0m[4m/home/usr/Documents/ESIG/NODEJS/js/menu.js[24m[0m
-[0m  [2m40:23[22m  [31merror[39m  Unexpected 'this'                                     [2mno-invalid-this[22m[0m
-[0m  [2m44:1[22m   [31merror[39m  This line has a length of 96. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m50:1[22m   [31merror[39m  This line has a length of 208. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m53:1[22m   [31merror[39m  This line has a length of 81. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m56:1[22m   [31merror[39m  This line has a length of 251. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m59:1[22m   [31merror[39m  This line has a length of 81. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m61:1[22m   [31merror[39m  This line has a length of 237. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m71:9[22m   [31merror[39m  Identifier 'api_key_field' is not in camel case       [2mcamelcase[22m[0m
-[0m  [2m82:1[22m   [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m  [2m94:1[22m   [31merror[39m  This line has a length of 152. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m[0m
-[0m[4m/home/usr/Documents/ESIG/NODEJS/js/player.js[24m[0m
-[0m  [2m15:1[22m  [31merror[39m  This line has a length of 97. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m19:1[22m  [31merror[39m  This line has a length of 163. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m20:1[22m  [31merror[39m  This line has a length of 131. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m21:1[22m  [31merror[39m  This line has a length of 109. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m25:1[22m  [31merror[39m  This line has a length of 119. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m29:1[22m  [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m  [2m30:1[22m  [31merror[39m  This line has a length of 152. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m31:1[22m  [31merror[39m  This line has a length of 209. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m32:1[22m  [31merror[39m  This line has a length of 128. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m33:1[22m  [31merror[39m  This line has a length of 115. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m34:1[22m  [31merror[39m  This line has a length of 99. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m35:1[22m  [31merror[39m  This line has a length of 120. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m36:1[22m  [31merror[39m  This line has a length of 101. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m38:1[22m  [31merror[39m  This line has a length of 152. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m39:1[22m  [31merror[39m  This line has a length of 91. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m41:1[22m  [31merror[39m  This line has a length of 113. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m42:1[22m  [31merror[39m  This line has a length of 81. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m[0m
-[0m[4m/home/usr/Documents/ESIG/NODEJS/js/team.js[24m[0m
-[0m  [2m22:9[22m  [31merror[39m  'infosTable' is assigned a value but never used       [2mno-unused-vars[22m[0m
-[0m  [2m28:1[22m  [31merror[39m  This line has a length of 82. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m49:1[22m  [31merror[39m  This line has a length of 479. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m70:1[22m  [31merror[39m  This line has a length of 458. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m  [2m74:1[22m  [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m  [2m75:1[22m  [31merror[39m  This line has a length of 81. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m78:1[22m  [31merror[39m  This line has a length of 90. Maximum allowed is 80   [2mmax-len[22m[0m
-[0m  [2m79:1[22m  [31merror[39m  This line has a length of 255. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m[0m
-[0m[4m/home/usr/Documents/ESIG/NODEJS/js/utils/htmlutils.js[24m[0m
-[0m   [2m1:1[22m  [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m   [2m5:1[22m  [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m  [2m12:1[22m  [31merror[39m  Missing JSDoc comment                                 [2mrequire-jsdoc[22m[0m
-[0m  [2m17:1[22m  [31merror[39m  This line has a length of 122. Maximum allowed is 80  [2mmax-len[22m[0m
-[0m[0m
-[0m[4m/home/usr/Documents/ESIG/NODEJS/js/utils/httputils.js[24m[0m
-[0m   [2m2:7[22m  [31merror[39m  'http' is assigned a value but never used  [2mno-unused-vars[22m[0m
-[0m  [2m11:1[22m  [31merror[39m  Missing JSDoc comment                      [2mrequire-jsdoc[22m[0m
-[0m  [2m27:2[22m  [31merror[39m  Mixed spaces and tabs                      [2mno-mixed-spaces-and-tabs[22m[0m
-[0m  [2m27:3[22m  [31merror[39m  Unexpected tab character                   [2mno-tabs[22m[0m
-[0m  [2m29:2[22m  [31merror[39m  Mixed spaces and tabs                      [2mno-mixed-spaces-and-tabs[22m[0m
-[0m  [2m29:3[22m  [31merror[39m  Unexpected tab character                   [2mno-tabs[22m[0m
-[0m[0m
-[0m[31m[1m✖ 87 problems (87 errors, 0 warnings)[22m[39m[0m
-[0m[31m[1m[22m[39m[0m
+
+/home/usr/Documents/ESIG/NODEJS/js/classes/fixture.js
+   3:1   error  This line has a length of 159. Maximum allowed is 80  max-len
+   3:1   error  Missing JSDoc comment                                 require-jsdoc
+  23:1   error  This line has a length of 84. Maximum allowed is 80   max-len
+  35:21  error  The array literal notation [] is preferable           no-array-constructor
+  39:1   error  This line has a length of 160. Maximum allowed is 80  max-len
+  44:1   error  This line has a length of 159. Maximum allowed is 80  max-len
+  49:1   error  This line has a length of 159. Maximum allowed is 80  max-len
+  55:1   error  This line has a length of 87. Maximum allowed is 80   max-len
+
+/home/usr/Documents/ESIG/NODEJS/js/fixtures.js
+    9:3   error  'generateHTMLtd' is defined but never used            no-unused-vars
+   30:30  error  Unexpected 'this'                                     no-invalid-this
+   34:1   error  This line has a length of 118. Maximum allowed is 80  max-len
+   41:1   error  Missing JSDoc comment                                 require-jsdoc
+   42:1   error  This line has a length of 83. Maximum allowed is 80   max-len
+   45:1   error  Missing JSDoc comment                                 require-jsdoc
+   54:5   error  'favorites' is defined but never used                 no-unused-vars
+   72:1   error  Missing JSDoc comment                                 require-jsdoc
+  122:1   error  Missing JSDoc comment                                 require-jsdoc
+  132:1   error  Missing JSDoc comment                                 require-jsdoc
+  135:1   error  This line has a length of 107. Maximum allowed is 80  max-len
+  137:1   error  This line has a length of 82. Maximum allowed is 80   max-len
+  137:34  error  Unexpected 'this'                                     no-invalid-this
+  138:18  error  Unexpected 'this'                                     no-invalid-this
+  140:1   error  This line has a length of 86. Maximum allowed is 80   max-len
+  140:9   error  Unexpected 'this'                                     no-invalid-this
+  149:19  error  Unexpected 'this'                                     no-invalid-this
+  151:7   error  Unexpected 'this'                                     no-invalid-this
+  151:22  error  Unexpected 'this'                                     no-invalid-this
+
+/home/usr/Documents/ESIG/NODEJS/js/league.js
+   5:1   error  This line has a length of 87. Maximum allowed is 80   max-len
+   5:9   error  'generateHTMLtr' is defined but never used            no-unused-vars
+   5:25  error  'generateHTMLtd' is defined but never used            no-unused-vars
+  27:1   error  This line has a length of 110. Maximum allowed is 80  max-len
+  32:1   error  This line has a length of 393. Maximum allowed is 80  max-len
+  41:1   error  This line has a length of 242. Maximum allowed is 80  max-len
+  56:44  error  Irregular whitespace not allowed                      no-irregular-whitespace
+  57:29  error  The array literal notation [] is preferable           no-array-constructor
+  59:1   error  This line has a length of 87. Maximum allowed is 80   max-len
+  67:1   error  This line has a length of 82. Maximum allowed is 80   max-len
+
+/home/usr/Documents/ESIG/NODEJS/js/match.js
+   5:1   error  This line has a length of 87. Maximum allowed is 80   max-len
+   5:25  error  'generateHTMLtd' is defined but never used            no-unused-vars
+   5:41  error  'generateHTMLtable' is defined but never used         no-unused-vars
+  13:1   error  This line has a length of 199. Maximum allowed is 80  max-len
+  14:1   error  This line has a length of 88. Maximum allowed is 80   max-len
+  16:1   error  This line has a length of 391. Maximum allowed is 80  max-len
+  19:1   error  This line has a length of 419. Maximum allowed is 80  max-len
+  25:1   error  This line has a length of 82. Maximum allowed is 80   max-len
+  32:1   error  This line has a length of 210. Maximum allowed is 80  max-len
+  34:1   error  This line has a length of 295. Maximum allowed is 80  max-len
+  38:1   error  This line has a length of 192. Maximum allowed is 80  max-len
+  40:1   error  This line has a length of 189. Maximum allowed is 80  max-len
+  43:1   error  This line has a length of 240. Maximum allowed is 80  max-len
+  45:1   error  This line has a length of 146. Maximum allowed is 80  max-len
+  48:1   error  This line has a length of 147. Maximum allowed is 80  max-len
+
+/home/usr/Documents/ESIG/NODEJS/js/menu.js
+  40:23  error  Unexpected 'this'                                     no-invalid-this
+  44:1   error  This line has a length of 96. Maximum allowed is 80   max-len
+  50:1   error  This line has a length of 208. Maximum allowed is 80  max-len
+  53:1   error  This line has a length of 81. Maximum allowed is 80   max-len
+  56:1   error  This line has a length of 251. Maximum allowed is 80  max-len
+  59:1   error  This line has a length of 81. Maximum allowed is 80   max-len
+  61:1   error  This line has a length of 237. Maximum allowed is 80  max-len
+  71:9   error  Identifier 'api_key_field' is not in camel case       camelcase
+  82:1   error  Missing JSDoc comment                                 require-jsdoc
+  94:1   error  This line has a length of 152. Maximum allowed is 80  max-len
+
+/home/usr/Documents/ESIG/NODEJS/js/player.js
+  14:1  error  This line has a length of 97. Maximum allowed is 80   max-len
+  18:1  error  This line has a length of 163. Maximum allowed is 80  max-len
+  19:1  error  This line has a length of 131. Maximum allowed is 80  max-len
+  20:1  error  This line has a length of 109. Maximum allowed is 80  max-len
+  24:1  error  This line has a length of 119. Maximum allowed is 80  max-len
+  28:1  error  Missing JSDoc comment                                 require-jsdoc
+  29:1  error  This line has a length of 152. Maximum allowed is 80  max-len
+  30:1  error  This line has a length of 209. Maximum allowed is 80  max-len
+  31:1  error  This line has a length of 128. Maximum allowed is 80  max-len
+  32:1  error  This line has a length of 115. Maximum allowed is 80  max-len
+  33:1  error  This line has a length of 99. Maximum allowed is 80   max-len
+  34:1  error  This line has a length of 120. Maximum allowed is 80  max-len
+  35:1  error  This line has a length of 101. Maximum allowed is 80  max-len
+  37:1  error  This line has a length of 152. Maximum allowed is 80  max-len
+  38:1  error  This line has a length of 91. Maximum allowed is 80   max-len
+  40:1  error  This line has a length of 113. Maximum allowed is 80  max-len
+  41:1  error  This line has a length of 81. Maximum allowed is 80   max-len
+
+/home/usr/Documents/ESIG/NODEJS/js/team.js
+   24:9   error  'infosTable' is assigned a value but never used       no-unused-vars
+   30:1   error  This line has a length of 82. Maximum allowed is 80   max-len
+   51:1   error  This line has a length of 479. Maximum allowed is 80  max-len
+   72:1   error  This line has a length of 458. Maximum allowed is 80  max-len
+   76:1   error  Missing JSDoc comment                                 require-jsdoc
+   77:1   error  This line has a length of 81. Maximum allowed is 80   max-len
+   80:1   error  This line has a length of 90. Maximum allowed is 80   max-len
+   81:1   error  This line has a length of 255. Maximum allowed is 80  max-len
+  103:42  error  Irregular whitespace not allowed                      no-irregular-whitespace
+  104:27  error  The array literal notation [] is preferable           no-array-constructor
+  106:1   error  This line has a length of 81. Maximum allowed is 80   max-len
+
+/home/usr/Documents/ESIG/NODEJS/js/utils/htmlutils.js
+   1:1  error  Missing JSDoc comment                                 require-jsdoc
+   5:1  error  Missing JSDoc comment                                 require-jsdoc
+  12:1  error  Missing JSDoc comment                                 require-jsdoc
+  17:1  error  This line has a length of 122. Maximum allowed is 80  max-len
+
+/home/usr/Documents/ESIG/NODEJS/js/utils/httputils.js
+  10:1  error  Missing JSDoc comment     require-jsdoc
+  26:2  error  Mixed spaces and tabs     no-mixed-spaces-and-tabs
+  26:3  error  Unexpected tab character  no-tabs
+  28:2  error  Mixed spaces and tabs     no-mixed-spaces-and-tabs
+  28:3  error  Unexpected tab character  no-tabs
+
+✖ 99 problems (99 errors, 0 warnings)
+

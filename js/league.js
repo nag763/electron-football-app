@@ -12,12 +12,15 @@ const urlForInfo = `leagues/league/${idToDisplay}`;
 const fs = require('fs');
 const path = require('path');
 
+let country;
+
 generateGetRequest(urlForInfo).then((response) => {
   const leagueToDisplay = response.data.api.leagues[0];
+  country = leagueToDisplay.country;
 
   $('#title').text(leagueToDisplay.name);
   $('#logo').attr('src', leagueToDisplay.logo);
-  $('#subtitle').text(`${leagueToDisplay.type} played in ${leagueToDisplay.country}`);
+  $('#subtitle').text(`${leagueToDisplay.type} played in ${country}`);
 });
 
 const urlForTable = `leagueTable/${idToDisplay}`;
@@ -44,29 +47,29 @@ $('#go_back').click( () => {
 });
 
 
-let profile = JSON.parse(function readProfile() {
+const profile = JSON.parse(function readProfile() {
   return fs.readFileSync(
       path.resolve(__dirname, ['..', 'profile.json'].join(path.sep)), 'utf-8')
       .trim();
 }());
 
-if(profile.favoriteLeagues == undefined || profile.favoriteLeagues == null) {
+if (profile.favoriteLeagues == undefined || profile.favoriteLeagues == null) {
   profile.favoriteLeagues = new Array();
-  $('#profiling').text('Add league to profile')
-} else if (!profile.favoriteLeagues.map(league => league.id).includes(idToDisplay)) {
-  $('#profiling').text('Add league to profile')
+  $('#profiling').text('Add league to profile');
+} else if (!profile.favoriteLeagues.map((league) => league.id).includes(idToDisplay)) {
+  $('#profiling').text('Add league to profile');
 } else {
-  $('#profiling').text('Remove league from profile')
+  $('#profiling').text('Remove league from profile');
 }
 
 $('#profiling').click(() => {
   const textInTag = $('#profiling').text();
-  const object = {"id":idToDisplay, "name":$('#title').text()};
-  if(textInTag.localeCompare('Add league to profile') == 0){
-    $('#profiling').text('Remove league from profile')
-    profile.favoriteLeagues.push(object)
+  const object = {'id': idToDisplay, 'name': `${country}, ${$('#title').text()}`};
+  if (textInTag.localeCompare('Add league to profile') == 0) {
+    $('#profiling').text('Remove league from profile');
+    profile.favoriteLeagues.push(object);
   } else {
-    $('#profiling').text('Add league to profile')
+    $('#profiling').text('Add league to profile');
     const index = profile.favoriteLeagues.indexOf(object);
     profile.favoriteLeagues.splice(index, 1);
   }
@@ -76,4 +79,4 @@ $('#profiling').click(() => {
     };
     console.log('Profile updated');
   });
-})
+});

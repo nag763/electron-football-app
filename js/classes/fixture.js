@@ -36,17 +36,17 @@ Fixture.prototype.toTableData = function() {
   if (this.leagueId == undefined) {
     tableData.push(this.preciseLeague());
   } else {
-    tableData.push(`<a href='./league.html?id=${this.leagueId}'><img src="${this.leagueLogo}" width=15 height=15/> ${this.preciseLeague()}</a>`);
+    tableData.push(`<a id='queryable' href='./league.html?id=${this.leagueId}'><img src="${this.leagueLogo}" width=15 height=15/> ${this.preciseLeague()}</a>`);
   }
   if (this.homeTeamId == undefined) {
     tableData.push(this.homeTeamName);
   } else {
-    tableData.push(`<a href='./team.html?id=${this.homeTeamId}'><img src="${this.homeTeamLogo}" width=15 height=15/> ${this.homeTeamName}</a>`);
+    tableData.push(`<a id='queryable' href='./team.html?id=${this.homeTeamId}'><img src="${this.homeTeamLogo}" width=15 height=15/> ${this.homeTeamName}</a>`);
   }
   if (this.awayTeamId == undefined) {
     tableData.push(this.awayTeamName);
   } else {
-    tableData.push(`<a href='./team.html?id=${this.awayTeamId}'><img src="${this.awayTeamLogo}" width=15 height=15/> ${this.awayTeamName}</a>`);
+    tableData.push(`<a id='queryable' href='./team.html?id=${this.awayTeamId}'><img src="${this.awayTeamLogo}" width=15 height=15/> ${this.awayTeamName}</a>`);
   }
   tableData.push(this.fullscore());
   tableData.push(this.eventHourTime());

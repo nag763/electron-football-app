@@ -17,7 +17,6 @@ const query = querystring.parse(global.location.search);
 const idToDisplay = JSON.parse(query['?id']);
 
 
-
 const urlTeam = `teams/team/${idToDisplay}`;
 
 generateGetRequest(urlTeam).then((response) => {
@@ -95,29 +94,29 @@ function displaySquad(date) {
 
 displaySquad('2020-2021');
 
-let profile = JSON.parse(function readProfile() {
+const profile = JSON.parse(function readProfile() {
   return fs.readFileSync(
       path.resolve(__dirname, ['..', 'profile.json'].join(path.sep)), 'utf-8')
       .trim();
 }());
 
-if(profile.favoriteTeams == undefined || profile.favoriteTeams == null) {
+if (profile.favoriteTeams == undefined || profile.favoriteTeams == null) {
   profile.favoriteTeams = new Array();
-  $('#profiling').text('Add team to profile')
-} else if (!profile.favoriteTeams.map(team => team.id).includes(idToDisplay)) {
-  $('#profiling').text('Add team to profile')
+  $('#profiling').text('Add team to profile');
+} else if (!profile.favoriteTeams.map((team) => team.id).includes(idToDisplay)) {
+  $('#profiling').text('Add team to profile');
 } else {
-  $('#profiling').text('Remove team from profile')
+  $('#profiling').text('Remove team from profile');
 }
 
 $('#profiling').click(() => {
   const textInTag = $('#profiling').text();
-  const object = {"id":idToDisplay, "name":$('#clubName').text()};
-  if(textInTag.localeCompare('Add team to profile') == 0){
-    $('#profiling').text('Remove team from profile')
-    profile.favoriteTeams.push(object)
+  const object = {'id': idToDisplay, 'name': $('#clubName').text()};
+  if (textInTag.localeCompare('Add team to profile') == 0) {
+    $('#profiling').text('Remove team from profile');
+    profile.favoriteTeams.push(object);
   } else {
-    $('#profiling').text('Add team to profile')
+    $('#profiling').text('Add team to profile');
     const index = profile.favoriteTeams.indexOf(object);
     profile.favoriteTeams.splice(index, 1);
   }
@@ -127,4 +126,4 @@ $('#profiling').click(() => {
     };
     console.log('Profile updated');
   });
-})
+});

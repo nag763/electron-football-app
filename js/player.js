@@ -1,7 +1,6 @@
 const querystring = require('querystring');
 const $ = require('jquery');
 
-
 const query = querystring.parse(global.location.search);
 const idToDisplay = JSON.parse(query['?id']);
 
