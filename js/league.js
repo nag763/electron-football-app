@@ -3,8 +3,8 @@ const $ = require('jquery');
 
 import {generateGetRequest} from './utils/httputils.js';
 import {generateHTMLtr, generateHTMLtd, generateHTMLtable} from './utils/htmlutils.js';
-import {User} from './classes/user.js'
-import {League} from './classes/league.js'
+import {User} from './classes/user.js';
+import {League} from './classes/league.js';
 
 const query = querystring.parse(global.location.search);
 const idToDisplay = JSON.parse(query['?id']);
@@ -22,11 +22,11 @@ generateGetRequest(urlForInfo).then((response) => {
 
   $('#profiling').click(() => {
     if (User.isLeagueIdInProfile(leagueDisplayed.id)) {
-      User.removeLeague(leagueDisplayed)
+      User.removeLeague(leagueDisplayed);
     } else {
-      User.addLeague(leagueDisplayed)
+      User.addLeague(leagueDisplayed);
     }
-    $('#profiling').text(User.getActionAssociatedWithLeagueId(leagueDisplayed.id))
+    $('#profiling').text(User.getActionAssociatedWithLeagueId(leagueDisplayed.id));
   }).text(User.getActionAssociatedWithLeagueId(leagueDisplayed.id));
 });
 

@@ -20,9 +20,9 @@ function Fixture() {}
   *
   * @return {array} array of fixtures
   */
-Fixture.fromResponse = function(response){
+Fixture.fromResponse = function(response) {
   const data = response.data.api.fixtures;
-  return data.map(element => {
+  return data.map((element) => {
     const fixture = new Fixture();
     fixture.country = element.league.country;
     fixture.league = element.league.name;
@@ -41,8 +41,8 @@ Fixture.fromResponse = function(response){
     fixture.status = element.status;
     fixture.fixtureId = element.fixture_id;
     return fixture;
-  })
-}
+  });
+};
 
 /**
   * Print the league as a precise info.

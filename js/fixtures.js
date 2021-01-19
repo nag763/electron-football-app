@@ -13,13 +13,13 @@ const query = querystring.parse(global.location.search);
 let dateDisplayed = new Date();
 
 /** Corresponding date header for renderer. **/
-function getDateHeader(){
-  return `Matchs being played on  ${dateFormat(dateDisplayed, 'dddd dd/mm/yyyy')}`
+function getDateHeader() {
+  return `Matchs being played on  ${dateFormat(dateDisplayed, 'dddd dd/mm/yyyy')}`;
 }
 
 /** Url for the date. **/
-function getDateUrl(){
-  return `fixtures/date/${dateFormat(dateDisplayed, 'yyyy-mm-dd')}`
+function getDateUrl() {
+  return `fixtures/date/${dateFormat(dateDisplayed, 'yyyy-mm-dd')}`;
 }
 
 /** Display the fixtures.
@@ -33,8 +33,8 @@ async function displayFixtures(url, header) {
   generateGetRequest(url).then((res) => {
     $('#fixtures tr').remove();
     const fixtures = Fixture.fromResponse(res);
-    $('#fixtures').append(fixtures.map(fixture =>
-      generateHTMLtr(fixture.toTableData()))
+    $('#fixtures').append(fixtures.map((fixture) =>
+      generateHTMLtr(fixture.toTableData())),
     );
     filterFavoritesIfAppliable();
   });
@@ -77,7 +77,7 @@ $('#datepicker').change(function(field) {
   dateDisplayed = new Date($(this).val());
   displayFixtures(getDateUrl(), getDateHeader());
 }).attr('max', dateFormat(new Date(new Date().setFullYear(new Date().getFullYear() + 1)), 'yyyy-mm-dd'))
-  .attr('value', dateFormat(dateDisplayed, 'yyyy-mm-dd'));
+    .attr('value', dateFormat(dateDisplayed, 'yyyy-mm-dd'));
 
 $('#favs').click(() => {
   switchBetweenFavsAndAll();
@@ -117,7 +117,7 @@ if (isMatchDay) {
 }
 
 if (isMatchDay) {
-  switchBetweenFavsAndAll()
+  switchBetweenFavsAndAll();
   displayFixtures(leagueFixtureUrl, leagueFixtureHeader);
   $('#next').add('#previous').add('#favs').toggle();
 } else {

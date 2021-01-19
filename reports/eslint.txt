@@ -1,39 +1,38 @@
 
 /home/usr/Documents/ESIG/NODEJS/js/classes/fixture.js
-  57:21  error  The array literal notation [] is preferable  no-array-constructor
+  88:21  error  The array literal notation [] is preferable  no-array-constructor
+
+/home/usr/Documents/ESIG/NODEJS/js/classes/user.js
+  43:5   error  Expected JSDoc for 'leagueId' but found 'league'  valid-jsdoc
+  50:31  error  The array literal notation [] is preferable       no-array-constructor
+  63:3   error  Expected JSDoc for 'leagueId' but found 'league'  valid-jsdoc
+  67:58  error  Irregular whitespace not allowed                  no-irregular-whitespace
 
 /home/usr/Documents/ESIG/NODEJS/js/fixtures.js
-    7:25  error  'generateHTMLtd' is defined but never used            no-unused-vars
-   23:30  error  Unexpected 'this'                                     no-invalid-this
-   27:1   error  This line has a length of 118. Maximum allowed is 80  max-len
-   34:1   error  Missing JSDoc comment                                 require-jsdoc
-   35:1   error  This line has a length of 83. Maximum allowed is 80   max-len
-   38:1   error  Missing JSDoc comment                                 require-jsdoc
-   47:5   error  'favorites' is defined but never used                 no-unused-vars
-   65:1   error  Missing JSDoc comment                                 require-jsdoc
-  115:1   error  Missing JSDoc comment                                 require-jsdoc
-  125:1   error  Missing JSDoc comment                                 require-jsdoc
-  128:1   error  This line has a length of 107. Maximum allowed is 80  max-len
-  130:1   error  This line has a length of 82. Maximum allowed is 80   max-len
-  130:34  error  Unexpected 'this'                                     no-invalid-this
-  131:18  error  Unexpected 'this'                                     no-invalid-this
-  133:1   error  This line has a length of 86. Maximum allowed is 80   max-len
-  133:9   error  Unexpected 'this'                                     no-invalid-this
-  142:19  error  Unexpected 'this'                                     no-invalid-this
-  144:7   error  Unexpected 'this'                                     no-invalid-this
-  144:22  error  Unexpected 'this'                                     no-invalid-this
+    5:25  error  'generateHTMLtd' is defined but never used            no-unused-vars
+   15:1   error  Missing JSDoc @return for function                    valid-jsdoc
+   17:1   error  This line has a length of 83. Maximum allowed is 80   max-len
+   20:1   error  Missing JSDoc @return for function                    valid-jsdoc
+   66:1   error  This line has a length of 82. Maximum allowed is 80   max-len
+   66:34  error  Unexpected 'this'                                     no-invalid-this
+   67:18  error  Unexpected 'this'                                     no-invalid-this
+   69:1   error  This line has a length of 86. Maximum allowed is 80   max-len
+   69:9   error  Unexpected 'this'                                     no-invalid-this
+   77:30  error  Unexpected 'this'                                     no-invalid-this
+   79:1   error  This line has a length of 104. Maximum allowed is 80  max-len
+   88:19  error  Unexpected 'this'                                     no-invalid-this
+   90:7   error  Unexpected 'this'                                     no-invalid-this
+   90:22  error  Unexpected 'this'                                     no-invalid-this
+  108:5   error  'favorites' is defined but never used                 no-unused-vars
 
 /home/usr/Documents/ESIG/NODEJS/js/league.js
    5:1   error  This line has a length of 87. Maximum allowed is 80   max-len
    5:9   error  'generateHTMLtr' is defined but never used            no-unused-vars
    5:25  error  'generateHTMLtd' is defined but never used            no-unused-vars
-  27:1   error  This line has a length of 110. Maximum allowed is 80  max-len
-  32:1   error  This line has a length of 393. Maximum allowed is 80  max-len
-  41:1   error  This line has a length of 242. Maximum allowed is 80  max-len
-  56:44  error  Irregular whitespace not allowed                      no-irregular-whitespace
-  57:29  error  The array literal notation [] is preferable           no-array-constructor
-  59:1   error  This line has a length of 87. Maximum allowed is 80   max-len
-  67:1   error  This line has a length of 82. Maximum allowed is 80   max-len
+  29:1   error  This line has a length of 83. Maximum allowed is 80   max-len
+  34:1   error  This line has a length of 110. Maximum allowed is 80  max-len
+  39:1   error  This line has a length of 393. Maximum allowed is 80  max-len
+  48:1   error  This line has a length of 242. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/match.js
    5:1   error  This line has a length of 87. Maximum allowed is 80   max-len
@@ -98,5 +97,5 @@
   104:27  error  The array literal notation [] is preferable           no-array-constructor
   106:1   error  This line has a length of 81. Maximum allowed is 80   max-len
 
-✖ 85 problems (85 errors, 0 warnings)
+✖ 82 problems (82 errors, 0 warnings)
 

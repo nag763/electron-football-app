@@ -10,7 +10,7 @@ const profile = JSON.parse(function readProfile() {
 /**
   * Update the user profile.
   */
-function updateProfile(){
+function updateProfile() {
   fs.writeFile('./profile.json', JSON.stringify(profile), (err) => {
     if (err) {
       return console.log(err);
@@ -22,7 +22,7 @@ function updateProfile(){
 /**
   * Contains all informations about the user.
   */
-function User(){}
+function User() {}
 
 /**
   * Get favorites teams and leagues as text.
@@ -30,11 +30,11 @@ function User(){}
   * @return {array} an array of strings of the favorites leagues and teams of
   * the user
   */
-User.getFavoritesText = function(){
+User.getFavoritesText = function() {
   return profile.favoriteTeams.concat(profile.favoriteLeagues).map(
-    (element) => element.name
+      (element) => element.name,
   );
-}
+};
 
 /**
   * Get the information about whether the league is in the profile or not.
@@ -54,7 +54,7 @@ User.isLeagueIdInProfile = function(leagueId) {
   } else {
     return false;
   }
-}
+};
 
 /**
 * Get the information about whether the league is in the profile or not.
@@ -65,12 +65,12 @@ User.isLeagueIdInProfile = function(leagueId) {
 * @return {string} add the league if is not in profile, remove otherwise
 */
 User.getActionAssociatedWithLeagueId = function(leagueId) {
-  if(User.isLeagueIdInProfile(leagueId)){
+  if (User.isLeagueIdInProfile(leagueId)) {
     return 'Remove league from profile';
   } else {
     return 'Add league to profile';
   }
-}
+};
 
 /**
 * Add the league to the profile.
@@ -80,8 +80,8 @@ User.getActionAssociatedWithLeagueId = function(leagueId) {
 */
 User.addLeague = function(league) {
   profile.favoriteLeagues.push(league.toShortJSON());
-  updateProfile(profile)
-}
+  updateProfile(profile);
+};
 
 /**
 * Remove the league from the profile.
@@ -89,10 +89,10 @@ User.addLeague = function(league) {
 *
 * @param {league} league - the league to remove
 */
-User.removeLeague = function(league){
+User.removeLeague = function(league) {
   const index = profile.favoriteLeagues.indexOf(league.toShortJSON());
   profile.favoriteLeagues.splice(index, 1);
-  updateProfile(profile)
-}
+  updateProfile(profile);
+};
 
-export {User}
+export {User};
