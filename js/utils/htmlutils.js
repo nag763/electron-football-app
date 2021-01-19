@@ -40,13 +40,13 @@ function generateHTMLtable(headers, data) {
             </table>`;
 }
 
-function generateClickableText(link='#', text=''){
+function generateClickableText(link='#', text='') {
   return `<a href='${link}'>
             ${text}
           </a>`;
 }
 
-function generateClickableWithImage(link='#', imagePath='', text=''){
+function generateClickableWithImage(link='#', imagePath='', text='') {
   return `<a href='${link}'>
             <img src="${imagePath}" width=15 height=15/> ${text}
           </a>`;
@@ -57,5 +57,5 @@ export {
   generateHTMLtd,
   generateHTMLtable,
   generateClickableWithImage,
-  generateClickableText
+  generateClickableText,
 };

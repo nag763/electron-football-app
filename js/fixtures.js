@@ -4,7 +4,7 @@ const querystring = require('querystring');
 const fs = require('fs');
 const path = require('path');
 
-import {generateHTMLtr,generateHTMLtd} from './utils/htmlutils.js';
+import {generateHTMLtr, generateHTMLtd} from './utils/htmlutils.js';
 import {generateGetRequest} from './utils/httputils.js';
 import {Fixture} from './classes/fixture.js';
 

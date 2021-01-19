@@ -2,7 +2,7 @@ const dateFormat = require('dateformat');
 
 import {
   generateClickableWithImage,
-  generateClickableText
+  generateClickableText,
 } from '../utils/htmlutils.js';
 
 const isDefined = (value) => value === undefined || value === null;
@@ -35,10 +35,10 @@ Fixture.prototype.fullscore = function() {
   * Print the event date as a easily understandable string for the user
   */
 Fixture.prototype.eventHourTime = function() {
-  if(isDefined(this.eventDate)){
+  if (isDefined(this.eventDate)) {
     return dateFormat(this.eventDate, 'HH:MM - dd/mm');
   } else {
-    return "Unknown";
+    return 'Unknown';
   }
 };
 
@@ -51,37 +51,37 @@ Fixture.prototype.toTableData = function() {
     tableData.push(this.preciseLeague());
   } else {
     tableData.push(
-      generateClickableWithImage(`./league.html?id=${this.leagueId}`,
-                                 this.leagueLogo,
-                                 this.preciseLeague())
-                  );
+        generateClickableWithImage(`./league.html?id=${this.leagueId}`,
+            this.leagueLogo,
+            this.preciseLeague()),
+    );
   }
   if ([this.homeTeamId, this.homeTeamLogo].every(isDefined)) {
     tableData.push(this.preciseLeague());
   } else {
     tableData.push(
-      generateClickableWithImage(`./team.html?id=${this.homeTeamId}`,
-                                 this.homeTeamLogo,
-                                 this.homeTeamName)
-                  );
+        generateClickableWithImage(`./team.html?id=${this.homeTeamId}`,
+            this.homeTeamLogo,
+            this.homeTeamName),
+    );
   }
   if ([this.awayTeamId, this.awayTeamLogo].every(isDefined)) {
     tableData.push(this.preciseLeague());
   } else {
     tableData.push(
-      generateClickableWithImage(`./team.html?id=${this.awayTeamId}`,
-                                 this.awayTeamLogo,
-                                 this.awayTeamName)
-                  );
+        generateClickableWithImage(`./team.html?id=${this.awayTeamId}`,
+            this.awayTeamLogo,
+            this.awayTeamName),
+    );
   }
   tableData.push(this.fullscore());
   tableData.push(this.eventHourTime());
   tableData.push(this.elapsedTime);
   tableData.push(this.status);
   tableData.push(
-    generateClickableText(
-      `./match.html?id=${this.fixtureId}`,
-      'More informations')
+      generateClickableText(
+          `./match.html?id=${this.fixtureId}`,
+          'More informations'),
   );
   return tableData;
 };

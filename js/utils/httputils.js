@@ -17,7 +17,6 @@ const key = function readApiKey() {
   * @param {string} path - The path to the remote server side
   */
 async function generateGetRequest(path) {
-
   const url = 'https://api-football-v1.p.rapidapi.com/v2/'.concat(path);
 
   const options = {
