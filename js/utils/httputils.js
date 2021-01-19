@@ -12,17 +12,21 @@ const key = function readApiKey() {
 }();
 
 /**
-  * Generate a get request to the remote server
-  *
-  * @param {string} path - The path to the remote server side
-  */
+ * Generate a get request to the remote server
+ *
+ * @param {string} path - The path to the remote server side
+ *
+ * @return {respones} a response element
+ */
 async function generateGetRequest(path) {
   const url = 'https://api-football-v1.p.rapidapi.com/v2/'.concat(path);
 
   const options = {
     method: 'GET',
     url: url,
-    params: {timezone: 'Europe/Paris'},
+    params: {
+      timezone: 'Europe/Paris',
+    },
     headers: {
       'x-rapidapi-key': key,
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
@@ -30,10 +34,12 @@ async function generateGetRequest(path) {
   };
 
   return axios.request(options).then(function(response) {
-  	return response;
+    return response;
   }).catch(function(error) {
-  	console.error(error);
+    console.error(error);
   });
 }
 
-export {generateGetRequest};
+export {
+  generateGetRequest,
+};
