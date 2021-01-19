@@ -1,58 +1,88 @@
 const dateFormat = require('dateformat');
 
-function Fixture(country, league, leagueId, homeTeamName, homeTeamId, awayTeamName, awayTeamId, goalsHomeTeam, goalsAwayTeam, eventDate, elapsedTime, status) {
-  this.country = country;
-  this.league = league;
-  this.leagueId = leagueId;
-  this.homeTeamName = homeTeamName;
-  this.homeTeamId = homeTeamId;
-  this.awayTeamName = awayTeamName;
-  this.awayTeamId = awayTeamId;
-  this.goalsHomeTeam = goalsHomeTeam;
-  this.goalsAwayTeam = goalsAwayTeam;
-  this.eventDate = eventDate;
-  this.elapsedTime = elapsedTime;
-  this.status = status;
-}
+import {
+  generateClickableWithImage,
+  generateClickableText
+} from '../utils/htmlutils.js';
 
+const isDefined = (value) => value === undefined || value === null;
+
+/**
+  * Class Constructor
+  *
+  */
+function Fixture() {}
+
+/**
+  * Print the league as a precise info
+  */
 Fixture.prototype.preciseLeague = function() {
   return `${this.country}, ${this.league}`;
 };
 
+/**
+  * Print the full score of a match
+  */
 Fixture.prototype.fullscore = function() {
-  if ([this.goalsHomeTeam, this.goalsAwayTeam].some((element) => null == element)) {
+  if ([this.goalsHomeTeam, this.goalsAwayTeam].every(isDefined)) {
     return 'N/A';
   } else {
     return `${this.goalsHomeTeam}-${this.goalsAwayTeam}`;
   }
 };
 
+/**
+  * Print the event date as a easily understandable string for the user
+  */
 Fixture.prototype.eventHourTime = function() {
-  return dateFormat(this.eventDate, 'HH:MM - dd/mm');
+  if(isDefined(this.eventDate)){
+    return dateFormat(this.eventDate, 'HH:MM - dd/mm');
+  } else {
+    return "Unknown";
+  }
 };
 
+/**
+  * Returns the content of the fixture as a html table element
+  */
 Fixture.prototype.toTableData = function() {
   const tableData = new Array();
-  if (this.leagueId == undefined) {
+  if ([this.leagueId, this.leagueLogo].every(isDefined)) {
     tableData.push(this.preciseLeague());
   } else {
-    tableData.push(`<a id='queryable' href='./league.html?id=${this.leagueId}'><img src="${this.leagueLogo}" width=15 height=15/> ${this.preciseLeague()}</a>`);
+    tableData.push(
+      generateClickableWithImage(`./league.html?id=${this.leagueId}`,
+                                 this.leagueLogo,
+                                 this.preciseLeague())
+                  );
   }
-  if (this.homeTeamId == undefined) {
-    tableData.push(this.homeTeamName);
+  if ([this.homeTeamId, this.homeTeamLogo].every(isDefined)) {
+    tableData.push(this.preciseLeague());
   } else {
-    tableData.push(`<a id='queryable' href='./team.html?id=${this.homeTeamId}'><img src="${this.homeTeamLogo}" width=15 height=15/> ${this.homeTeamName}</a>`);
+    tableData.push(
+      generateClickableWithImage(`./team.html?id=${this.homeTeamId}`,
+                                 this.homeTeamLogo,
+                                 this.homeTeamName)
+                  );
   }
-  if (this.awayTeamId == undefined) {
-    tableData.push(this.awayTeamName);
+  if ([this.awayTeamId, this.awayTeamLogo].every(isDefined)) {
+    tableData.push(this.preciseLeague());
   } else {
-    tableData.push(`<a id='queryable' href='./team.html?id=${this.awayTeamId}'><img src="${this.awayTeamLogo}" width=15 height=15/> ${this.awayTeamName}</a>`);
+    tableData.push(
+      generateClickableWithImage(`./team.html?id=${this.awayTeamId}`,
+                                 this.awayTeamLogo,
+                                 this.awayTeamName)
+                  );
   }
   tableData.push(this.fullscore());
   tableData.push(this.eventHourTime());
   tableData.push(this.elapsedTime);
   tableData.push(this.status);
-  tableData.push(`<a href='./match.html?id=${this.fixtureId}'> More informations</a>`);
+  tableData.push(
+    generateClickableText(
+      `./match.html?id=${this.fixtureId}`,
+      'More informations')
+  );
   return tableData;
 };
 

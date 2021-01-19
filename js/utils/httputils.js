@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const axios = require('axios').default;
 
 // TODO : Remove that once it is resolved on server side
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -10,8 +11,12 @@ const key = function readApiKey() {
       .trim();
 }();
 
+/**
+  * Generate a get request to the remote server
+  *
+  * @param {string} path - The path to the remote server side
+  */
 async function generateGetRequest(path) {
-  const axios = require('axios').default;
 
   const url = 'https://api-football-v1.p.rapidapi.com/v2/'.concat(path);
 
