@@ -1,43 +1,104 @@
 const dateFormat = require('dateformat');
 const $ = require('jquery');
 const querystring = require('querystring');
-const fs = require('fs');
-const path = require('path');
 
 import {generateHTMLtr, generateHTMLtd} from './utils/htmlutils.js';
 import {generateGetRequest} from './utils/httputils.js';
 import {Fixture} from './classes/fixture.js';
+import {User} from './classes/user.js';
 
 const query = querystring.parse(global.location.search);
 
+/** Date displayed, on window open is current date. **/
 let dateDisplayed = new Date();
 
-const profile = JSON.parse(function readProfile() {
-  return fs.readFileSync(
-      path.resolve(__dirname, ['..', 'profile.json'].join(path.sep)), 'utf-8')
-      .trim();
-}());
+/** Corresponding date header for renderer. **/
+function getDateHeader(){
+  return `Matchs being played on  ${dateFormat(dateDisplayed, 'dddd dd/mm/yyyy')}`
+}
 
+/** Url for the date. **/
+function getDateUrl(){
+  return `fixtures/date/${dateFormat(dateDisplayed, 'yyyy-mm-dd')}`
+}
+
+/** Display the fixtures.
+  *
+  * @param {string} url - end point to fetch data from
+  * @param {string} header - header to display at the same time of the fixture
+  */
+async function displayFixtures(url, header) {
+  $('#title').text(header);
+
+  generateGetRequest(url).then((res) => {
+    $('#fixtures tr').remove();
+    const fixtures = Fixture.fromResponse(res);
+    $('#fixtures').append(fixtures.map(fixture =>
+      generateHTMLtr(fixture.toTableData()))
+    );
+    filterFavoritesIfAppliable();
+  });
+}
+
+/**
+  * Switch between displaying only the favorites or all fixtures.
+  *
+  */
+function switchBetweenFavsAndAll() {
+  const favs = $('#favs');
+  if (favs.text().localeCompare('My favorites') == 0) {
+    favs.text('All');
+  } else {
+    favs.text('My favorites');
+  }
+  filterFavoritesIfAppliable();
+}
+
+/**
+  * Display only favorite teams if appliable.
+  */
+function filterFavoritesIfAppliable() {
+  const favs = $('#favs');
+  if (favs.text().localeCompare('My favorites') == 0) {
+    const favorites = User.getFavoritesText();
+    $('#fixtures tr').filter(function() {
+      // The league and teams infos are only on the 3 first tds
+      const arrayOfDisplayed = $(this).children('td').slice(0, 3).map(function() {
+        return $(this).text().trim();
+      }).get();
+      $(this).toggle(favorites.some((element) => arrayOfDisplayed.includes(element)));
+    });
+  } else {
+    $('#fixtures tr').toggle(true);
+  }
+}
 
 $('#datepicker').change(function(field) {
   dateDisplayed = new Date($(this).val());
   displayFixtures(getDateUrl(), getDateHeader());
-});
-
-$('#datepicker').attr('max', dateFormat(new Date(new Date().setFullYear(new Date().getFullYear() + 1)), 'yyyy-mm-dd'))
-    .attr('value', dateFormat(dateDisplayed, 'yyyy-mm-dd'));
+}).attr('max', dateFormat(new Date(new Date().setFullYear(new Date().getFullYear() + 1)), 'yyyy-mm-dd'))
+  .attr('value', dateFormat(dateDisplayed, 'yyyy-mm-dd'));
 
 $('#favs').click(() => {
-  displayAllOrFavorites();
+  switchBetweenFavsAndAll();
 });
 
-function getDateHeader() {
-  return `Matchs being played on  ${dateFormat(dateDisplayed, 'dddd dd/mm/yyyy')}`;
-}
+// Not mine, taken directly from w3s
+$('#searchBar').on('keyup', function() {
+  const value = $(this).val().toLowerCase();
+  $('#fixtures tr').filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  });
+});
 
-function getDateUrl() {
-  return `fixtures/date/${dateFormat(dateDisplayed, 'yyyy-mm-dd')}`;
-}
+/** Define if the current element to display is match day or not. **/
+const isMatchDay = function displayableIsMatchday() {
+  if (['?league', 'fixture', 'mdnumber'].every((element) => element in query)) {
+    return true;
+  } else {
+    return false;
+  }
+}();
 
 let league;
 let fixture;
@@ -46,13 +107,6 @@ let leagueFixtureUrl;
 let leagueFixtureHeader;
 let favorites;
 
-const isMatchDay = function displayableIsMatchday() {
-  if (['?league', 'fixture', 'mdnumber'].every((element) => element in query)) {
-    return true;
-  } else {
-    return false;
-  }
-}();
 
 if (isMatchDay) {
   league = JSON.parse(query['?league']);
@@ -62,38 +116,8 @@ if (isMatchDay) {
   leagueFixtureHeader = `Fixtures for Match Day ${number}`;
 }
 
-function displayFixtures(url, header) {
-  $('#title').text(header);
-
-  generateGetRequest(url).then((res) => {
-    const jsonBody = res.data;
-    $('#fixtures tr').remove();
-    Array.from(jsonBody.api.fixtures).forEach((element) => {
-      const fixture = new Fixture();
-      fixture.country = element.league.country;
-      fixture.league = element.league.name;
-      fixture.leagueId = element.league_id;
-      fixture.leagueLogo = element.league.logo;
-      fixture.homeTeamName = element.homeTeam.team_name;
-      fixture.homeTeamId = element.homeTeam.team_id;
-      fixture.homeTeamLogo = element.homeTeam.logo;
-      fixture.awayTeamName = element.awayTeam.team_name;
-      fixture.awayTeamId = element.awayTeam.team_id;
-      fixture.awayTeamLogo = element.awayTeam.logo;
-      fixture.goalsHomeTeam = element.goalsHomeTeam;
-      fixture.goalsAwayTeam = element.goalsAwayTeam;
-      fixture.eventDate = element.event_date;
-      fixture.elapsedTime = element.elapsed;
-      fixture.status = element.status;
-      fixture.fixtureId = element.fixture_id;
-      // TODO : optimised ?
-      $('#fixtures').append(generateHTMLtr(fixture.toTableData()));
-    });
-    filterFavoritesIfAppliable();
-  });
-}
-
 if (isMatchDay) {
+  switchBetweenFavsAndAll()
   displayFixtures(leagueFixtureUrl, leagueFixtureHeader);
   $('#next').add('#previous').add('#favs').toggle();
 } else {
@@ -111,36 +135,3 @@ if (isMatchDay) {
     displayFixtures(getDateUrl(), getDateHeader());
   });
 }
-
-function displayAllOrFavorites() {
-  const favs = $('#favs');
-  if (favs.text().localeCompare('Only my favorites') == 0) {
-    favs.text('Show all');
-  } else {
-    favs.text('Only my favorites');
-  }
-  filterFavoritesIfAppliable();
-}
-
-function filterFavoritesIfAppliable() {
-  const favs = $('#favs');
-  if (favs.text().localeCompare('Only my favorites') == 0) {
-    const favorites = profile.favoriteTeams.concat(profile.favoriteLeagues).map((element) => element.name);
-    $('#fixtures tr').filter(function() {
-      const arrayOfDisplayed = $(this).children('td').slice(0, 3).map(function() {
-        return $(this).text().trim();
-      }).get();
-      $(this).toggle(favorites.some((element) => arrayOfDisplayed.includes(element)));
-    });
-  } else {
-    $('#fixtures tr').toggle(true);
-  }
-}
-
-// Not mine, taken directly from w3s
-$('#searchBar').on('keyup', function() {
-  const value = $(this).val().toLowerCase();
-  $('#fixtures tr').filter(function() {
-    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-  });
-});
