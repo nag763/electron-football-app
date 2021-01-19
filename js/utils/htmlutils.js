@@ -11,13 +11,13 @@ function generateHTMLtr(dataList) {
 
 function generateHTMLtable(headers, data) {
   return `<table class="table  table-bordered">
-            <thead class="thead-dark" style="border-color: white">
+            <thead class="thead-dark">
 
             <tr>
-            ${headers.map((element) => `<th style="border-color: #f3f4f5; border-width: 1px">${element}</th>`).join('\n')}
+            ${headers.map((element) => `<th>${element}</th>`).join('\n')}
             </tr>
             </thead>
-            <tbody style="background: #1a1a1a; color:#f3f4f5;">
+            <tbody>
             ${data.map((element) => generateHTMLtr(element)).join('\n')}
             </tbody>
             </table>`;

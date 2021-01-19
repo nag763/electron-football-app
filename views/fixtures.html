@@ -7,6 +7,7 @@
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <!-- Import dependencies from node-->
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./stylesheets/styles.css" />
   <script type="module" src="../js/fixtures.js"></script>
 </head>
 
@@ -18,33 +19,33 @@
   </nav>
   <br />
   <div class="container">
-    <h1 id="title" class="text-center" style="color: white">Fixtures</h1>
-    <table class="table table-bordered" style="width:100%">
-      <thead class="thead-dark" style="border-color: white">
+    <h1 id="title" class="text-center">Fixtures</h1>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
         <tr>
-          <th style="border-color: #f3f4f5; border-width: 1px">League</th>
-          <th style="border-color: #f3f4f5; border-width: 1px">Home Team</th>
-          <th style="border-color: #f3f4f5; border-width: 1px">Away Team</th>
-          <th style="border-color: #f3f4f5; border-width: 1px">Score</th>
-          <th style="border-color: #f3f4f5; border-width: 1px">Start time</th>
-          <th style="border-color: #f3f4f5; border-width: 1px">Time elapsed</th>
-          <th style="border-color: #f3f4f5; border-width: 1px">Status</th>
-          <th style="border-color: #f3f4f5; border-width: 1px">Line ups and match events</th>
+          <th>League</th>
+          <th>Home Team</th>
+          <th>Away Team</th>
+          <th>Score</th>
+          <th>Start time</th>
+          <th>Time elapsed</th>
+          <th>Status</th>
+          <th>Line ups and match events</th>
         </tr>
       </thead>
-      <tbody id="fixtures" style="background: #1a1a1a; color:#f3f4f5;" id="latestFixtures">
+      <tbody id="fixtures" id="latestFixtures">
       </tbody>
       </br>
       <div class="row">
         <div class="col-sm">
-          <input type="date" id="datepicker" name="trip-start" min="2000-01-01" max="2021-10-10" style="background: #2b2b2b;">
+          <input type="date" id="datepicker" name="trip-start" min="2000-01-01" max="2021-10-10" class="calendar">
           <button id="previous" type="button" class="btn btn-success">Previous</button>
           <button id="next" type="button" class="btn btn-info">Next</button>
           <button id="favs" type="button" class="btn btn-secondary">Only my favorites</button>
         </div>
         <div class="col-sm">
           <form class="form-inline my-2 my-lg-0">
-            <input id="searchBar" type="text" class="form-control mr-sm-2" placeholder="Search for one element in particular" style="background: #000000; border-color: #2b2b2b">
+            <input id="searchBar" type="text" class="form-control mr-sm-2" placeholder="Search for one element in particular">
           </form>
         </div>
       </div>

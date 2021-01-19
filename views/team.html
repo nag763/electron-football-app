@@ -7,10 +7,11 @@
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <!-- Import dependencies from node-->
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./stylesheets/styles.css" />
   <script type="module" src="../js/team.js"></script>
 </head>
 
-<body style="background: #000000;">
+<body>
   <nav class="navbar navbar-dark" style="background-color: #1a1a1a">
     <a class="navbar-brand" href="./menu.html">
       <img src="../icons/icon.png" width="30" height="30" class="d-inline-block align-top" alt=""> UnFootball
@@ -22,59 +23,59 @@
     </div>
     <br />
     <div class="row justify-content-md-center">
-      <h2 id="clubName" style="color:#f3f4f5;" class="d-flex justify-content-center"><b>Team name.</b></h2>
+      <h2 id="clubName"class="d-flex justify-content-center"><b>Team name.</b></h2>
     </div>
     <br />
     <div class="row justify-content-md-center">
-      <h3 id="profiling" style="color:#f3f4f5;" class="d-flex justify-content-center"><b>Profiling.</b></h2>
+      <h3 id="profiling" class="d-flex justify-content-center"><b>Profiling.</b></h2>
     </div>
     <br/>
-    <p class="card-text" style="color:#f3f4f5;" id="desc">Team description.</p>
+    <p class="card-text" id="desc">Team description.</p>
     <div>
-      <h3 style="color:#f3f4f5;">Current squad</h3>
+      <h3>Current squad</h3>
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
-            <th style="border-color: #f3f4f5; border-width: 1px">Name</th>
-            <th style="border-color: #f3f4f5; border-width: 1px">Position</th>
-            <th style="border-color: #f3f4f5; border-width: 1px">Nationality</th>
-            <th style="border-color: #f3f4f5; border-width: 1px">Age</th>
-            <th style="border-color: #f3f4f5; border-width: 1px">Birth date</th>
-            <th style="border-color: #f3f4f5; border-width: 1px">Size</th>
-            <th style="border-color: #f3f4f5; border-width: 1px">Weight</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Nationality</th>
+            <th>Age</th>
+            <th>Birth date</th>
+            <th>Size</th>
+            <th>Weight</th>
           </tr>
         </thead>
-        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="squad">
+        <tbody id="squad">
         </tbody>
       </table>
       <div>
     <div>
-      <h3 style="color:#f3f4f5;">Latest fixtures</h3>
+      <h3 >Latest fixtures</h3>
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
-            <th style="border-color: #f3f4f5; border-width: 1px">Date</th>
-            <th style="border-color: #f3f4f5; border-width: 1px">Home team</th>
-            <th style="border-color: #f3f4f5; border-width: 1px">Away team</th>
-            <th style="border-color: #f3f4f5; border-width: 1px">Final score</th>
-            <th style="border-color: #f3f4f5; border-width: 1px">League</th>
+            <th>Date</th>
+            <th>Home team</th>
+            <th>Away team</th>
+            <th>Final score</th>
+            <th>League</th>
           </tr>
         </thead>
-        <tbody style="background: #1a1a1a; color:#f3f4f5;" id="latestFixtures">
+        <tbody id="latestFixtures">
         </tbody>
       </table>
       <div>
         <div>
-          <h3 style="color:#f3f4f5;">Next fixtures</h3>
+          <h3 >Next fixtures</h3>
           <table class="table table-bordered">
             <thead class="thead-dark">
               <tr>
-                <th style="border-color: #f3f4f5; border-width: 1px">Date</th>
-                <th style="border-color: #f3f4f5; border-width: 1px">Home team</th>
-                <th style="border-color: #f3f4f5; border-width: 1px">Away team</th>
-                <th style="border-color: #f3f4f5; border-width: 1px">League</th>
+                <th>Date</th>
+                <th>Home team</th>
+                <th>Away team</th>
+                <th>League</th>
               </tr>
-            <tbody style="background: #1a1a1a; color:#f3f4f5" id="nextFixtures">
+            <tbody id="nextFixtures">
             </tbody>
           </table>
         </div>

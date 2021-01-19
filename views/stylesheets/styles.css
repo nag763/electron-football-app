@@ -1,0 +1,43 @@
+/** Background must be dark **/
+body {
+  background: black;
+}
+
+/** The inputs must be dark themed and visible enough **/
+nav.navbar-dark input, nav.navbar-dark input:focus,
+nav.navbar-dark input:disabled, input.form-control,
+input.form-control:focus {
+  background: black;
+  border-color: #2b2b2b;
+}
+
+.calendar, .calendar:focus {
+  background: #2b2b2b;
+}
+
+/** The headers are white for a better visibility **/
+h1, h2, h3, h4, h5, p.card-text {
+  color: white;
+}
+
+/** The border of a thead is white for a cool visibility **/
+thead {
+  border-color: white;
+}
+
+/** The tbody has a dark gray bg with a white font **/
+tbody {
+  background: #1a1a1a;
+  color: #f3f4f5;
+}
+
+/** The border should be visible enough and thin **/
+table.table-bordered thead.thead-dark th {
+  border-color: white;
+  border-width: 1px;
+}
+
+/** The cards must have a grey background for a better visibility **/
+div.card {
+  background-color: #2b2b2b;
+}
