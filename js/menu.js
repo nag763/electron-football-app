@@ -30,7 +30,7 @@ $('#write_key').keypress((e) => {
     fs.writeFile('./api.key', userInput, (err) => {
       if (err) {
         return console.log(err);
-      };
+      }
       console.log('Key written');
     });
   }
@@ -94,6 +94,6 @@ async function getLatestRedditRSS() {
         `<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff">${item.title} (${diffMins} mns ago)</li>`,
     );
   });
-};
+}
 
 getLatestRedditRSS();

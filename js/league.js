@@ -76,7 +76,7 @@ $('#profiling').click(() => {
   fs.writeFile('./profile.json', JSON.stringify(profile), (err) => {
     if (err) {
       return console.log(err);
-    };
+    }
     console.log('Profile updated');
   });
 });
