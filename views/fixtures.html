@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -20,6 +20,22 @@
   <br />
   <div class="container">
     <h1 id="title" class="text-center">Fixtures</h1>
+    <br />
+    <div class="row">
+      <div class="col-sm">
+        <input type="date" id="datepicker" name="trip-start" min="2000-01-01" max="2021-10-10" class="calendar">
+        <button id="previous" type="button" class="btn btn-success">Previous</button>
+        <button id="next" type="button" class="btn btn-info">Next</button>
+        <button id="favs" type="button" class="btn btn-secondary">Only my favorites</button>
+      </div>
+      <div class="col-sm4">
+        <form class="form-inline my-2 my-lg-0">
+          <input id="searchBar" type="text" class="form-control mr-sm-2" placeholder="Search for one element in particular">
+        </form>
+      </div>
+    </div>
+    <br />
+    <br />
     <table class="table table-bordered">
       <thead class="thead-dark">
         <tr>
@@ -33,23 +49,10 @@
           <th>Line ups and match events</th>
         </tr>
       </thead>
-      <tbody id="fixtures" id="latestFixtures">
+      <tbody id="fixtures">
       </tbody>
-      </br>
-      <div class="row">
-        <div class="col-sm">
-          <input type="date" id="datepicker" name="trip-start" min="2000-01-01" max="2021-10-10" class="calendar">
-          <button id="previous" type="button" class="btn btn-success">Previous</button>
-          <button id="next" type="button" class="btn btn-info">Next</button>
-          <button id="favs" type="button" class="btn btn-secondary">Only my favorites</button>
-        </div>
-        <div class="col-sm">
-          <form class="form-inline my-2 my-lg-0">
-            <input id="searchBar" type="text" class="form-control mr-sm-2" placeholder="Search for one element in particular">
-          </form>
-        </div>
-      </div>
-      </br>
+    </table>
+    <br />
   </div>
 
 </body>
