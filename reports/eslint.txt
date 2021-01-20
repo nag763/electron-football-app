@@ -1,6 +1,13 @@
 
 /home/usr/Documents/ESIG/NODEJS/js/classes/events.js
-  1:1  error  Missing JSDoc comment  require-jsdoc
+   1:1  error  Missing JSDoc comment                                require-jsdoc
+   2:1  error  Missing JSDoc comment                                require-jsdoc
+   6:1  error  Missing JSDoc for parameter 'response'               valid-jsdoc
+  45:1  error  This line has a length of 92. Maximum allowed is 80  max-len
+  49:1  error  This line has a length of 94. Maximum allowed is 80  max-len
+  60:1  error  This line has a length of 92. Maximum allowed is 80  max-len
+  64:1  error  This line has a length of 94. Maximum allowed is 80  max-len
+  66:1  error  This line has a length of 92. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/classes/fixture.js
   88:21  error  The array literal notation [] is preferable  no-array-constructor
@@ -20,12 +27,12 @@
    33:1   error  This line has a length of 94. Maximum allowed is 80  max-len
    34:1   error  This line has a length of 94. Maximum allowed is 80  max-len
    38:1   error  Missing JSDoc @return for function                   valid-jsdoc
-   71:1   error  This line has a length of 82. Maximum allowed is 80  max-len
-   73:1   error  This line has a length of 82. Maximum allowed is 80  max-len
-   83:17  error  The array literal notation [] is preferable          no-array-constructor
-   88:1   error  This line has a length of 84. Maximum allowed is 80  max-len
-  100:17  error  The array literal notation [] is preferable          no-array-constructor
-  102:1   error  This line has a length of 88. Maximum allowed is 80  max-len
+   70:1   error  This line has a length of 82. Maximum allowed is 80  max-len
+   72:1   error  This line has a length of 82. Maximum allowed is 80  max-len
+   82:17  error  The array literal notation [] is preferable          no-array-constructor
+   87:1   error  This line has a length of 84. Maximum allowed is 80  max-len
+   99:17  error  The array literal notation [] is preferable          no-array-constructor
+  101:1   error  This line has a length of 88. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/classes/user.js
   43:5   error  Expected JSDoc for 'leagueId' but found 'league'  valid-jsdoc
@@ -58,30 +65,21 @@
   30:1   error  This line has a length of 83. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/match.js
-   5:1   error  This line has a length of 87. Maximum allowed is 80   max-len
-   5:25  error  'generateHTMLtd' is defined but never used            no-unused-vars
-   5:41  error  'generateHTMLtable' is defined but never used         no-unused-vars
-  14:1   error  This line has a length of 92. Maximum allowed is 80   max-len
-  21:1   error  This line has a length of 82. Maximum allowed is 80   max-len
-  28:1   error  This line has a length of 210. Maximum allowed is 80  max-len
-  30:1   error  This line has a length of 295. Maximum allowed is 80  max-len
-  34:1   error  This line has a length of 192. Maximum allowed is 80  max-len
-  36:1   error  This line has a length of 189. Maximum allowed is 80  max-len
-  39:1   error  This line has a length of 240. Maximum allowed is 80  max-len
-  41:1   error  This line has a length of 146. Maximum allowed is 80  max-len
-  44:1   error  This line has a length of 147. Maximum allowed is 80  max-len
+   5:1   error  This line has a length of 87. Maximum allowed is 80  max-len
+   5:25  error  'generateHTMLtd' is defined but never used           no-unused-vars
+   5:41  error  'generateHTMLtable' is defined but never used        no-unused-vars
+  15:1   error  This line has a length of 92. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/menu.js
-  40:23  error  Unexpected 'this'                                     no-invalid-this
-  44:1   error  This line has a length of 96. Maximum allowed is 80   max-len
-  50:1   error  This line has a length of 208. Maximum allowed is 80  max-len
+  37:23  error  Unexpected 'this'                                     no-invalid-this
+  41:1   error  This line has a length of 96. Maximum allowed is 80   max-len
   53:1   error  This line has a length of 81. Maximum allowed is 80   max-len
-  56:1   error  This line has a length of 251. Maximum allowed is 80  max-len
-  59:1   error  This line has a length of 81. Maximum allowed is 80   max-len
-  61:1   error  This line has a length of 237. Maximum allowed is 80  max-len
-  71:9   error  Identifier 'api_key_field' is not in camel case       camelcase
-  82:1   error  Missing JSDoc comment                                 require-jsdoc
-  94:1   error  This line has a length of 152. Maximum allowed is 80  max-len
+  58:1   error  This line has a length of 125. Maximum allowed is 80  max-len
+  62:1   error  This line has a length of 81. Maximum allowed is 80   max-len
+  65:1   error  This line has a length of 111. Maximum allowed is 80  max-len
+  75:9   error  Identifier 'api_key_field' is not in camel case       camelcase
+  86:1   error  Missing JSDoc comment                                 require-jsdoc
+  98:1   error  This line has a length of 152. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/player.js
   14:1  error  This line has a length of 97. Maximum allowed is 80   max-len
@@ -117,5 +115,5 @@
   104:27  error  The array literal notation [] is preferable           no-array-constructor
   106:1   error  This line has a length of 81. Maximum allowed is 80   max-len
 
-✖ 96 problems (96 errors, 0 warnings)
+✖ 94 problems (94 errors, 0 warnings)
 

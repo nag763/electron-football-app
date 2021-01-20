@@ -1,18 +1,15 @@
 const $ = require('jquery');
 const Parser = require('rss-parser');
+const {shell} = require('electron');
+const fs = require('fs');
 
-import {
-  generateGetRequest,
-} from './utils/httputils.js';
+import {generateGetRequest} from './utils/httputils.js';
+import {generateClikableLi} from './utils/htmlutils.js';
 
 const enterKey = 13;
 const pathSearchLeague = 'leagues/search/';
 const pathSearchTeam = 'teams/search/';
 const pathSearchPlayer = 'players/search/';
-const {
-  shell,
-} = require('electron');
-const fs = require('fs');
 
 $('#next_fixtures').click(() => {
   $(location).attr('href', './fixtures.html');
@@ -45,21 +42,28 @@ $('#searchbar').keypress(function(e) {
   } else {
     if (e.which == enterKey) {
       $('#latest_news li').remove();
+
       generateGetRequest(pathSearchTeam.concat(userInput)).then((response) => {
-        response.data.api.teams.forEach((element) => {
-          $('#latest_news').append(`<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff"><a href='./team.html?id=${element.team_id}'>${element.name}</a></li>`);
-        });
+        const teams = response.data.api.teams;
+        $('#latest_news').append(teams.map((element) =>
+          generateClikableLi(`./team.html?id=${element.team_id}`, element.name),
+        ).join('\n'));
       });
+
       generateGetRequest(pathSearchLeague.concat(userInput)).then((response) => {
-        response.data.api.leagues.sort((a, b) => (b.season - a.season),
-        ).forEach((element) => {
-          $('#latest_news').append(`<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff"><a href='./league.html?id=${element.league_id}'>[${element.season}]${element.name}, ${element.country}</a></li>`);
-        });
+        const leagues = response.data.api.leagues.sort(
+            (a, b) => (b.season - a.season),
+        );
+        $('#latest_news').append(leagues.map((league) =>
+          generateClikableLi(`./league.html?id=${league.league_id}`, `[${league.season}] ${league.name}, ${league.country}`),
+        ).join('\n'));
       });
+
       generateGetRequest(pathSearchPlayer.concat(userInput)).then((response) => {
-        response.data.api.players.forEach((element) => {
-          $('#latest_news').append(`<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff"><a href='./player.html?id=${element.player_id}'>${element.firstname} ${element.lastname}</a></li>`);
-        });
+        const players = response.data.api.players;
+        $('#latest_news').apppend(players.map((player) =>
+          generateClikableLi(`./player.html?id=${player.player_id}`, `${player.firstname} ${player.lastname}`),
+        ).join('\n'));
       });
       $('#title').text('Search results');
     }

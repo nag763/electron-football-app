@@ -76,10 +76,39 @@ function generateClickableWithImage(link='#', imagePath='', text='') {
           </a>`;
 }
 
+/**
+  * Generate an image with the given imagePath.
+  *
+  * @param {string} imagePath - image path
+  *
+  * @return {string} image as html element
+  */
+function generateImage(imagePath='#') {
+  return `<img src="${imagePath}" width=15 height=15/>`;
+}
+
+/**
+  * Generate a clickable list element.
+  *
+  * @param {string} link - link to the ressource
+  * @param {string} text - hyper text
+  *
+  * @return {string} hyperref html element in li
+  */
+function generateClikableLi(link='#', text='') {
+  return `
+  <li class="list-group-item">
+  ${generateClickableText(link, text)}
+  </li>
+  `;
+}
+
 export {
   generateHTMLtr,
   generateHTMLtd,
   generateHTMLtable,
   generateClickableWithImage,
   generateClickableText,
+  generateImage,
+  generateClikableLi,
 };

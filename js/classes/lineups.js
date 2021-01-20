@@ -57,7 +57,6 @@ Lineup.fromResponse = function(response) {
   lineup.awayTeamCoach = awayTeamLineUp.coach;
   lineup.awayTeamPlayers = awayTeamLineUp['startXI'].map(setPlayersInfo);
   lineup.awayTeamBench = awayTeamLineUp['substitutes'].map(setPlayersInfo);
-  console.log(lineup);
   return lineup;
 };
 
