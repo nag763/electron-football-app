@@ -3,21 +3,17 @@ const $ = require('jquery');
 
 import {generateGetRequest} from './utils/httputils.js';
 import {generateHTMLtr, generateHTMLtd, generateHTMLtable} from './utils/htmlutils.js';
+import {Lineup} from './classes/lineups.js';
 
 const query = querystring.parse(global.location.search);
 const idToDisplay = JSON.parse(query['?id']);
 
 generateGetRequest(`lineups/${idToDisplay}`).then((response) => {
-  const lineups = response.data.api.lineUps;
-  const keys = Object.keys(lineups);
-  $('#title').text('').append(`<a href='./team.html?id=${lineups[keys[0]]['startXI'][0].team_id}'>${keys[0]}</a> - <a href='./team.html?id=${lineups[keys[1]]['startXI'][0].team_id}'>${keys[1]}</a>`);
-  $('#coachs').append(generateHTMLtr([lineups[keys[0]].coach, lineups[keys[1]].coach]));
-  lineups[keys[0]]['startXI'].forEach((element, index) => {
-    $('#lineups').append(generateHTMLtr([`<a href='./player.html?id=${lineups[keys[0]]['startXI'][index].player_id}'>(${lineups[keys[0]]['startXI'][index].number}) ${lineups[keys[0]]['startXI'][index].player}</a>`, `<a href='./player.html?id=${lineups[keys[1]]['startXI'][index].player_id}'>(${lineups[keys[1]]['startXI'][index].number}) ${lineups[keys[1]]['startXI'][index].player}</a>`]));
-  });
-  lineups[keys[0]]['substitutes'].forEach((element, index) => {
-    $('#substitutes').append(generateHTMLtr([`<a href='./player.html?id=${lineups[keys[0]]['substitutes'][index].player_id}'>(${lineups[keys[0]]['substitutes'][index].number}) ${lineups[keys[0]]['substitutes'][index].player}</a>`, `<a href='./player.html?id=${lineups[keys[1]]['substitutes'][index].player_id}'>(${lineups[keys[1]]['substitutes'][index].number}) ${lineups[keys[1]]['substitutes'][index].player}</a>`]));
-  });
+  const lineups = Lineup.fromResponse(response);
+  $('#title').text('').append(lineups.generateHTMLTitle());
+  $('#coachs').append(generateHTMLtr([lineups.homeTeamCoach, lineups.awayTeamCoach.coach]));
+  $('#lineups').append(lineups.generateHTMLStartingXITR());
+  $('#substitutes').append(lineups.generateHTMLBenchTR());
 });
 
 

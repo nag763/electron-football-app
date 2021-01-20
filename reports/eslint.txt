@@ -1,6 +1,31 @@
 
+/home/usr/Documents/ESIG/NODEJS/js/classes/events.js
+  1:1  error  Missing JSDoc comment  require-jsdoc
+
 /home/usr/Documents/ESIG/NODEJS/js/classes/fixture.js
   88:21  error  The array literal notation [] is preferable  no-array-constructor
+
+/home/usr/Documents/ESIG/NODEJS/js/classes/league.js
+  31:17  error  The array literal notation [] is preferable           no-array-constructor
+  41:17  error  The array literal notation [] is preferable           no-array-constructor
+  55:22  error  The array literal notation [] is preferable           no-array-constructor
+  57:1   error  This line has a length of 101. Maximum allowed is 80  max-len
+  72:1   error  Missing JSDoc for parameter 'response'                valid-jsdoc
+  80:1   error  This line has a length of 101. Maximum allowed is 80  max-len
+
+/home/usr/Documents/ESIG/NODEJS/js/classes/lineups.js
+    1:1   error  Missing JSDoc comment                                require-jsdoc
+    5:1   error  Missing JSDoc @return for function                   valid-jsdoc
+   29:3   error  Missing JSDoc comment                                require-jsdoc
+   33:1   error  This line has a length of 94. Maximum allowed is 80  max-len
+   34:1   error  This line has a length of 94. Maximum allowed is 80  max-len
+   38:1   error  Missing JSDoc @return for function                   valid-jsdoc
+   71:1   error  This line has a length of 82. Maximum allowed is 80  max-len
+   73:1   error  This line has a length of 82. Maximum allowed is 80  max-len
+   83:17  error  The array literal notation [] is preferable          no-array-constructor
+   88:1   error  This line has a length of 84. Maximum allowed is 80  max-len
+  100:17  error  The array literal notation [] is preferable          no-array-constructor
+  102:1   error  This line has a length of 88. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/classes/user.js
   43:5   error  Expected JSDoc for 'leagueId' but found 'league'  valid-jsdoc
@@ -26,30 +51,25 @@
   108:5   error  'favorites' is defined but never used                 no-unused-vars
 
 /home/usr/Documents/ESIG/NODEJS/js/league.js
-   5:1   error  This line has a length of 87. Maximum allowed is 80   max-len
-   5:9   error  'generateHTMLtr' is defined but never used            no-unused-vars
-   5:25  error  'generateHTMLtd' is defined but never used            no-unused-vars
-  29:1   error  This line has a length of 83. Maximum allowed is 80   max-len
-  34:1   error  This line has a length of 110. Maximum allowed is 80  max-len
-  39:1   error  This line has a length of 393. Maximum allowed is 80  max-len
-  48:1   error  This line has a length of 242. Maximum allowed is 80  max-len
+   5:1   error  This line has a length of 87. Maximum allowed is 80  max-len
+   5:9   error  'generateHTMLtr' is defined but never used           no-unused-vars
+   5:25  error  'generateHTMLtd' is defined but never used           no-unused-vars
+   5:41  error  'generateHTMLtable' is defined but never used        no-unused-vars
+  30:1   error  This line has a length of 83. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/match.js
    5:1   error  This line has a length of 87. Maximum allowed is 80   max-len
    5:25  error  'generateHTMLtd' is defined but never used            no-unused-vars
    5:41  error  'generateHTMLtable' is defined but never used         no-unused-vars
-  13:1   error  This line has a length of 199. Maximum allowed is 80  max-len
-  14:1   error  This line has a length of 88. Maximum allowed is 80   max-len
-  16:1   error  This line has a length of 391. Maximum allowed is 80  max-len
-  19:1   error  This line has a length of 419. Maximum allowed is 80  max-len
-  25:1   error  This line has a length of 82. Maximum allowed is 80   max-len
-  32:1   error  This line has a length of 210. Maximum allowed is 80  max-len
-  34:1   error  This line has a length of 295. Maximum allowed is 80  max-len
-  38:1   error  This line has a length of 192. Maximum allowed is 80  max-len
-  40:1   error  This line has a length of 189. Maximum allowed is 80  max-len
-  43:1   error  This line has a length of 240. Maximum allowed is 80  max-len
-  45:1   error  This line has a length of 146. Maximum allowed is 80  max-len
-  48:1   error  This line has a length of 147. Maximum allowed is 80  max-len
+  14:1   error  This line has a length of 92. Maximum allowed is 80   max-len
+  21:1   error  This line has a length of 82. Maximum allowed is 80   max-len
+  28:1   error  This line has a length of 210. Maximum allowed is 80  max-len
+  30:1   error  This line has a length of 295. Maximum allowed is 80  max-len
+  34:1   error  This line has a length of 192. Maximum allowed is 80  max-len
+  36:1   error  This line has a length of 189. Maximum allowed is 80  max-len
+  39:1   error  This line has a length of 240. Maximum allowed is 80  max-len
+  41:1   error  This line has a length of 146. Maximum allowed is 80  max-len
+  44:1   error  This line has a length of 147. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/menu.js
   40:23  error  Unexpected 'this'                                     no-invalid-this
@@ -97,5 +117,5 @@
   104:27  error  The array literal notation [] is preferable           no-array-constructor
   106:1   error  This line has a length of 81. Maximum allowed is 80   max-len
 
-✖ 82 problems (82 errors, 0 warnings)
+✖ 96 problems (96 errors, 0 warnings)
 

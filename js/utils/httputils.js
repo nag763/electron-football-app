@@ -2,9 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios').default;
 
-// TODO : Remove that once it is resolved on server side
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
 const key = function readApiKey() {
   return fs.readFileSync(
       path.resolve(__dirname, ['..', 'api.key'].join(path.sep)), 'utf-8')
