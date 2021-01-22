@@ -34,6 +34,21 @@
    99:17  error  The array literal notation [] is preferable          no-array-constructor
   101:1   error  This line has a length of 88. Maximum allowed is 80  max-len
 
+/home/usr/Documents/ESIG/NODEJS/js/classes/player.js
+   8:1  error  Missing JSDoc comment                                 require-jsdoc
+  12:1  error  Missing JSDoc comment                                 require-jsdoc
+  13:1  error  This line has a length of 92. Maximum allowed is 80   max-len
+  14:1  error  This line has a length of 81. Maximum allowed is 80   max-len
+  18:1  error  Missing JSDoc comment                                 require-jsdoc
+  22:1  error  This line has a length of 117. Maximum allowed is 80  max-len
+  23:1  error  This line has a length of 111. Maximum allowed is 80  max-len
+  24:1  error  This line has a length of 85. Maximum allowed is 80   max-len
+
+/home/usr/Documents/ESIG/NODEJS/js/classes/stat.js
+    1:1  error  Missing JSDoc comment                                require-jsdoc
+   11:1  error  This line has a length of 96. Maximum allowed is 80  max-len
+  100:1  error  This line has a length of 91. Maximum allowed is 80  max-len
+
 /home/usr/Documents/ESIG/NODEJS/js/classes/user.js
   43:5   error  Expected JSDoc for 'leagueId' but found 'league'  valid-jsdoc
   50:31  error  The array literal notation [] is preferable       no-array-constructor
@@ -82,23 +97,10 @@
   98:1   error  This line has a length of 152. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/player.js
-  14:1  error  This line has a length of 97. Maximum allowed is 80   max-len
-  18:1  error  This line has a length of 163. Maximum allowed is 80  max-len
-  19:1  error  This line has a length of 131. Maximum allowed is 80  max-len
-  20:1  error  This line has a length of 109. Maximum allowed is 80  max-len
-  24:1  error  This line has a length of 119. Maximum allowed is 80  max-len
-  28:1  error  Missing JSDoc comment                                 require-jsdoc
-  29:1  error  This line has a length of 152. Maximum allowed is 80  max-len
-  30:1  error  This line has a length of 209. Maximum allowed is 80  max-len
-  31:1  error  This line has a length of 128. Maximum allowed is 80  max-len
-  32:1  error  This line has a length of 115. Maximum allowed is 80  max-len
-  33:1  error  This line has a length of 99. Maximum allowed is 80   max-len
-  34:1  error  This line has a length of 120. Maximum allowed is 80  max-len
-  35:1  error  This line has a length of 101. Maximum allowed is 80  max-len
-  37:1  error  This line has a length of 152. Maximum allowed is 80  max-len
-  38:1  error  This line has a length of 91. Maximum allowed is 80   max-len
-  40:1  error  This line has a length of 113. Maximum allowed is 80  max-len
-  41:1  error  This line has a length of 81. Maximum allowed is 80   max-len
+   9:9  error  'generateHTMLtr' is defined but never used            no-unused-vars
+  12:5  error  'statsAvailable' is defined but never used            no-unused-vars
+  27:1  error  Missing JSDoc comment                                 require-jsdoc
+  28:1  error  This line has a length of 152. Maximum allowed is 80  max-len
 
 /home/usr/Documents/ESIG/NODEJS/js/team.js
    24:9   error  'infosTable' is assigned a value but never used       no-unused-vars
@@ -115,5 +117,5 @@
   104:27  error  The array literal notation [] is preferable           no-array-constructor
   106:1   error  This line has a length of 81. Maximum allowed is 80   max-len
 
-✖ 94 problems (94 errors, 0 warnings)
+✖ 92 problems (92 errors, 0 warnings)
 

@@ -72,7 +72,7 @@ Fixture.prototype.fullscore = function() {
   * @return {string} the time of the match if known
   */
 Fixture.prototype.eventHourTime = function() {
-  if (isDefined(this.eventDate)) {
+  if (!isDefined(this.eventDate)) {
     return dateFormat(this.eventDate, 'HH:MM - dd/mm');
   } else {
     return 'Unknown';

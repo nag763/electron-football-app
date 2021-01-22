@@ -103,6 +103,21 @@ function generateClikableLi(link='#', text='') {
   `;
 }
 
+/**
+  * Generate an option text.
+  *
+  * @param {string} val - link to the ressource
+  * @param {string} text - option's
+  *
+  * @return {string} option text
+  */
+function generateOption(val='', text='') {
+  return `
+  <option value='${val}'>
+  ${text}
+  </option>`;
+}
+
 export {
   generateHTMLtr,
   generateHTMLtd,
@@ -111,4 +126,5 @@ export {
   generateClickableText,
   generateImage,
   generateClikableLi,
+  generateOption,
 };
