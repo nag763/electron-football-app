@@ -14,7 +14,6 @@ let statsAvailable;
 generateGetRequest(`players/player/${idToDisplay}`).then((response) => {
   const PLAYER = Player.fromResponse(response);
   const STATS_AVAILABLE = PLAYER.stats;
-  console.log(PLAYER);
   $('#playerName').text(PLAYER.getFullName());
   $('#desc').text(PLAYER.getBio());
   $('#statdesc');
