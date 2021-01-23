@@ -2,7 +2,7 @@
 
 -   [ ] Change logo
 
--   [ ] Do JSDOC
+-   [X] Do JSDOC
 
 -   [ ] Catch errors
 
@@ -10,7 +10,7 @@
 
 -   [ ] Toasts for errors
 
--   [ ] ESlints fixs
+-   [X] ESlints fixs
 
 -   [ ] Make a better UI
 

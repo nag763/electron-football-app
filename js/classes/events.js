@@ -62,7 +62,7 @@ Events.prototype.generateHTMLevents = function() {
       if (event.detail.localeCompare('Yellow Card') == 0) {
         display += generateImage('../icons/yellow-card.svg');
       } else {
-        display += generateImage('../icons/yred-card.svg');
+        display += generateImage('../icons/red-card.svg');
       }
       display += ` (${event.elapsed}') ${event.detail} for `;
       display += generateClickableText(`./player.html?id=${event.player_id}`, event.player);
