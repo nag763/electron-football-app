@@ -11,7 +11,7 @@ const profile = JSON.parse(function readProfile() {
   * Update the user profile.
   */
 function updateProfile() {
-  fs.writeFile('./profile.json', JSON.stringify(profile), (err) => {
+  fs.writeFile(path.resolve(__dirname, ['..', 'profile.json'].join(path.sep)), JSON.stringify(profile), (err) => {
     if (err) {
       return console.log(err);
     }
