@@ -50,10 +50,9 @@ League.prototype.settRoundsFromResponse = function(response) {
 League.prototype.generateHTMLTablesForStandings = function() {
   const rankingHeadersTable = ['Rank', 'Team', 'Point', 'MP', 'Wins',
     'Draw', 'Lose', 'GF', 'GA', 'Difference'];
-  return this.tables.map((table) => {
-    const htmlTD = table.map((team) => {
+  return this.tables.map(table => {
+    const htmlTD = table.map(team => {
       const htmlTR = new Array();
-      console.log(team);
       htmlTR.push(team.rank);
       htmlTR.push(generateClickableWithImage(`./team.html?id=${team.team_id}`, team.logo, team.teamName));
       htmlTR.push(team.points);
