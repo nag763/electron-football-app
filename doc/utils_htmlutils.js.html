@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils/htmlutils.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils/htmlutils.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+  * Generate a html td with the given input as text.
+  *
+  * @param {string} data - The data to insert between td tags.
+  *
+  * @return {string} html table data element
+  */
+function generateHTMLtd(data) {
+  return `&lt;td>${data}&lt;/td>`;
+}
+
+/**
+  * Generate a html tr with the given input as text.
+  *
+  * @param {array} dataList - The dataList to inser between td tags inside
+  * tr ones.
+  *
+  * @return {string} the html table row element with each element of the array
+  * being between td tags
+  */
+function generateHTMLtr(dataList) {
+  // We have to concat, which is prefered over escaping the bakslash
+  return `&lt;tr>
+              ${dataList.map((element) => generateHTMLtd(element)).join('\n')}`
+      .concat(`&lt;/tr>`);
+}
+
+/**
+  * Generate a html table with the given header and data.
+  *
+  * @param {array} headers - Header list to insert in theader
+  * @param {array} data - Data to insert in tbody
+  *
+  * @return {string} the appendable html element
+  */
+function generateHTMLtable(headers, data) {
+  return `&lt;table class="table  table-bordered">
+            &lt;thead class="thead-dark">
+
+            &lt;tr>
+            ${headers.map((element) => `&lt;th>${element}&lt;/th>`).join('\n')}
+            &lt;/tr>
+            &lt;/thead>
+            &lt;tbody>
+            ${data.map((element) => generateHTMLtr(element)).join('\n')}
+            &lt;/tbody>
+            &lt;/table>`;
+}
+
+/**
+  * Generate a clickable html text element.
+  *
+  * @param {string} link - link to the ressource
+  * @param {string} text - hyper text
+  *
+  * @return {string} hyperref html element
+  */
+function generateClickableText(link='#', text='') {
+  return `&lt;a href='${link}'>
+            ${text}
+          &lt;/a>`;
+}
+
+/**
+  * Generate a clickable html element, with a picture.
+  *
+  * @param {string} link - link to the hyper ressource
+  * @param {string} imagePath - path to the image to display
+  * @param {string} text - text to display between tags
+  *
+  * @return {string} the html element as a string containing a picture
+  */
+function generateClickableWithImage(link='#', imagePath='', text='') {
+  return `&lt;a href='${link}'>
+            &lt;img src="${imagePath}" width=15 height=15/> ${text}
+          &lt;/a>`;
+}
+
+/**
+  * Generate an image with the given imagePath.
+  *
+  * @param {string} imagePath - image path
+  *
+  * @return {string} image as html element
+  */
+function generateImage(imagePath='#') {
+  return `&lt;img src="${imagePath}" width=15 height=15/>`;
+}
+
+/**
+  * Generate a clickable list element.
+  *
+  * @param {string} link - link to the ressource
+  * @param {string} text - hyper text
+  *
+  * @return {string} hyperref html element in li
+  */
+function generateClikableLi(link='#', text='') {
+  return `
+  &lt;li class="list-group-item">
+  ${generateClickableText(link, text)}
+  &lt;/li>
+  `;
+}
+
+/**
+  * Generate an option text.
+  *
+  * @param {string} val - link to the ressource
+  * @param {string} text - option's
+  *
+  * @return {string} option text
+  */
+function generateOption(val='', text='') {
+  return `
+  &lt;option value='${val}'>
+  ${text}
+  &lt;/option>`;
+}
+
+export {
+  generateHTMLtr,
+  generateHTMLtd,
+  generateHTMLtable,
+  generateClickableWithImage,
+  generateClickableText,
+  generateImage,
+  generateClikableLi,
+  generateOption,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#displayFixtures">displayFixtures</a></li><li><a href="global.html#displaySquad">displaySquad</a></li><li><a href="global.html#displayStats">displayStats</a></li><li><a href="global.html#Event">Event</a></li><li><a href="global.html#Events">Events</a></li><li><a href="global.html#filterFavoritesIfAppliable">filterFavoritesIfAppliable</a></li><li><a href="global.html#Fixture">Fixture</a></li><li><a href="global.html#generateClickableText">generateClickableText</a></li><li><a href="global.html#generateClickableWithImage">generateClickableWithImage</a></li><li><a href="global.html#generateClikableLi">generateClikableLi</a></li><li><a href="global.html#generateGetRequest">generateGetRequest</a></li><li><a href="global.html#generateHTMLtable">generateHTMLtable</a></li><li><a href="global.html#generateHTMLtd">generateHTMLtd</a></li><li><a href="global.html#generateHTMLtr">generateHTMLtr</a></li><li><a href="global.html#generateImage">generateImage</a></li><li><a href="global.html#generateOption">generateOption</a></li><li><a href="global.html#generateTDForPlayers">generateTDForPlayers</a></li><li><a href="global.html#getDateHeader">getDateHeader</a></li><li><a href="global.html#getDateUrl">getDateUrl</a></li><li><a href="global.html#getFullStatDesc">getFullStatDesc</a></li><li><a href="global.html#getLatestRedditRSS">getLatestRedditRSS</a></li><li><a href="global.html#getShortStatDesc">getShortStatDesc</a></li><li><a href="global.html#isMatchDay">isMatchDay</a></li><li><a href="global.html#League">League</a></li><li><a href="global.html#Lineup">Lineup</a></li><li><a href="global.html#Player">Player</a></li><li><a href="global.html#setPlayersInfo">setPlayersInfo</a></li><li><a href="global.html#Stat">Stat</a></li><li><a href="global.html#switchBetweenFavsAndAll">switchBetweenFavsAndAll</a></li><li><a href="global.html#Team">Team</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#User">User</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 23 2021 18:07:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

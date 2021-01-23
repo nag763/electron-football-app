@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/fixture.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/fixture.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const dateFormat = require('dateformat');
+
+import {
+  generateClickableWithImage,
+  generateClickableText,
+} from '../utils/htmlutils.js';
+
+const isDefined = (value) => value === undefined || value === null;
+
+/**
+  * Class Constructor.
+  *
+  */
+function Fixture() {}
+
+/**
+  * Return array of fixtures from response.
+  *
+  * @param {array} response - plain response, don't provide a child element
+  *
+  * @return {array} array of fixtures
+  */
+Fixture.fromResponse = function(response) {
+  const data = response.data.api.fixtures;
+  return data.map((element) => {
+    const fixture = new Fixture();
+    fixture.country = element.league.country;
+    fixture.league = element.league.name;
+    fixture.leagueId = element.league_id;
+    fixture.leagueLogo = element.league.logo;
+    fixture.homeTeamName = element.homeTeam.team_name;
+    fixture.homeTeamId = element.homeTeam.team_id;
+    fixture.homeTeamLogo = element.homeTeam.logo;
+    fixture.awayTeamName = element.awayTeam.team_name;
+    fixture.awayTeamId = element.awayTeam.team_id;
+    fixture.awayTeamLogo = element.awayTeam.logo;
+    fixture.goalsHomeTeam = element.goalsHomeTeam;
+    fixture.goalsAwayTeam = element.goalsAwayTeam;
+    fixture.eventDate = element.event_date;
+    fixture.elapsedTime = element.elapsed;
+    fixture.status = element.status;
+    fixture.fixtureId = element.fixture_id;
+    return fixture;
+  });
+};
+
+/**
+  * Print the league as a precise info.
+  *
+  * @return {string} The league with its associed country
+  */
+Fixture.prototype.preciseLeague = function() {
+  return `${this.country}, ${this.league}`;
+};
+
+/**
+  * Print the full score of a match.
+  *
+  * @return {string} N/A if the goal numbers are undefined, otherwise the score
+  */
+Fixture.prototype.fullscore = function() {
+  if ([this.goalsHomeTeam, this.goalsAwayTeam].every(isDefined)) {
+    return 'N/A';
+  } else {
+    return `${this.goalsHomeTeam}-${this.goalsAwayTeam}`;
+  }
+};
+
+/**
+  * Print the event date as a easily understandable string for the user.
+  *
+  * @return {string} the time of the match if known
+  */
+Fixture.prototype.eventHourTime = function() {
+  if (!isDefined(this.eventDate)) {
+    return dateFormat(this.eventDate, 'HH:MM - dd/mm');
+  } else {
+    return 'Unknown';
+  }
+};
+
+/**
+  * Returns the content of the fixture as a html table element.
+  *
+  * @return {array} an array of html elements to be inserted in a table
+  */
+Fixture.prototype.toTableData = function() {
+  const tableData = [];
+  if ([this.leagueId, this.leagueLogo].every(isDefined)) {
+    tableData.push(this.preciseLeague());
+  } else {
+    tableData.push(
+        generateClickableWithImage(`./league.html?id=${this.leagueId}`,
+            this.leagueLogo,
+            this.preciseLeague()),
+    );
+  }
+  if ([this.homeTeamId, this.homeTeamLogo].every(isDefined)) {
+    tableData.push(this.preciseLeague());
+  } else {
+    tableData.push(
+        generateClickableWithImage(`./team.html?id=${this.homeTeamId}`,
+            this.homeTeamLogo,
+            this.homeTeamName),
+    );
+  }
+  if ([this.awayTeamId, this.awayTeamLogo].every(isDefined)) {
+    tableData.push(this.preciseLeague());
+  } else {
+    tableData.push(
+        generateClickableWithImage(`./team.html?id=${this.awayTeamId}`,
+            this.awayTeamLogo,
+            this.awayTeamName),
+    );
+  }
+  tableData.push(this.fullscore());
+  tableData.push(this.eventHourTime());
+  tableData.push(this.elapsedTime);
+  tableData.push(this.status);
+  tableData.push(
+      generateClickableText(
+          `./match.html?id=${this.fixtureId}`,
+          'More informations'),
+  );
+  return tableData;
+};
+
+export {Fixture};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#displayFixtures">displayFixtures</a></li><li><a href="global.html#displaySquad">displaySquad</a></li><li><a href="global.html#displayStats">displayStats</a></li><li><a href="global.html#Event">Event</a></li><li><a href="global.html#Events">Events</a></li><li><a href="global.html#filterFavoritesIfAppliable">filterFavoritesIfAppliable</a></li><li><a href="global.html#Fixture">Fixture</a></li><li><a href="global.html#generateClickableText">generateClickableText</a></li><li><a href="global.html#generateClickableWithImage">generateClickableWithImage</a></li><li><a href="global.html#generateClikableLi">generateClikableLi</a></li><li><a href="global.html#generateGetRequest">generateGetRequest</a></li><li><a href="global.html#generateHTMLtable">generateHTMLtable</a></li><li><a href="global.html#generateHTMLtd">generateHTMLtd</a></li><li><a href="global.html#generateHTMLtr">generateHTMLtr</a></li><li><a href="global.html#generateImage">generateImage</a></li><li><a href="global.html#generateOption">generateOption</a></li><li><a href="global.html#generateTDForPlayers">generateTDForPlayers</a></li><li><a href="global.html#getDateHeader">getDateHeader</a></li><li><a href="global.html#getDateUrl">getDateUrl</a></li><li><a href="global.html#getFullStatDesc">getFullStatDesc</a></li><li><a href="global.html#getLatestRedditRSS">getLatestRedditRSS</a></li><li><a href="global.html#getShortStatDesc">getShortStatDesc</a></li><li><a href="global.html#isMatchDay">isMatchDay</a></li><li><a href="global.html#League">League</a></li><li><a href="global.html#Lineup">Lineup</a></li><li><a href="global.html#Player">Player</a></li><li><a href="global.html#setPlayersInfo">setPlayersInfo</a></li><li><a href="global.html#Stat">Stat</a></li><li><a href="global.html#switchBetweenFavsAndAll">switchBetweenFavsAndAll</a></li><li><a href="global.html#Team">Team</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#User">User</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 23 2021 18:07:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

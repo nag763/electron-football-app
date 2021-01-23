@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/user.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/user.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const fs = require('fs');
+const path = require('path');
+
+const profile = JSON.parse(function readProfile() {
+  return fs.readFileSync(
+      path.resolve(__dirname, ['..', 'profile.json'].join(path.sep)), 'utf-8')
+      .trim();
+}());
+
+/**
+  * Update the user profile.
+  */
+function updateProfile() {
+  fs.writeFile('./profile.json', JSON.stringify(profile), (err) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('Profile updated');
+  });
+}
+
+/**
+  * Contains all informations about the user.
+  */
+function User() {}
+
+/**
+  * Set the API key of the current user.
+  *
+  * @param {string} key - key of the api
+  */
+User.setKey = function(key) {
+  fs.writeFile(
+      path.resolve(__dirname, ['..', 'api.key'].join(path.sep)),
+      key,
+      (err) => {
+        if (err) {
+          return console.log(err);
+        }
+        console.log('Key written');
+      });
+};
+
+/**
+  * Get favorites teams and leagues as text.
+  *
+  * @return {array} an array of strings of the favorites leagues and teams of
+  * the user
+  */
+User.getFavoritesText = function() {
+  return profile.favoriteTeams.concat(profile.favoriteLeagues).map(
+      (element) => element.name,
+  );
+};
+
+/**
+  * Get the information about whether the league is in the profile or not.
+  *
+  *
+  * @param {int} leagueId - the id of the league to verify
+  *
+  * @return {boolean} true if the league id is in the profile, false otherwise
+  */
+User.isLeagueIdInProfile = function(leagueId) {
+  const savedLeagues = profile.favoriteLeagues;
+  if (savedLeagues == undefined || savedLeagues == null) {
+    profile.favoriteLeagues = new [];
+    return false;
+  } else if (savedLeagues.map((league) => league.id).includes(leagueId)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/**
+* Get the information about whether the league is in the profile or not.
+*
+*
+* @param {int} leagueId - the id of the league to verify
+*
+* @return {string} add the league if is not in profile, remove otherwise
+*/
+User.getActionAssociatedWithLeagueId = function(leagueId) {
+  if (User.isLeagueIdInProfile(leagueId)) {
+    return 'Remove league from profile';
+  } else {
+    return 'Add league to profile';
+  }
+};
+
+/**
+* Add the league to the profile.
+*
+* @param {league} league - the league to add
+*/
+User.addLeague = function(league) {
+  profile.favoriteLeagues.push(league.toShortJSON());
+  updateProfile(profile);
+};
+
+/**
+* Remove the league from the profile.
+*
+* @param {league} league - the league to remove
+*/
+User.removeLeague = function(league) {
+  const index = profile.favoriteLeagues.indexOf(league.toShortJSON());
+  profile.favoriteLeagues.splice(index, 1);
+  updateProfile(profile);
+};
+
+/**
+  * Get the information about whether the team is in the profile or not.
+  *
+  *
+  * @param {int} teamId - the id of the team to verify
+  *
+  * @return {boolean} true if the team id is in the profile, false otherwise
+  */
+User.isTeamIdInProfile = function(teamId) {
+  const savedTeams = profile.favoriteTeams;
+  if (savedTeams == undefined || savedTeams == null) {
+    profile.favoriteTeams = [];
+    return false;
+  } else if (savedTeams.map((team) => team.id).includes(teamId)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/**
+* Get the information about whether the team is in the profile or not.
+*
+*
+* @param {int} teamId - the id of the team to verify
+*
+* @return {string} add the team if is not in profile, remove otherwise
+*/
+User.getActionAssociatedWithTeamId = function(teamId) {
+  if (User.isTeamIdInProfile(teamId)) {
+    return 'Remove team from profile';
+  } else {
+    return 'Add team to profile';
+  }
+};
+
+/**
+* Add the team to the profile.
+*
+*
+* @param {object} team - the team to add
+*/
+User.addTeam = function(team) {
+  profile.favoriteTeams.push(team.toShortJSON());
+  updateProfile();
+};
+
+/**
+* Remove the team from the profile.
+*
+*
+* @param {team} team - the team to remove
+*/
+User.removeTeam = function(team) {
+  const index = profile.favoriteTeams.indexOf(team.toShortJSON());
+  profile.favoriteTeams.splice(index, 1);
+  updateProfile();
+};
+
+export {User};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#displayFixtures">displayFixtures</a></li><li><a href="global.html#displaySquad">displaySquad</a></li><li><a href="global.html#displayStats">displayStats</a></li><li><a href="global.html#Event">Event</a></li><li><a href="global.html#Events">Events</a></li><li><a href="global.html#filterFavoritesIfAppliable">filterFavoritesIfAppliable</a></li><li><a href="global.html#Fixture">Fixture</a></li><li><a href="global.html#generateClickableText">generateClickableText</a></li><li><a href="global.html#generateClickableWithImage">generateClickableWithImage</a></li><li><a href="global.html#generateClikableLi">generateClikableLi</a></li><li><a href="global.html#generateGetRequest">generateGetRequest</a></li><li><a href="global.html#generateHTMLtable">generateHTMLtable</a></li><li><a href="global.html#generateHTMLtd">generateHTMLtd</a></li><li><a href="global.html#generateHTMLtr">generateHTMLtr</a></li><li><a href="global.html#generateImage">generateImage</a></li><li><a href="global.html#generateOption">generateOption</a></li><li><a href="global.html#generateTDForPlayers">generateTDForPlayers</a></li><li><a href="global.html#getDateHeader">getDateHeader</a></li><li><a href="global.html#getDateUrl">getDateUrl</a></li><li><a href="global.html#getFullStatDesc">getFullStatDesc</a></li><li><a href="global.html#getLatestRedditRSS">getLatestRedditRSS</a></li><li><a href="global.html#getShortStatDesc">getShortStatDesc</a></li><li><a href="global.html#isMatchDay">isMatchDay</a></li><li><a href="global.html#League">League</a></li><li><a href="global.html#Lineup">Lineup</a></li><li><a href="global.html#Player">Player</a></li><li><a href="global.html#setPlayersInfo">setPlayersInfo</a></li><li><a href="global.html#Stat">Stat</a></li><li><a href="global.html#switchBetweenFavsAndAll">switchBetweenFavsAndAll</a></li><li><a href="global.html#Team">Team</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#User">User</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 23 2021 18:07:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

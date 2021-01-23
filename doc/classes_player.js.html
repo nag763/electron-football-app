@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/player.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/player.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  generateClickableText,
+  generateOption,
+} from '../utils/htmlutils.js';
+
+import {Stat} from './stat.js';
+
+
+/**
+ * Get a short description of the given player's stats.
+ *
+ * @param  {object} resStat - the response of the api stats.
+ * @return {string} the description of the stats.
+ */
+function getShortStatDesc(resStat) {
+  return `${resStat.league}, ${resStat.team_name} ${resStat.season}`;
+}
+
+/**
+ * Get a full description of the given player's stats.
+ *
+ * @param  {object} resStat - the response of the api stats.
+ * @return {string} the full description of the stats, as a html content.
+ */
+function getFullStatDesc(resStat) {
+  return `${generateClickableText(`./league.html?id=${resStat.league_id}`, resStat.league)},
+   ${generateClickableText(`./team.html?id=${resStat.team_id}`, resStat.season)},
+   rated ${resStat.rating}`;
+}
+
+
+/**
+ * A player object used to modelize a player.
+ */
+function Player() {}
+
+
+/**
+ * Get the bio of the player.
+ *
+ * @return {string} the bio of the player.
+ */
+Player.prototype.getBio = function() {
+  return `
+  ${this.getFullName()} is a ${this.age} years old player of ${this.teamName} who also represent ${this.nationality}.
+  His position on the field is ${this.position}, his height is ${this.height} and his weight is ${this.weight}.
+  He is borned in ${this.birthPlace} (${this.birthCountry}) on the ${this.birthDate}.
+  `;
+};
+
+/**
+ * Get the full name of the player.
+ *
+ * @return {string} name + first name of the player.
+ */
+Player.prototype.getFullName = function() {
+  return `${this.firstname} ${this.lastname}`;
+};
+
+
+/**
+ * Create a player from the given response object.
+ *
+ * @param  {string} response - the response fetched from the api.
+ * @return {player} the player object.
+ */
+Player.fromResponse = function(response) {
+  // Sort by latest
+  const PLAYER_INFO = response.data.api.players.sort(
+      (a, b) => (-a.season.localeCompare(b.season)),
+  );
+  const CURRENT_INFO = PLAYER_INFO[0];
+  const player = new Player();
+  player.firstname = CURRENT_INFO.firstname;
+  player.lastname = CURRENT_INFO.lastname;
+  player.fullname = `${CURRENT_INFO.firstname} ${CURRENT_INFO.lastname}`;
+  player.age = CURRENT_INFO.age;
+  player.position = CURRENT_INFO.position;
+  player.height = CURRENT_INFO.height;
+  player.weight = CURRENT_INFO.weight;
+  player.nationality = CURRENT_INFO.nationality;
+  player.birthDate = CURRENT_INFO.birth_date;
+  player.birthCountry = CURRENT_INFO.birth_country;
+  player.birthPlace = CURRENT_INFO.birth_place;
+  player.teamName = CURRENT_INFO.team_name;
+  player.league = CURRENT_INFO.league;
+
+  player.availableStats = PLAYER_INFO.map(
+      (stat, index) => generateOption(index, getShortStatDesc(stat)),
+  );
+  player.statsDesc = PLAYER_INFO.map(
+      (stat) => getFullStatDesc(stat),
+  );
+  player.stats = Stat.createFromResponseArray(PLAYER_INFO);
+  return player;
+};
+
+export {
+  Player,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#displayFixtures">displayFixtures</a></li><li><a href="global.html#displaySquad">displaySquad</a></li><li><a href="global.html#displayStats">displayStats</a></li><li><a href="global.html#Event">Event</a></li><li><a href="global.html#Events">Events</a></li><li><a href="global.html#filterFavoritesIfAppliable">filterFavoritesIfAppliable</a></li><li><a href="global.html#Fixture">Fixture</a></li><li><a href="global.html#generateClickableText">generateClickableText</a></li><li><a href="global.html#generateClickableWithImage">generateClickableWithImage</a></li><li><a href="global.html#generateClikableLi">generateClikableLi</a></li><li><a href="global.html#generateGetRequest">generateGetRequest</a></li><li><a href="global.html#generateHTMLtable">generateHTMLtable</a></li><li><a href="global.html#generateHTMLtd">generateHTMLtd</a></li><li><a href="global.html#generateHTMLtr">generateHTMLtr</a></li><li><a href="global.html#generateImage">generateImage</a></li><li><a href="global.html#generateOption">generateOption</a></li><li><a href="global.html#generateTDForPlayers">generateTDForPlayers</a></li><li><a href="global.html#getDateHeader">getDateHeader</a></li><li><a href="global.html#getDateUrl">getDateUrl</a></li><li><a href="global.html#getFullStatDesc">getFullStatDesc</a></li><li><a href="global.html#getLatestRedditRSS">getLatestRedditRSS</a></li><li><a href="global.html#getShortStatDesc">getShortStatDesc</a></li><li><a href="global.html#isMatchDay">isMatchDay</a></li><li><a href="global.html#League">League</a></li><li><a href="global.html#Lineup">Lineup</a></li><li><a href="global.html#Player">Player</a></li><li><a href="global.html#setPlayersInfo">setPlayersInfo</a></li><li><a href="global.html#Stat">Stat</a></li><li><a href="global.html#switchBetweenFavsAndAll">switchBetweenFavsAndAll</a></li><li><a href="global.html#Team">Team</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#User">User</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 23 2021 18:07:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/stat.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/stat.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+  * Modelize the stats from a player.
+  */
+function Stat() {}
+
+import {
+  generateClickableText,
+  generateHTMLtr,
+} from '../utils/htmlutils.js';
+
+
+/**
+ * Get the general stat info about the stat.
+ *
+ * @return {string} -the infos about the stat as html content.
+ */
+Stat.prototype.getStatInfo = function() {
+  return `
+  ${generateClickableText(`./league.html?id=${this.leagueId}`, this.league)}
+  , ${generateClickableText(`./team.html?id=${this.teamId}`, `${this.teamName} ${this.season}`)}
+  , rated ${this.rating} /10`;
+};
+
+/**
+ * Create an array from a reponse.
+ *
+ * @param  {object} response - the response from the api call.
+ * @return {array} the array of stats.
+ */
+Stat.createFromResponseArray = function(response) {
+  return response.map((element) => {
+    const stat = new Stat();
+
+    stat.teamName = element.team_name;
+    stat.teamId = element.team_id;
+    stat.league = element.league;
+    stat.leagueId = element.league_id;
+    stat.rating = element.rating;
+    stat.season = element.season;
+
+
+    stat.appearances = element.games.appearences;
+    stat.minutesPlayed = element.games.minutes_played;
+    stat.lineUps = element.games.lineups;
+    stat.captain = element.captain;
+
+    stat.subin = element.substitutes.in;
+    stat.subout = element.substitutes.out;
+    stat.benched = element.substitutes.bench;
+
+    stat.yellow = element.cards.yellow;
+    stat.yellowred = element.cards.yellowred;
+    stat.red = element.cards.red;
+
+    stat.goalTotal = element.goals.total;
+    stat.goalConceded = element.goals.conceded;
+    stat.assists = element.goals.assists;
+    stat.saves = element.goals.saves;
+
+    stat.assistTotal = element.passes.total;
+    stat.keyPasses = element.passes.key;
+    stat.passAccuracy = element.passes.accuracy;
+
+    stat.shotTotal = element.shots.total;
+    stat.shotOT = element.shots.on;
+
+    stat.penWons = element.penalty.won;
+    stat.penCommited = element.penalty.commited;
+    stat.penSuccessRate = element.penalty.success;
+    stat.penMissed = element.penalty.missed;
+    stat.penSaved = element.penalty.saved;
+    stat.dribblesAttempt = element.dribbles.attempts;
+    stat.dribblesWon = element.dribbles.success;
+    stat.duelsTotal = element.duels.total;
+    stat.duelsWon = element.duels.won;
+    stat.tacklesTotal = element.tackles.total;
+    stat.tacklesBlock = element.tackles.blocks;
+    stat.tacklesInterception = element.tackles.interceptions;
+    stat.foulsGranted = element.fouls.drawn;
+    stat.foulsConceded = element.fouls.committed;
+    return stat;
+  });
+};
+
+
+/**
+ * Get games played  as HTML tr.
+ *
+ * @return {string} the games played as tr.
+ */
+Stat.prototype.getGamesPlayedStatsAsTR = function() {
+  return generateHTMLtr(
+      [this.appearances, this.minutesPlayed, this.lineUps, this.captain],
+  );
+};
+
+
+/**
+ * Get the subs of the game as table row.
+ *
+ * @return {string} the subs as tr.
+ */
+Stat.prototype.getSubsAsTR = function() {
+  return generateHTMLtr([this.subin, this.subout, this.benched]);
+};
+
+
+/**
+ * Get cards of the game as table row.
+ *
+ * @return {string} cards of the game as tr.
+ */
+Stat.prototype.getCardsAsTR = function() {
+  return generateHTMLtr([this.yellow, this.yellowred, this.red]);
+};
+
+
+/**
+ * Get the involvements as tr.
+ *
+ * @return {string} the involvements as tr.
+ */
+Stat.prototype.getInvolvementsAsTR = function() {
+  return generateHTMLtr(
+      [this.goalTotal, this.goalConceded, this.assists, this.saves],
+  );
+};
+
+/**
+ * Get passes of the player as tr.
+ *
+ * @return {string}  the passes of the player
+ */
+Stat.prototype.getPassesAsTR = function() {
+  return generateHTMLtr([this.assistTotal, this.keyPasses, this.passAccuracy]);
+};
+
+/**
+ * Get the stats about the shots as table row.
+ *
+ * @return {string} the player's shots as table row.
+ */
+Stat.prototype.getShotsAsTR = function() {
+  return generateHTMLtr([this.shotTotal, this.shotOT]);
+};
+
+Stat.prototype.getPensAsTR = function() {
+  return generateHTMLtr(
+      [this.penWons, this.penCommited, this.penSuccessRate, this.penMissed, this.penSaved],
+  );
+};
+
+
+/**
+ * Get the player's dribble stats as table row.
+ *
+ * @return {string} the dribbles as table row
+ */
+Stat.prototype.getDribblesAsTR = function() {
+  return generateHTMLtr([this.dribblesAttempt, this.dribblesWon]);
+};
+
+
+/**
+ * Get the duels as table row.
+ *
+ * @return {string} the duels as table row.
+ */
+Stat.prototype.getDuelsAsTR = function() {
+  return generateHTMLtr([this.duelsTotal, this.duelsWon]);
+};
+
+
+/**
+ * Get the stats around the tackles as html tr.
+ *
+ * @return {string} the tackles as html tr
+ */
+Stat.prototype.getTacklesAsTR = function() {
+  return generateHTMLtr(
+      [this.tacklesTotal, this.tacklesBlock, this.tacklesInterception],
+  );
+};
+
+
+/**
+ * Get the fouls commited by the player as tr.
+ *
+ * @return {string} the fouls as table row.
+ */
+Stat.prototype.getFoulsAsTR = function() {
+  return generateHTMLtr([this.foulsGranted, this.foulsConceded]);
+};
+
+export {Stat};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#displayFixtures">displayFixtures</a></li><li><a href="global.html#displaySquad">displaySquad</a></li><li><a href="global.html#displayStats">displayStats</a></li><li><a href="global.html#Event">Event</a></li><li><a href="global.html#Events">Events</a></li><li><a href="global.html#filterFavoritesIfAppliable">filterFavoritesIfAppliable</a></li><li><a href="global.html#Fixture">Fixture</a></li><li><a href="global.html#generateClickableText">generateClickableText</a></li><li><a href="global.html#generateClickableWithImage">generateClickableWithImage</a></li><li><a href="global.html#generateClikableLi">generateClikableLi</a></li><li><a href="global.html#generateGetRequest">generateGetRequest</a></li><li><a href="global.html#generateHTMLtable">generateHTMLtable</a></li><li><a href="global.html#generateHTMLtd">generateHTMLtd</a></li><li><a href="global.html#generateHTMLtr">generateHTMLtr</a></li><li><a href="global.html#generateImage">generateImage</a></li><li><a href="global.html#generateOption">generateOption</a></li><li><a href="global.html#generateTDForPlayers">generateTDForPlayers</a></li><li><a href="global.html#getDateHeader">getDateHeader</a></li><li><a href="global.html#getDateUrl">getDateUrl</a></li><li><a href="global.html#getFullStatDesc">getFullStatDesc</a></li><li><a href="global.html#getLatestRedditRSS">getLatestRedditRSS</a></li><li><a href="global.html#getShortStatDesc">getShortStatDesc</a></li><li><a href="global.html#isMatchDay">isMatchDay</a></li><li><a href="global.html#League">League</a></li><li><a href="global.html#Lineup">Lineup</a></li><li><a href="global.html#Player">Player</a></li><li><a href="global.html#setPlayersInfo">setPlayersInfo</a></li><li><a href="global.html#Stat">Stat</a></li><li><a href="global.html#switchBetweenFavsAndAll">switchBetweenFavsAndAll</a></li><li><a href="global.html#Team">Team</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#User">User</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 23 2021 18:07:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

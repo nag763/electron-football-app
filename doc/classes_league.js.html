@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/league.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/league.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {generateHTMLtable, generateClickableWithImage, generateClickableText}
+  from '../utils/htmlutils.js';
+
+/** League object used to modelize the league infos. **/
+function League() {}
+
+/**
+  * Returns a league from a response.
+  *
+  * @param {json} response - response object from the given endpoint.
+  *
+  * @return {league} the league gotten from the response
+  */
+League.fromResponse = function(response) {
+  const data = response.data.api.leagues[0];
+  const league = new League();
+  league.id = data.league_id;
+  league.country = data.country;
+  league.name = data.name;
+  league.type = data.type;
+  league.logo = data.logo;
+  return league;
+};
+
+/**
+  * Set the tables of the league from the response
+  *
+  * @param {json} response - response object from the given endpoint.
+  */
+League.prototype.setTablesFromResponse = function(response) {
+  this.tables = [];
+  response.data.api.standings.forEach((standing) => this.tables.push(standing));
+};
+
+/**
+  * Set the rounds of the league from the response
+  *
+  * @param {json} response - response object from the given endpoint.
+  */
+League.prototype.settRoundsFromResponse = function(response) {
+  this.rounds = [];
+  response.data.api.fixtures.forEach((round) => this.rounds.push(round));
+};
+
+/**
+  * Generate the html table for each element in the tables of the league.
+  *
+  * @return {string} the html tables
+  */
+League.prototype.generateHTMLTablesForStandings = function() {
+  const rankingHeadersTable = ['Rank', 'Team', 'Point', 'MP', 'Wins',
+    'Draw', 'Lose', 'GF', 'GA', 'Difference'];
+  return this.tables.map((table) => {
+    const htmlTD = table.map((team) => {
+      const htmlTR = [];
+      htmlTR.push(team.rank);
+      htmlTR.push(generateClickableWithImage(`./team.html?id=${team.team_id}`, team.logo, team.teamName));
+      htmlTR.push(team.points);
+      htmlTR.push(team.all.matchsPlayed);
+      htmlTR.push(team.all.win);
+      htmlTR.push(team.all.draw);
+      htmlTR.push(team.all.lose);
+      htmlTR.push(team.all.goalsFor);
+      htmlTR.push(team.all.goalsAgainst);
+      htmlTR.push((team.all.goalsFor - team.all.goalsAgainst));
+      return htmlTR;
+    });
+    return generateHTMLtable(rankingHeadersTable, htmlTD);
+  });
+};
+
+/**
+  * Generate html list for each round.
+  *
+  * @param {object} response - response from the api endpoint.
+  *
+  * @return {string} the corresponding html to display for each round.
+  */
+League.prototype.generateHTMLForRounds = function(response) {
+  return this.rounds.map((round, index) =>
+    `&lt;li class='list-group-item'>
+    ${generateClickableText(`./fixtures.html?league=${this.id}&amp;fixture=${round}&amp;mdnumber=${index+1}`,
+      `Match day ${index+1}`)}
+    &lt;/li>
+    `,
+  ).join('\n');
+};
+
+
+/**
+  * Returns the description from the league.
+  *
+  * @return {string} the league type and the associed country
+  */
+League.prototype.getDescription = function() {
+  return `${this.type} played in ${this.country}`;
+};
+
+/**
+  * Get full name of the league.
+  *
+  * @return {string} the league country and league name
+  */
+League.prototype.getFullName = function() {
+  return `${this.country}, ${this.name}`;
+};
+
+
+/**
+* Get the league as a short json.
+*
+* @return {json} the league id and league full name
+*/
+League.prototype.toShortJSON = function() {
+  return {'id': this.id, 'name': this.getFullName()};
+};
+
+export {League};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#displayFixtures">displayFixtures</a></li><li><a href="global.html#displaySquad">displaySquad</a></li><li><a href="global.html#displayStats">displayStats</a></li><li><a href="global.html#Event">Event</a></li><li><a href="global.html#Events">Events</a></li><li><a href="global.html#filterFavoritesIfAppliable">filterFavoritesIfAppliable</a></li><li><a href="global.html#Fixture">Fixture</a></li><li><a href="global.html#generateClickableText">generateClickableText</a></li><li><a href="global.html#generateClickableWithImage">generateClickableWithImage</a></li><li><a href="global.html#generateClikableLi">generateClikableLi</a></li><li><a href="global.html#generateGetRequest">generateGetRequest</a></li><li><a href="global.html#generateHTMLtable">generateHTMLtable</a></li><li><a href="global.html#generateHTMLtd">generateHTMLtd</a></li><li><a href="global.html#generateHTMLtr">generateHTMLtr</a></li><li><a href="global.html#generateImage">generateImage</a></li><li><a href="global.html#generateOption">generateOption</a></li><li><a href="global.html#generateTDForPlayers">generateTDForPlayers</a></li><li><a href="global.html#getDateHeader">getDateHeader</a></li><li><a href="global.html#getDateUrl">getDateUrl</a></li><li><a href="global.html#getFullStatDesc">getFullStatDesc</a></li><li><a href="global.html#getLatestRedditRSS">getLatestRedditRSS</a></li><li><a href="global.html#getShortStatDesc">getShortStatDesc</a></li><li><a href="global.html#isMatchDay">isMatchDay</a></li><li><a href="global.html#League">League</a></li><li><a href="global.html#Lineup">Lineup</a></li><li><a href="global.html#Player">Player</a></li><li><a href="global.html#setPlayersInfo">setPlayersInfo</a></li><li><a href="global.html#Stat">Stat</a></li><li><a href="global.html#switchBetweenFavsAndAll">switchBetweenFavsAndAll</a></li><li><a href="global.html#Team">Team</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#User">User</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 23 2021 18:07:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

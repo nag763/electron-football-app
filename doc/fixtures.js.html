@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: fixtures.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: fixtures.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const dateFormat = require('dateformat');
+const $ = require('jquery');
+const QUERY_STRING = require('querystring');
+
+import {generateHTMLtr} from './utils/htmlutils.js';
+import {generateGetRequest} from './utils/httputils.js';
+import {Fixture} from './classes/fixture.js';
+import {User} from './classes/user.js';
+
+const QUERY = QUERY_STRING.parse(global.location.search);
+
+let dateDisplayed = new Date();
+
+
+/**
+ * Get the date header to display.
+ *
+ * @return {string} the date header to display.
+ */
+function getDateHeader() {
+  return `Matchs being played on  ${dateFormat(dateDisplayed, 'dddd dd/mm/yyyy')}`;
+}
+
+
+/**
+ * Get the url endpoint to request for the given date.
+ *
+ * @return {string} the date url as string
+ */
+function getDateUrl() {
+  return `fixtures/date/${dateFormat(dateDisplayed, 'yyyy-mm-dd')}`;
+}
+
+/** Display the fixtures.
+  *
+  * @param {string} url - end point to fetch data from
+  * @param {string} header - header to display at the same time of the fixture
+  */
+async function displayFixtures(url, header) {
+  $('#title').text(header);
+
+  generateGetRequest(url).then((res) => {
+    $('#fixtures tr').remove();
+    const fixtures = Fixture.fromResponse(res);
+    $('#fixtures').append(fixtures.map((fixture) =>
+      generateHTMLtr(fixture.toTableData())),
+    );
+    filterFavoritesIfAppliable();
+  });
+}
+
+/**
+  * Switch between displaying only the favorites or all fixtures.
+  *
+  */
+function switchBetweenFavsAndAll() {
+  const favs = $('#favs');
+  if (favs.text().localeCompare('My favorites') == 0) {
+    favs.text('All');
+  } else {
+    favs.text('My favorites');
+  }
+  filterFavoritesIfAppliable();
+}
+
+/**
+  * Display only favorite teams if appliable.
+  */
+function filterFavoritesIfAppliable() {
+  const favs = $('#favs');
+  if (favs.text().localeCompare('My favorites') == 0) {
+    const favorites = User.getFavoritesText();
+    $('#fixtures tr').filter(function() {
+      // The league and teams infos are only on the 3 first tds
+      const arrayOfDisplayed = $(this).children('td').slice(0, 3).map(function() {
+        return $(this).text().trim(); // eslint-disable-line no-invalid-this
+      }).get();
+      $(this).toggle(favorites.some((element) => arrayOfDisplayed.includes(element))); // eslint-disable-line no-invalid-this
+    });
+  } else {
+    $('#fixtures tr').toggle(true);
+  }
+}
+
+$('#datepicker').change(function(field) {
+  dateDisplayed = $(this).val();
+  displayFixtures(getDateUrl(), getDateHeader());
+}).attr('max', dateFormat(new Date(new Date().setFullYear(new Date().getFullYear() + 1)), 'yyyy-mm-dd'))
+    .attr('value', dateFormat(dateDisplayed, 'yyyy-mm-dd'));
+
+$('#favs').click(() => {
+  switchBetweenFavsAndAll();
+});
+
+// Not mine, taken directly from w3s
+$('#searchBar').on('keyup', function() {
+  const value = $(this).val().toLowerCase();
+  $('#fixtures tr').filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1); // eslint-disable-line no-invalid-this
+  });
+});
+
+/** Define if the current element to display is match day or not. **/
+const isMatchDay = function displayableIsMatchday() {
+  if (['?league', 'fixture', 'mdnumber'].every((element) => element in QUERY)) {
+    return true;
+  } else {
+    return false;
+  }
+}();
+
+let league;
+let fixture;
+let number;
+let leagueFixtureUrl;
+let leagueFixtureHeader;
+
+if (isMatchDay) {
+  league = JSON.parse(QUERY['?league']);
+  fixture = QUERY['fixture'];
+  number = JSON.parse(QUERY['mdnumber']);
+  leagueFixtureUrl = `fixtures/league/${league}/${fixture}`;
+  leagueFixtureHeader = `Fixtures for Match Day ${number}`;
+}
+
+if (isMatchDay) {
+  switchBetweenFavsAndAll();
+  displayFixtures(leagueFixtureUrl, leagueFixtureHeader);
+  $('#next').add('#previous').add('#favs').toggle();
+} else {
+  displayFixtures(getDateUrl(), getDateHeader());
+
+  $('#next').click(() => {
+    $('#fixtures').empty();
+    dateDisplayed.setDate(dateDisplayed.getDate() + 1);
+    displayFixtures(getDateUrl(), getDateHeader());
+  });
+
+  $('#previous').click(() => {
+    $('#fixtures').empty();
+    dateDisplayed.setDate(dateDisplayed.getDate() + -1);
+    displayFixtures(getDateUrl(), getDateHeader());
+  });
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#displayFixtures">displayFixtures</a></li><li><a href="global.html#displaySquad">displaySquad</a></li><li><a href="global.html#displayStats">displayStats</a></li><li><a href="global.html#Event">Event</a></li><li><a href="global.html#Events">Events</a></li><li><a href="global.html#filterFavoritesIfAppliable">filterFavoritesIfAppliable</a></li><li><a href="global.html#Fixture">Fixture</a></li><li><a href="global.html#generateClickableText">generateClickableText</a></li><li><a href="global.html#generateClickableWithImage">generateClickableWithImage</a></li><li><a href="global.html#generateClikableLi">generateClikableLi</a></li><li><a href="global.html#generateGetRequest">generateGetRequest</a></li><li><a href="global.html#generateHTMLtable">generateHTMLtable</a></li><li><a href="global.html#generateHTMLtd">generateHTMLtd</a></li><li><a href="global.html#generateHTMLtr">generateHTMLtr</a></li><li><a href="global.html#generateImage">generateImage</a></li><li><a href="global.html#generateOption">generateOption</a></li><li><a href="global.html#generateTDForPlayers">generateTDForPlayers</a></li><li><a href="global.html#getDateHeader">getDateHeader</a></li><li><a href="global.html#getDateUrl">getDateUrl</a></li><li><a href="global.html#getFullStatDesc">getFullStatDesc</a></li><li><a href="global.html#getLatestRedditRSS">getLatestRedditRSS</a></li><li><a href="global.html#getShortStatDesc">getShortStatDesc</a></li><li><a href="global.html#isMatchDay">isMatchDay</a></li><li><a href="global.html#League">League</a></li><li><a href="global.html#Lineup">Lineup</a></li><li><a href="global.html#Player">Player</a></li><li><a href="global.html#setPlayersInfo">setPlayersInfo</a></li><li><a href="global.html#Stat">Stat</a></li><li><a href="global.html#switchBetweenFavsAndAll">switchBetweenFavsAndAll</a></li><li><a href="global.html#Team">Team</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#User">User</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 23 2021 18:07:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

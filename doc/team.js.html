@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: team.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: team.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const QUERY_STRING = require('querystring');
+const $ = require('jquery');
+
+import {generateGetRequest} from './utils/httputils.js';
+import {Team} from './classes/team.js';
+import {User} from './classes/user.js';
+
+
+const QUERY = QUERY_STRING.parse(global.location.search);
+const ID_TO_DISPLAY = JSON.parse(QUERY['?id']);
+const URL_FOR_TEAM = `teams/team/${ID_TO_DISPLAY}`;
+const URL_LATEST_FIXTURES = `fixtures/team/${ID_TO_DISPLAY}/last/5`;
+const URL_NEXT_FIXTURES = `fixtures/team/${ID_TO_DISPLAY}/next/5`;
+
+let team = new Team();
+
+/**
+* Display the squad for the given date.
+*
+* @param {string} date - date as form '2000-2001' or '2000'
+*
+*/
+function displaySquad(date) {
+  generateGetRequest(`players/squad/${ID_TO_DISPLAY}/${date}`).then((response) => {
+    if (response.data.api.results == 0) {
+      // Date like 2020
+      if (date.length == 4) {
+        displaySquad(`${parseInt(date)-1}-${date}`);
+        // Date like 2020-2021
+      } else if (date.length == 9) {
+        displaySquad(date.substring(0, 4));
+      }
+    } else {
+      team.setSquad(response);
+      $('#squad').append(team.getSquadAsTr().join('\n'));
+    }
+  });
+}
+
+generateGetRequest(URL_FOR_TEAM).then((response) => {
+  team = Team.fromResponse(response);
+  $('#title').text(team.name);
+  $('#clubName').text(team.name);
+  $('#logo').attr('src', team.logo);
+  $('#desc').text(team.getDesc());
+
+  $('#profiling').click(() => {
+    if (User.isTeamIdInProfile(team.id)) {
+      User.removeTeam(team);
+    } else {
+      User.addTeam(team);
+    }
+    $('#profiling').text(User.getActionAssociatedWithTeamId(team.id));
+  }).text(User.getActionAssociatedWithTeamId(team.id));
+});
+
+generateGetRequest(URL_LATEST_FIXTURES).then((response) => {
+  const table = $('#latestFixtures');
+  team.setLatestFixtures(response);
+  table.append(
+      team.getLatestFixturesAsHTML().join('\n'),
+  );
+});
+
+generateGetRequest(URL_NEXT_FIXTURES).then((response) => {
+  const table = $('#nextFixtures');
+  team.setNextFixtures(response);
+  table.append(team.getNextFixturesAsHTML().join('\n'));
+});
+
+
+displaySquad(`${new Date().getFullYear()-1}-${new Date().getFullYear()}`);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#displayFixtures">displayFixtures</a></li><li><a href="global.html#displaySquad">displaySquad</a></li><li><a href="global.html#displayStats">displayStats</a></li><li><a href="global.html#Event">Event</a></li><li><a href="global.html#Events">Events</a></li><li><a href="global.html#filterFavoritesIfAppliable">filterFavoritesIfAppliable</a></li><li><a href="global.html#Fixture">Fixture</a></li><li><a href="global.html#generateClickableText">generateClickableText</a></li><li><a href="global.html#generateClickableWithImage">generateClickableWithImage</a></li><li><a href="global.html#generateClikableLi">generateClikableLi</a></li><li><a href="global.html#generateGetRequest">generateGetRequest</a></li><li><a href="global.html#generateHTMLtable">generateHTMLtable</a></li><li><a href="global.html#generateHTMLtd">generateHTMLtd</a></li><li><a href="global.html#generateHTMLtr">generateHTMLtr</a></li><li><a href="global.html#generateImage">generateImage</a></li><li><a href="global.html#generateOption">generateOption</a></li><li><a href="global.html#generateTDForPlayers">generateTDForPlayers</a></li><li><a href="global.html#getDateHeader">getDateHeader</a></li><li><a href="global.html#getDateUrl">getDateUrl</a></li><li><a href="global.html#getFullStatDesc">getFullStatDesc</a></li><li><a href="global.html#getLatestRedditRSS">getLatestRedditRSS</a></li><li><a href="global.html#getShortStatDesc">getShortStatDesc</a></li><li><a href="global.html#isMatchDay">isMatchDay</a></li><li><a href="global.html#League">League</a></li><li><a href="global.html#Lineup">Lineup</a></li><li><a href="global.html#Player">Player</a></li><li><a href="global.html#setPlayersInfo">setPlayersInfo</a></li><li><a href="global.html#Stat">Stat</a></li><li><a href="global.html#switchBetweenFavsAndAll">switchBetweenFavsAndAll</a></li><li><a href="global.html#Team">Team</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#User">User</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 23 2021 18:07:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

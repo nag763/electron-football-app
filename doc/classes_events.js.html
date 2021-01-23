@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/events.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/events.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * A class used to get the infos around the events.
+ *
+ */
+function Events() {}
+
+/**
+ * A class used to contains the infos around an event.
+ *
+ */
+function Event() {}
+
+import {generateClickableText, generateImage} from '../utils/htmlutils.js';
+
+/**
+  * Get the events from the response object.
+  *
+  * @param {response} response - response from api endpoint.
+  * @return {events} a list of events
+  **/
+Events.fromResponse = function(response) {
+  // Sort by desc time
+  const events = new Events();
+  events.events = response.data.api.events.sort(
+      (a, b) => (b.elapsed - a.elapsed),
+  ).map((element) => {
+    const event = new Event();
+    event.elapsed = element.elapsed;
+    event.type = element.type;
+    event.detail = element.detail;
+    event.teamName = element.teamName;
+    event.player = element.player;
+    event.player_id = element.player_id;
+    event.assist = element.assist;
+    event.assist_id = element.assist_id;
+    return event;
+  });
+  return events;
+};
+
+/**
+  * Generate the html events from the ones being stored.
+  *
+  * @return {string} a list of html events as a list.
+  *
+  */
+Events.prototype.generateHTMLevents = function() {
+  return this.events.map((event) => {
+    let display = '&lt;li class="list-group-item">';
+    if (event.type.localeCompare('Goal') == 0) {
+      display += generateImage('../icons/football-ball.svg');
+      display += ` (${event.elapsed}') Goal for ${event.teamName}, `;
+      display += generateClickableText(`./player.html?id=${event.player_id}`, event.player);
+      if (event.assist != null &amp;&amp; event.assist != undefined) {
+        display += 'scored with an assist from ';
+        display += generateClickableText(`./player.html?id=${event.assist_id}`, event.assist);
+      } else {
+        display += ' scored';
+      }
+    } else if (event.type.localeCompare('Card') == 0) {
+      if (event.detail.localeCompare('Yellow Card') == 0) {
+        display += generateImage('../icons/yellow-card.svg');
+      } else {
+        display += generateImage('../icons/yred-card.svg');
+      }
+      display += ` (${event.elapsed}') ${event.detail} for `;
+      display += generateClickableText(`./player.html?id=${event.player_id}`, event.player);
+    } else if (event.type.localeCompare('subst') == 0) {
+      display += generateImage('../icons/arrows.svg');
+      display += `(${event.elapsed}') `;
+      display += generateClickableText(`'./player.html?id=${event.player_id}'`, event.player);
+      display += ' replaces ';
+      display += generateClickableText(`./player.html?id=${event.assist_id}`, event.assist);
+    } else {
+      display += 'Not available';
+    }
+    display += '&lt;/li>';
+    return display;
+  }).join('\n');
+};
+
+export {Events};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#displayFixtures">displayFixtures</a></li><li><a href="global.html#displaySquad">displaySquad</a></li><li><a href="global.html#displayStats">displayStats</a></li><li><a href="global.html#Event">Event</a></li><li><a href="global.html#Events">Events</a></li><li><a href="global.html#filterFavoritesIfAppliable">filterFavoritesIfAppliable</a></li><li><a href="global.html#Fixture">Fixture</a></li><li><a href="global.html#generateClickableText">generateClickableText</a></li><li><a href="global.html#generateClickableWithImage">generateClickableWithImage</a></li><li><a href="global.html#generateClikableLi">generateClikableLi</a></li><li><a href="global.html#generateGetRequest">generateGetRequest</a></li><li><a href="global.html#generateHTMLtable">generateHTMLtable</a></li><li><a href="global.html#generateHTMLtd">generateHTMLtd</a></li><li><a href="global.html#generateHTMLtr">generateHTMLtr</a></li><li><a href="global.html#generateImage">generateImage</a></li><li><a href="global.html#generateOption">generateOption</a></li><li><a href="global.html#generateTDForPlayers">generateTDForPlayers</a></li><li><a href="global.html#getDateHeader">getDateHeader</a></li><li><a href="global.html#getDateUrl">getDateUrl</a></li><li><a href="global.html#getFullStatDesc">getFullStatDesc</a></li><li><a href="global.html#getLatestRedditRSS">getLatestRedditRSS</a></li><li><a href="global.html#getShortStatDesc">getShortStatDesc</a></li><li><a href="global.html#isMatchDay">isMatchDay</a></li><li><a href="global.html#League">League</a></li><li><a href="global.html#Lineup">Lineup</a></li><li><a href="global.html#Player">Player</a></li><li><a href="global.html#setPlayersInfo">setPlayersInfo</a></li><li><a href="global.html#Stat">Stat</a></li><li><a href="global.html#switchBetweenFavsAndAll">switchBetweenFavsAndAll</a></li><li><a href="global.html#Team">Team</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#User">User</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 23 2021 18:07:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

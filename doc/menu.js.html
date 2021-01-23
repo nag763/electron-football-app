@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: menu.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: menu.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const $ = require('jquery');
+const RSS_PARSER = require('rss-parser');
+let {shell} = require('electron');
+
+import {User} from './classes/user.js';
+import {generateGetRequest} from './utils/httputils.js';
+import {generateClikableLi} from './utils/htmlutils.js';
+
+const ENTER_KEY = 13;
+const URL_SEARCH_LEAGUE = 'leagues/search/';
+const URL_SEARCH_TEAM = 'teams/search/';
+const URL_SEARCH_PLAYER = 'players/search/';
+
+/**
+* Get the latest news from the reddit rss flux.
+*/
+async function getLatestRedditRSS() {
+  const now = new Date();
+
+  const PARSER = new RSS_PARSER();
+  $('#title').text('Latest news');
+  const feed = await PARSER.parseURL('https://www.reddit.com/r/soccer/new.rss');
+  $('#latest_news li').remove();
+  feed.items.slice(0, 10).forEach((item) => {
+    const diffMs = (now - new Date(item.pubDate));
+    // Yes, I stole that from internet
+    const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+    $('#latest_news').append(
+        `&lt;li class="list-group-item">${item.title} (${diffMins} mns ago)&lt;/li>`,
+    );
+  });
+}
+
+$('#next_fixtures').click(() => {
+  $(location).attr('href', './fixtures.html');
+});
+
+$('#get_an_api_key').click(() => {
+  shell.openExternal('https://www.api-football.com/');
+});
+
+$('#write_key').keypress((e) => {
+  if (e.which == ENTER_KEY) {
+    const userInput = $('#write_key').val();
+    User.setKey(userInput);
+  }
+});
+
+$('#searchbar').keypress(function(e) {
+  const userInput = $('#searchbar').val();
+  if ($('#searchbar').val().length == 0) {
+    getLatestRedditRSS();
+  } else if (userInput.length &lt; 2) {
+    $('#title').text('You need to search with at least 2 characters, press enter to research.');
+  } else {
+    if (e.which == ENTER_KEY) {
+      $('#latest_news li').remove();
+
+      generateGetRequest(URL_SEARCH_TEAM.concat(userInput)).then((response) => {
+        const teams = response.data.api.teams;
+        $('#latest_news').append(teams.map((element) =>
+          generateClikableLi(`./team.html?id=${element.team_id}`, element.name),
+        ).join('\n'));
+      });
+
+      generateGetRequest(URL_SEARCH_LEAGUE.concat(userInput)).then((response) => {
+        const leagues = response.data.api.leagues.sort(
+            (a, b) => (b.season - a.season),
+        );
+        $('#latest_news').append(leagues.map((league) =>
+          generateClikableLi(`./league.html?id=${league.league_id}`, `[${league.season}] ${league.name}, ${league.country}`),
+        ).join('\n'));
+      });
+
+      generateGetRequest(URL_SEARCH_PLAYER.concat(userInput)).then((response) => {
+        const players = response.data.api.players;
+        $('#latest_news').append(players.map((player) =>
+          generateClikableLi(`./player.html?id=${player.player_id}`, `${player.firstname} ${player.lastname}`),
+        ).join('\n'));
+      });
+      $('#title').text('Search results');
+    }
+  }
+});
+
+$('#lock').click(() => {
+  const state = $('#lock');
+  const apiKeyField = $('#write_key');
+  if (state.attr('class').localeCompare('fa fa-lock') == 0) {
+    state.attr('class', 'fa fa-unlock');
+    apiKeyField.removeAttr('disabled');
+  } else {
+    state.attr('class', 'fa fa-lock');
+    apiKeyField.attr('disabled', 'disabled');
+  }
+},
+);
+
+
+getLatestRedditRSS();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#displayFixtures">displayFixtures</a></li><li><a href="global.html#displaySquad">displaySquad</a></li><li><a href="global.html#displayStats">displayStats</a></li><li><a href="global.html#Event">Event</a></li><li><a href="global.html#Events">Events</a></li><li><a href="global.html#filterFavoritesIfAppliable">filterFavoritesIfAppliable</a></li><li><a href="global.html#Fixture">Fixture</a></li><li><a href="global.html#generateClickableText">generateClickableText</a></li><li><a href="global.html#generateClickableWithImage">generateClickableWithImage</a></li><li><a href="global.html#generateClikableLi">generateClikableLi</a></li><li><a href="global.html#generateGetRequest">generateGetRequest</a></li><li><a href="global.html#generateHTMLtable">generateHTMLtable</a></li><li><a href="global.html#generateHTMLtd">generateHTMLtd</a></li><li><a href="global.html#generateHTMLtr">generateHTMLtr</a></li><li><a href="global.html#generateImage">generateImage</a></li><li><a href="global.html#generateOption">generateOption</a></li><li><a href="global.html#generateTDForPlayers">generateTDForPlayers</a></li><li><a href="global.html#getDateHeader">getDateHeader</a></li><li><a href="global.html#getDateUrl">getDateUrl</a></li><li><a href="global.html#getFullStatDesc">getFullStatDesc</a></li><li><a href="global.html#getLatestRedditRSS">getLatestRedditRSS</a></li><li><a href="global.html#getShortStatDesc">getShortStatDesc</a></li><li><a href="global.html#isMatchDay">isMatchDay</a></li><li><a href="global.html#League">League</a></li><li><a href="global.html#Lineup">Lineup</a></li><li><a href="global.html#Player">Player</a></li><li><a href="global.html#setPlayersInfo">setPlayersInfo</a></li><li><a href="global.html#Stat">Stat</a></li><li><a href="global.html#switchBetweenFavsAndAll">switchBetweenFavsAndAll</a></li><li><a href="global.html#Team">Team</a></li><li><a href="global.html#updateProfile">updateProfile</a></li><li><a href="global.html#User">User</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 23 2021 18:07:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
