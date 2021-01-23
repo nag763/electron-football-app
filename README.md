@@ -1,5 +1,7 @@
 # TODO
 
+-   [ ] Do JSDOC
+
 -   [ ] Catch errors
 
 -   [ ] Handle XSS atacks
@@ -12,6 +14,6 @@
 
 # Known issues
 
--   [ ] Players not fetched from gets on researchs
+-   [X] Players not fetched from gets on researchs
 
--   [ ] 
+-   [ ]

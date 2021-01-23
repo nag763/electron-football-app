@@ -61,7 +61,7 @@ $('#searchbar').keypress(function(e) {
 
       generateGetRequest(pathSearchPlayer.concat(userInput)).then((response) => {
         const players = response.data.api.players;
-        $('#latest_news').apppend(players.map((player) =>
+        $('#latest_news').append(players.map((player) =>
           generateClikableLi(`./player.html?id=${player.player_id}`, `${player.firstname} ${player.lastname}`),
         ).join('\n'));
       });
