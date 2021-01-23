@@ -5,6 +5,12 @@ import {
   generateHTMLtr,
 } from '../utils/htmlutils.js';
 
+
+/**
+ * Get the general stat info about the stat.
+ *
+ * @return {string} -the infos about the stat as html content.
+ */
 Stat.prototype.getStatInfo = function() {
   return `
   ${generateClickableText(`./league.html?id=${this.leagueId}`, this.league)}
@@ -12,6 +18,12 @@ Stat.prototype.getStatInfo = function() {
   , rated ${this.rating} /10`;
 };
 
+/**
+ * Create an array from a reponse.
+ *
+ * @param  {object} response - the response from the api call.
+ * @return {array} the array of stats.
+ */
 Stat.createFromResponseArray = function(response) {
   return response.map((element) => {
     const stat = new Stat();
@@ -67,30 +79,64 @@ Stat.createFromResponseArray = function(response) {
   });
 };
 
+
+/**
+ * Get games played  as HTML tr.
+ *
+ * @return {string} the games played as tr.
+ */
 Stat.prototype.getGamesPlayedStatsAsTR = function() {
   return generateHTMLtr(
       [this.appearances, this.minutesPlayed, this.lineUps, this.captain],
   );
 };
 
+
+/**
+ * Get the subs of the game as table row.
+ *
+ * @return {string} the subs as tr.
+ */
 Stat.prototype.getSubsAsTR = function() {
   return generateHTMLtr([this.subin, this.subout, this.benched]);
 };
 
+
+/**
+ * Get cards of the game as table row.
+ *
+ * @return {string} cards of the game as tr.
+ */
 Stat.prototype.getCardsAsTR = function() {
   return generateHTMLtr([this.yellow, this.yellowred, this.red]);
 };
 
+
+/**
+ * Get the involvements as tr.
+ *
+ * @return {string} the involvements as tr.
+ */
 Stat.prototype.getInvolvementsAsTR = function() {
   return generateHTMLtr(
       [this.goalTotal, this.goalConceded, this.assists, this.saves],
   );
 };
 
+/**
+ * Get passes of the player as tr.
+ *
+ * @return {string}  the passes of the player
+ */
 Stat.prototype.getPassesAsTR = function() {
   return generateHTMLtr([this.assistTotal, this.keyPasses, this.passAccuracy]);
 };
 
+/**
+ * Get the stats about the shots as table row.
+ *
+ * @return {string} the player's shots as table row.
+ */
 Stat.prototype.getShotsAsTR = function() {
   return generateHTMLtr([this.shotTotal, this.shotOT]);
 };
@@ -101,20 +147,44 @@ Stat.prototype.getPensAsTR = function() {
   );
 };
 
+
+/**
+ * Get the player's dribble stats as table row.
+ *
+ * @return {string} the dribbles as table row
+ */
 Stat.prototype.getDribblesAsTR = function() {
   return generateHTMLtr([this.dribblesAttempt, this.dribblesWon]);
 };
 
+
+/**
+ * Get the duels as table row.
+ *
+ * @return {string} the duels as table row.
+ */
 Stat.prototype.getDuelsAsTR = function() {
   return generateHTMLtr([this.duelsTotal, this.duelsWon]);
 };
 
+
+/**
+ * Get the stats around the tackles as html tr.
+ *
+ * @return {string} the tackles as html tr
+ */
 Stat.prototype.getTacklesAsTR = function() {
   return generateHTMLtr(
       [this.tacklesTotal, this.tacklesBlock, this.tacklesInterception],
   );
 };
 
+
+/**
+ * Get the fouls commited by the player as tr.
+ *
+ * @return {string} the fouls as table row.
+ */
 Stat.prototype.getFoulsAsTR = function() {
   return generateHTMLtr([this.foulsGranted, this.foulsConceded]);
 };

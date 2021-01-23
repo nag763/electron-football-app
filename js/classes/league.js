@@ -53,8 +53,9 @@ League.prototype.generateHTMLTablesForStandings = function() {
   return this.tables.map((table) => {
     const htmlTD = table.map((team) => {
       const htmlTR = new Array();
+      console.log(team);
       htmlTR.push(team.rank);
-      htmlTR.push(generateClickableWithImage(`./team.html?id=${team.id}`, team.logo, team.teamName));
+      htmlTR.push(generateClickableWithImage(`./team.html?id=${team.team_id}`, team.logo, team.teamName));
       htmlTR.push(team.points);
       htmlTR.push(team.all.matchsPlayed);
       htmlTR.push(team.all.win);

@@ -3,12 +3,27 @@ import {
   generateOption,
 } from '../utils/htmlutils.js';
 
-import {Stat} from './stat.js';
+import {
+  Stat,
+} from './stat.js';
 
+
+/**
+ * Get a short description of the given player's stats.
+ *
+ * @param  {object} resStat - the response of the api stats.
+ * @return {string} the description of the stats.
+ */
 function getShortStatDesc(resStat) {
   return `${resStat.league}, ${resStat.team_name} ${resStat.season}`;
 }
 
+/**
+ * Get a full description of the given player's stats.
+ *
+ * @param  {object} resStat - the response of the api stats.
+ * @return {string} the full description of the stats, as a html content.
+ */
 function getFullStatDesc(resStat) {
   return `${generateClickableText(`./league.html?id=${resStat.league_id}`, resStat.league)},
    ${generateClickableText(`./team.html?id=${resStat.team_id}`, resStat.season)},
@@ -17,6 +32,12 @@ function getFullStatDesc(resStat) {
 
 function Player() {}
 
+
+/**
+ * Get the bio of the player.
+ *
+ * @return {string} the bio of the player.
+ */
 Player.prototype.getBio = function() {
   return `
   ${this.getFullName()} is a ${this.age} years old player of ${this.teamName} who also represent ${this.nationality}.
@@ -25,10 +46,22 @@ Player.prototype.getBio = function() {
   `;
 };
 
+/**
+ * Get the full name of the player.
+ *
+ * @return {string} name + first name of the player.
+ */
 Player.prototype.getFullName = function() {
   return `${this.firstname} ${this.lastname}`;
 };
 
+
+/**
+ * Create a player from the given response object.
+ *
+ * @param  {string} response - the response fetched from the api.
+ * @return {player} the player object.
+ */
 Player.fromResponse = function(response) {
   // Sort by latest
   const PLAYER_INFO = response.data.api.players.sort(

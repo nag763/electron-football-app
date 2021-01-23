@@ -1,5 +1,7 @@
 # TODO
 
+-   [ ] Change logo
+
 -   [ ] Do JSDOC
 
 -   [ ] Catch errors
@@ -16,4 +18,6 @@
 
 -   [X] Players not fetched from gets on researchs
 
--   [ ]
+-   [ ] Red card not displayed anymore.
+
+-   [ ] Latest fixtures in team.html not displaying final score.

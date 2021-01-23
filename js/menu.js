@@ -3,6 +3,7 @@ const Parser = require('rss-parser');
 const {shell} = require('electron');
 const fs = require('fs');
 
+import {User} from './classes/user.js';
 import {generateGetRequest} from './utils/httputils.js';
 import {generateClikableLi} from './utils/htmlutils.js';
 
@@ -20,16 +21,9 @@ $('#get_an_api_key').click(() => {
 });
 
 $('#write_key').keypress((e) => {
-  if (e.which == 13) {
+  if (e.which == enterKey) {
     const userInput = $('#write_key').val();
-    $('#write_key').val('');
-    $('#write_key').attr('placeholder', 'Key written!');
-    fs.writeFile('./api.key', userInput, (err) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log('Key written');
-    });
+    User.setKey(userInput);
   }
 });
 
@@ -72,13 +66,13 @@ $('#searchbar').keypress(function(e) {
 
 $('#lock').click(() => {
   const state = $('#lock');
-  const api_key_field = $('#write_key');
+  const apiKeyField = $('#write_key');
   if (state.attr('class').localeCompare('fa fa-lock') == 0) {
     state.attr('class', 'fa fa-unlock');
-    api_key_field.removeAttr('disabled');
+    apiKeyField.removeAttr('disabled');
   } else {
     state.attr('class', 'fa fa-lock');
-    api_key_field.attr('disabled', 'disabled');
+    apiKeyField.attr('disabled', 'disabled');
   }
 },
 );
@@ -95,7 +89,7 @@ async function getLatestRedditRSS() {
     // Yes, I stole that from internet
     const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
     $('#latest_news').append(
-        `<li class="list-group-item" style="background-color: #1a1a1a; border-color: #2b2b2b; color: #ffffff">${item.title} (${diffMins} mns ago)</li>`,
+        `<li class="list-group-item">${item.title} (${diffMins} mns ago)</li>`,
     );
   });
 }

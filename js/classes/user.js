@@ -25,6 +25,23 @@ function updateProfile() {
 function User() {}
 
 /**
+  * Set the API key of the current user.
+  *
+  * @param {string} key - key of the api
+  */
+User.setKey = function(key) {
+  fs.writeFile(
+      path.resolve(__dirname, ['..', 'api.key'].join(path.sep)),
+      key,
+      (err) => {
+        if (err) {
+          return console.log(err);
+        }
+        console.log('Key written');
+      });
+};
+
+/**
   * Get favorites teams and leagues as text.
   *
   * @return {array} an array of strings of the favorites leagues and teams of
@@ -93,6 +110,65 @@ User.removeLeague = function(league) {
   const index = profile.favoriteLeagues.indexOf(league.toShortJSON());
   profile.favoriteLeagues.splice(index, 1);
   updateProfile(profile);
+};
+
+/**
+  * Get the information about whether the team is in the profile or not.
+  *
+  *
+  * @param {int} teamId - the id of the team to verify
+  *
+  * @return {boolean} true if the team id is in the profile, false otherwise
+  */
+User.isTeamIdInProfile = function(teamId) {
+  const savedTeams = profile.favoriteTeams;
+  if (savedTeams == undefined || savedTeams == null) {
+    profile.favoriteTeams = new Array();
+    return false;
+  } else if (savedTeams.map((team) => team.id).includes(teamId)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/**
+* Get the information about whether the team is in the profile or not.
+*
+*
+* @param {int} teamId - the id of the team to verify
+*
+* @return {string} add the team if is not in profile, remove otherwise
+*/
+User.getActionAssociatedWithTeamId = function(teamId) {
+  if (User.isTeamIdInProfile(teamId)) {
+    return 'Remove team from profile';
+  } else {
+    return 'Add team to profile';
+  }
+};
+
+/**
+* Add the team to the profile.
+*
+*
+* @param {object} team - the team to add
+*/
+User.addTeam = function(team) {
+  profile.favoriteTeams.push(team.toShortJSON());
+  updateProfile();
+};
+
+/**
+* Remove the team from the profile.
+*
+*
+* @param {team} team - the team to remove
+*/
+User.removeTeam = function(team) {
+  const index = profile.favoriteTeams.indexOf(team.toShortJSON());
+  profile.favoriteTeams.splice(index, 1);
+  updateProfile();
 };
 
 export {User};
