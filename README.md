@@ -1,6 +1,6 @@
 # TODO
 
--   [ ] Change logo
+-   [x] Change logo
 
 -   [X] Do JSDOC
 
