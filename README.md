@@ -1,5 +1,5 @@
 <a href="https://github.com/nag763/electron-football-app/blob/main/LICENSE.md" alt="License"><img src="https://img.shields.io/bower/l/bootstrap"></a>
-<a href="https://github.com/nag763/electron-football-app/releases" alt="GitHub release"><img src="https://img.shields.io/github/release/nag763/electron-football-app.svg" ></a>
+<a href="https://github.com/nag763/electron-football-app/releases/latest" alt="GitHub release"><img src="https://img.shields.io/github/v/release/nag763/electron-football-app" ></a>
 <a href="" alt="issues"><img src="https://img.shields.io/github/issues/nag763/electron-football-app"></a>
 # UnFootball, an electron based desktop football app.
 
