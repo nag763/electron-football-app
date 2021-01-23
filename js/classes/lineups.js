@@ -1,3 +1,6 @@
+/**
+ * Lineup object used to modelize the teams lineups.
+ */
 function Lineup() {}
 
 import {generateClickableText, generateHTMLtr} from '../utils/htmlutils.js';
@@ -7,7 +10,7 @@ import {generateClickableText, generateHTMLtr} from '../utils/htmlutils.js';
   *
   * @param {object} data - data from response
   *
-  * @response {object} player
+  * @return {object} a player object.
   */
 function setPlayersInfo(data) {
   return {
@@ -26,6 +29,12 @@ function setPlayersInfo(data) {
   * @return {string} the content as a html tr with clickable elements.
   */
 function generateTDForPlayers(player1, player2) {
+  /**
+   * Make a player clickable
+   *
+   * @param  {int} id - id of the player
+   * @return {string} the href to the player.
+   */
   function clickablePlayer(id) {
     return `./player.html?id=${id}`;
   }
@@ -39,6 +48,8 @@ function generateTDForPlayers(player1, player2) {
   * Generates the lineups from the given response.
   *
   * @param {object} response - the given response.
+  *
+  * @return {object} returns the line up object.
   */
 Lineup.fromResponse = function(response) {
   const lineup = new Lineup();
@@ -79,7 +90,7 @@ Lineup.prototype.generateHTMLTitle = function() {
   * @return {string} the startings xi in table rows.
   */
 Lineup.prototype.generateHTMLStartingXITR = function() {
-  const table = new Array();
+  const table = [];
   const NUMBER_OF_PLAYERS = 11;
   for (let i=0; i<NUMBER_OF_PLAYERS; i++) {
     table.push(
@@ -96,7 +107,7 @@ Lineup.prototype.generateHTMLStartingXITR = function() {
   * @return {string} the startings xi in table rows.
   */
 Lineup.prototype.generateHTMLBenchTR = function() {
-  const table = new Array();
+  const table = [];
   // TODO : Find a way to have the max (all) and not the min.
   const NUMBER_OF_SUBS = Math.min(this.homeTeamBench.length, this.awayTeamBench.length);
   for (let i=0; i<NUMBER_OF_SUBS; i++) {

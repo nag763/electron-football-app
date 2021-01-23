@@ -1,4 +1,14 @@
+
+/**
+ * A class used to get the infos around the events.
+ *
+ */
 function Events() {}
+
+/**
+ * A class used to contains the infos around an event.
+ *
+ */
 function Event() {}
 
 import {generateClickableText, generateImage} from '../utils/htmlutils.js';
@@ -6,7 +16,7 @@ import {generateClickableText, generateImage} from '../utils/htmlutils.js';
 /**
   * Get the events from the response object.
   *
-  *
+  * @param {response} response - response from api endpoint.
   * @return {events} a list of events
   **/
 Events.fromResponse = function(response) {
@@ -38,12 +48,10 @@ Events.fromResponse = function(response) {
 Events.prototype.generateHTMLevents = function() {
   return this.events.map((event) => {
     let display = '<li class="list-group-item">';
-    console.log(event);
     if (event.type.localeCompare('Goal') == 0) {
       display += generateImage('../icons/football-ball.svg');
       display += ` (${event.elapsed}') Goal for ${event.teamName}, `;
       display += generateClickableText(`./player.html?id=${event.player_id}`, event.player);
-      console.log(display);
       if (event.assist != null && event.assist != undefined) {
         display += 'scored with an assist from ';
         display += generateClickableText(`./player.html?id=${event.assist_id}`, event.assist);

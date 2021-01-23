@@ -28,7 +28,7 @@ League.fromResponse = function(response) {
   * @param {json} response - response object from the given endpoint.
   */
 League.prototype.setTablesFromResponse = function(response) {
-  this.tables = new Array();
+  this.tables = [];
   response.data.api.standings.forEach((standing) => this.tables.push(standing));
 };
 
@@ -38,7 +38,7 @@ League.prototype.setTablesFromResponse = function(response) {
   * @param {json} response - response object from the given endpoint.
   */
 League.prototype.settRoundsFromResponse = function(response) {
-  this.rounds = new Array();
+  this.rounds = [];
   response.data.api.fixtures.forEach((round) => this.rounds.push(round));
 };
 
@@ -50,9 +50,9 @@ League.prototype.settRoundsFromResponse = function(response) {
 League.prototype.generateHTMLTablesForStandings = function() {
   const rankingHeadersTable = ['Rank', 'Team', 'Point', 'MP', 'Wins',
     'Draw', 'Lose', 'GF', 'GA', 'Difference'];
-  return this.tables.map(table => {
-    const htmlTD = table.map(team => {
-      const htmlTR = new Array();
+  return this.tables.map((table) => {
+    const htmlTD = table.map((team) => {
+      const htmlTR = [];
       htmlTR.push(team.rank);
       htmlTR.push(generateClickableWithImage(`./team.html?id=${team.team_id}`, team.logo, team.teamName));
       htmlTR.push(team.points);
@@ -71,6 +71,8 @@ League.prototype.generateHTMLTablesForStandings = function() {
 
 /**
   * Generate html list for each round.
+  *
+  * @param {object} response - response from the api endpoint.
   *
   * @return {string} the corresponding html to display for each round.
   */

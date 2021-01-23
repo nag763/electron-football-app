@@ -57,14 +57,14 @@ User.getFavoritesText = function() {
   * Get the information about whether the league is in the profile or not.
   *
   *
-  * @param {int} league id - the id of the league to verify
+  * @param {int} leagueId - the id of the league to verify
   *
   * @return {boolean} true if the league id is in the profile, false otherwise
   */
 User.isLeagueIdInProfile = function(leagueId) {
   const savedLeagues = profile.favoriteLeagues;
   if (savedLeagues == undefined || savedLeagues == null) {
-    profile.favoriteLeagues = new Array();
+    profile.favoriteLeagues = new [];
     return false;
   } else if (savedLeagues.map((league) => league.id).includes(leagueId)) {
     return true;
@@ -77,11 +77,11 @@ User.isLeagueIdInProfile = function(leagueId) {
 * Get the information about whether the league is in the profile or not.
 *
 *
-* @param {int} league id - the id of the league to verify
+* @param {int} leagueId - the id of the league to verify
 *
 * @return {string} add the league if is not in profile, remove otherwise
 */
-User.getActionAssociatedWithLeagueId = function(leagueId) {
+User.getActionAssociatedWithLeagueId = function(leagueId) {
   if (User.isLeagueIdInProfile(leagueId)) {
     return 'Remove league from profile';
   } else {
@@ -92,7 +92,6 @@ User.getActionAssociatedWithLeagueId = function(leagueId) {
 /**
 * Add the league to the profile.
 *
-*
 * @param {league} league - the league to add
 */
 User.addLeague = function(league) {
@@ -102,7 +101,6 @@ User.addLeague = function(league) {
 
 /**
 * Remove the league from the profile.
-*
 *
 * @param {league} league - the league to remove
 */
@@ -123,7 +121,7 @@ User.removeLeague = function(league) {
 User.isTeamIdInProfile = function(teamId) {
   const savedTeams = profile.favoriteTeams;
   if (savedTeams == undefined || savedTeams == null) {
-    profile.favoriteTeams = new Array();
+    profile.favoriteTeams = [];
     return false;
   } else if (savedTeams.map((team) => team.id).includes(teamId)) {
     return true;
@@ -140,7 +138,7 @@ User.isTeamIdInProfile = function(teamId) {
 *
 * @return {string} add the team if is not in profile, remove otherwise
 */
-User.getActionAssociatedWithTeamId = function(teamId) {
+User.getActionAssociatedWithTeamId = function(teamId) {
   if (User.isTeamIdInProfile(teamId)) {
     return 'Remove team from profile';
   } else {

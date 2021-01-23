@@ -4,15 +4,17 @@ import {
 import {Fixture} from './fixture.js';
 import {Player} from './player.js';
 
-
+/**
+  * An object to modelize a team.
+  */
 function Team() {}
 
 
 /**
  * Create a team object from the given response.
  *
- * @param  {type} response - response from the api.
- * @return {team} a team object.
+ * @param {type} response - response from the api.
+ * @return {team} a team object.
  */
 Team.fromResponse = function(response) {
   const TEAM_INFO = response.data.api.teams[0];
@@ -32,7 +34,7 @@ Team.fromResponse = function(response) {
  *
  * @return {string} description of the team.
  */
-Team.prototype.getDesc = function() {
+Team.prototype.getDesc = function() {
   return `
   Founded in ${this.founded}, ${this.name} is a club playing in ${this.country}.
   Its stadium, ${this.venueName}, has a capacity of ${this.venueCapacity} seats.
@@ -44,7 +46,7 @@ Team.prototype.getDesc = function() {
  *
  * @param {object} response - the response from the api.
  */
-Team.prototype.setLatestFixtures = function(response) {
+Team.prototype.setLatestFixtures = function(response) {
   this.latestFixtures = Fixture.fromResponse(response);
 };
 
@@ -73,7 +75,7 @@ Team.prototype.getLatestFixturesAsHTML = function() {
 *
 * @param {object} response - the response from the api.
 */
-Team.prototype.setNextFixtures = function(response) {
+Team.prototype.setNextFixtures = function(response) {
   this.nextFixtures = Fixture.fromResponse(response);
 };
 
@@ -81,7 +83,7 @@ Team.prototype.setNextFixtures = function(response) {
 /**
  * Get the latest fixtures as html tr.
  *
- * @return {array} the next fixtures as an array of string.
+ * @return {array} the next fixtures as an array of string.
  */
 Team.prototype.getNextFixturesAsHTML = function() {
   return this.nextFixtures.map((fixture) =>
@@ -101,7 +103,7 @@ Team.prototype.getNextFixturesAsHTML = function() {
 *
 * @param {object} response - the response from the api.
 */
-Team.prototype.setSquad = function(response) {
+Team.prototype.setSquad = function(response) {
   this.squad = response.data.api.players.map((element) => {
     const player = new Player();
     player.id = element.player_id;
@@ -121,7 +123,7 @@ Team.prototype.setSquad = function(response) {
 /**
  * Get the squad as html tr.
  *
- * @return {array} the squad as an array of html string.
+ * @return {array} the squad as an array of html string.
  */
 Team.prototype.getSquadAsTr = function() {
   return this.squad.map((player) =>

@@ -1,23 +1,32 @@
 const dateFormat = require('dateformat');
 const $ = require('jquery');
-const querystring = require('querystring');
+const QUERY_STRING = require('querystring');
 
-import {generateHTMLtr, generateHTMLtd} from './utils/htmlutils.js';
+import {generateHTMLtr} from './utils/htmlutils.js';
 import {generateGetRequest} from './utils/httputils.js';
 import {Fixture} from './classes/fixture.js';
 import {User} from './classes/user.js';
 
-const query = querystring.parse(global.location.search);
+const QUERY = QUERY_STRING.parse(global.location.search);
 
-/** Date displayed, on window open is current date. **/
 let dateDisplayed = new Date();
 
-/** Corresponding date header for renderer. **/
+
+/**
+ * Get the date header to display.
+ *
+ * @return {string} the date header to display.
+ */
 function getDateHeader() {
   return `Matchs being played on  ${dateFormat(dateDisplayed, 'dddd dd/mm/yyyy')}`;
 }
 
-/** Url for the date. **/
+
+/**
+ * Get the url endpoint to request for the given date.
+ *
+ * @return {string} the date url as string
+ */
 function getDateUrl() {
   return `fixtures/date/${dateFormat(dateDisplayed, 'yyyy-mm-dd')}`;
 }
@@ -64,9 +73,9 @@ function filterFavoritesIfAppliable() {
     $('#fixtures tr').filter(function() {
       // The league and teams infos are only on the 3 first tds
       const arrayOfDisplayed = $(this).children('td').slice(0, 3).map(function() {
-        return $(this).text().trim();
+        return $(this).text().trim(); // eslint-disable-line no-invalid-this
       }).get();
-      $(this).toggle(favorites.some((element) => arrayOfDisplayed.includes(element)));
+      $(this).toggle(favorites.some((element) => arrayOfDisplayed.includes(element))); // eslint-disable-line no-invalid-this
     });
   } else {
     $('#fixtures tr').toggle(true);
@@ -74,7 +83,7 @@ function filterFavoritesIfAppliable() {
 }
 
 $('#datepicker').change(function(field) {
-  dateDisplayed = new Date($(this).val());
+  dateDisplayed = $(this).val();
   displayFixtures(getDateUrl(), getDateHeader());
 }).attr('max', dateFormat(new Date(new Date().setFullYear(new Date().getFullYear() + 1)), 'yyyy-mm-dd'))
     .attr('value', dateFormat(dateDisplayed, 'yyyy-mm-dd'));
@@ -87,13 +96,13 @@ $('#favs').click(() => {
 $('#searchBar').on('keyup', function() {
   const value = $(this).val().toLowerCase();
   $('#fixtures tr').filter(function() {
-    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1); // eslint-disable-line no-invalid-this
   });
 });
 
 /** Define if the current element to display is match day or not. **/
 const isMatchDay = function displayableIsMatchday() {
-  if (['?league', 'fixture', 'mdnumber'].every((element) => element in query)) {
+  if (['?league', 'fixture', 'mdnumber'].every((element) => element in QUERY)) {
     return true;
   } else {
     return false;
@@ -105,13 +114,11 @@ let fixture;
 let number;
 let leagueFixtureUrl;
 let leagueFixtureHeader;
-let favorites;
-
 
 if (isMatchDay) {
-  league = JSON.parse(query['?league']);
-  fixture = query['fixture'];
-  number = JSON.parse(query['mdnumber']);
+  league = JSON.parse(QUERY['?league']);
+  fixture = QUERY['fixture'];
+  number = JSON.parse(QUERY['mdnumber']);
   leagueFixtureUrl = `fixtures/league/${league}/${fixture}`;
   leagueFixtureHeader = `Fixtures for Match Day ${number}`;
 }

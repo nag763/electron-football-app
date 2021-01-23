@@ -12,5 +12,8 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "max-len": ["error", { "code": 127 }],
+    "no-invalid-this" : ["error", {}]
+  }
 }

@@ -20,4 +20,4 @@
 
 -   [ ] Red card not displayed anymore.
 
--   [ ] Latest fixtures in team.html not displaying final score.
+-   [X] Latest fixtures in team.html not displaying final score.

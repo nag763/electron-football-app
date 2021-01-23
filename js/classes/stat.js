@@ -1,3 +1,6 @@
+/**
+  * Modelize the stats from a player.
+  */
 function Stat() {}
 
 import {
@@ -105,7 +108,7 @@ Stat.prototype.getSubsAsTR = function() {
 /**
  * Get cards of the game as table row.
  *
- * @return {string} cards of the game as tr.
+ * @return {string} cards of the game as tr.
  */
 Stat.prototype.getCardsAsTR = function() {
   return generateHTMLtr([this.yellow, this.yellowred, this.red]);
@@ -151,7 +154,7 @@ Stat.prototype.getPensAsTR = function() {
 /**
  * Get the player's dribble stats as table row.
  *
- * @return {string} the dribbles as table row
+ * @return {string} the dribbles as table row
  */
 Stat.prototype.getDribblesAsTR = function() {
   return generateHTMLtr([this.dribblesAttempt, this.dribblesWon]);
@@ -161,7 +164,7 @@ Stat.prototype.getDribblesAsTR = function() {
 /**
  * Get the duels as table row.
  *
- * @return {string} the duels as table row.
+ * @return {string} the duels as table row.
  */
 Stat.prototype.getDuelsAsTR = function() {
   return generateHTMLtr([this.duelsTotal, this.duelsWon]);
@@ -171,7 +174,7 @@ Stat.prototype.getDuelsAsTR = function() {
 /**
  * Get the stats around the tackles as html tr.
  *
- * @return {string} the tackles as html tr
+ * @return {string} the tackles as html tr
  */
 Stat.prototype.getTacklesAsTR = function() {
   return generateHTMLtr(
@@ -183,7 +186,7 @@ Stat.prototype.getTacklesAsTR = function() {
 /**
  * Get the fouls commited by the player as tr.
  *
- * @return {string} the fouls as table row.
+ * @return {string} the fouls as table row.
  */
 Stat.prototype.getFoulsAsTR = function() {
   return generateHTMLtr([this.foulsGranted, this.foulsConceded]);

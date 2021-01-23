@@ -85,7 +85,7 @@ Fixture.prototype.eventHourTime = function() {
   * @return {array} an array of html elements to be inserted in a table
   */
 Fixture.prototype.toTableData = function() {
-  const tableData = new Array();
+  const tableData = [];
   if ([this.leagueId, this.leagueLogo].every(isDefined)) {
     tableData.push(this.preciseLeague());
   } else {

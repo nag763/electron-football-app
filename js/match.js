@@ -1,15 +1,15 @@
-const querystring = require('querystring');
+const QUERY_STRING = require('querystring');
 const $ = require('jquery');
 
 import {generateGetRequest} from './utils/httputils.js';
-import {generateHTMLtr, generateHTMLtd, generateHTMLtable} from './utils/htmlutils.js';
+import {generateHTMLtr} from './utils/htmlutils.js';
 import {Lineup} from './classes/lineups.js';
 import {Events} from './classes/events.js';
 
-const query = querystring.parse(global.location.search);
-const idToDisplay = JSON.parse(query['?id']);
+const QUERY = QUERY_STRING.parse(global.location.search);
+const ID_TO_DISPLAY = JSON.parse(QUERY['?id']);
 
-generateGetRequest(`lineups/${idToDisplay}`).then((response) => {
+generateGetRequest(`lineups/${ID_TO_DISPLAY}`).then((response) => {
   const lineups = Lineup.fromResponse(response);
   $('#title').text('').append(lineups.generateHTMLTitle());
   $('#coachs').append(generateHTMLtr([lineups.homeTeamCoach, lineups.awayTeamCoach.coach]));
@@ -18,7 +18,7 @@ generateGetRequest(`lineups/${idToDisplay}`).then((response) => {
 });
 
 
-generateGetRequest(`events/${idToDisplay}`).then((response) => {
+generateGetRequest(`events/${ID_TO_DISPLAY}`).then((response) => {
   const events = Events.fromResponse(response);
   $('#events').append(events.generateHTMLevents());
 });

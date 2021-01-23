@@ -1,16 +1,35 @@
 const $ = require('jquery');
-const Parser = require('rss-parser');
-const {shell} = require('electron');
-const fs = require('fs');
+const RSS_PARSER = require('rss-parser');
+let {shell} = require('electron');
 
 import {User} from './classes/user.js';
 import {generateGetRequest} from './utils/httputils.js';
 import {generateClikableLi} from './utils/htmlutils.js';
 
-const enterKey = 13;
-const pathSearchLeague = 'leagues/search/';
-const pathSearchTeam = 'teams/search/';
-const pathSearchPlayer = 'players/search/';
+const ENTER_KEY = 13;
+const URL_SEARCH_LEAGUE = 'leagues/search/';
+const URL_SEARCH_TEAM = 'teams/search/';
+const URL_SEARCH_PLAYER = 'players/search/';
+
+/**
+* Get the latest news from the reddit rss flux.
+*/
+async function getLatestRedditRSS() {
+  const now = new Date();
+
+  const PARSER = new RSS_PARSER();
+  $('#title').text('Latest news');
+  const feed = await PARSER.parseURL('https://www.reddit.com/r/soccer/new.rss');
+  $('#latest_news li').remove();
+  feed.items.slice(0, 10).forEach((item) => {
+    const diffMs = (now - new Date(item.pubDate));
+    // Yes, I stole that from internet
+    const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+    $('#latest_news').append(
+        `<li class="list-group-item">${item.title} (${diffMins} mns ago)</li>`,
+    );
+  });
+}
 
 $('#next_fixtures').click(() => {
   $(location).attr('href', './fixtures.html');
@@ -21,30 +40,30 @@ $('#get_an_api_key').click(() => {
 });
 
 $('#write_key').keypress((e) => {
-  if (e.which == enterKey) {
+  if (e.which == ENTER_KEY) {
     const userInput = $('#write_key').val();
     User.setKey(userInput);
   }
 });
 
 $('#searchbar').keypress(function(e) {
-  const userInput = $(this).val();
+  const userInput = $('#searchbar').val();
   if ($('#searchbar').val().length == 0) {
     getLatestRedditRSS();
   } else if (userInput.length < 2) {
     $('#title').text('You need to search with at least 2 characters, press enter to research.');
   } else {
-    if (e.which == enterKey) {
+    if (e.which == ENTER_KEY) {
       $('#latest_news li').remove();
 
-      generateGetRequest(pathSearchTeam.concat(userInput)).then((response) => {
+      generateGetRequest(URL_SEARCH_TEAM.concat(userInput)).then((response) => {
         const teams = response.data.api.teams;
         $('#latest_news').append(teams.map((element) =>
           generateClikableLi(`./team.html?id=${element.team_id}`, element.name),
         ).join('\n'));
       });
 
-      generateGetRequest(pathSearchLeague.concat(userInput)).then((response) => {
+      generateGetRequest(URL_SEARCH_LEAGUE.concat(userInput)).then((response) => {
         const leagues = response.data.api.leagues.sort(
             (a, b) => (b.season - a.season),
         );
@@ -53,7 +72,7 @@ $('#searchbar').keypress(function(e) {
         ).join('\n'));
       });
 
-      generateGetRequest(pathSearchPlayer.concat(userInput)).then((response) => {
+      generateGetRequest(URL_SEARCH_PLAYER.concat(userInput)).then((response) => {
         const players = response.data.api.players;
         $('#latest_news').append(players.map((player) =>
           generateClikableLi(`./player.html?id=${player.player_id}`, `${player.firstname} ${player.lastname}`),
@@ -77,21 +96,5 @@ $('#lock').click(() => {
 },
 );
 
-async function getLatestRedditRSS() {
-  const now = new Date();
-
-  const parser = new Parser();
-  $('#title').text('Latest news');
-  const feed = await parser.parseURL('https://www.reddit.com/r/soccer/new.rss');
-  $('#latest_news li').remove();
-  feed.items.slice(0, 10).forEach((item) => {
-    const diffMs = (now - new Date(item.pubDate));
-    // Yes, I stole that from internet
-    const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-    $('#latest_news').append(
-        `<li class="list-group-item">${item.title} (${diffMins} mns ago)</li>`,
-    );
-  });
-}
 
 getLatestRedditRSS();

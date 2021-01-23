@@ -3,16 +3,14 @@ import {
   generateOption,
 } from '../utils/htmlutils.js';
 
-import {
-  Stat,
-} from './stat.js';
+import {Stat} from './stat.js';
 
 
 /**
  * Get a short description of the given player's stats.
  *
- * @param  {object} resStat - the response of the api stats.
- * @return {string} the description of the stats.
+ * @param  {object} resStat - the response of the api stats.
+ * @return {string} the description of the stats.
  */
 function getShortStatDesc(resStat) {
   return `${resStat.league}, ${resStat.team_name} ${resStat.season}`;
@@ -21,8 +19,8 @@ function getShortStatDesc(resStat) {
 /**
  * Get a full description of the given player's stats.
  *
- * @param  {object} resStat - the response of the api stats.
- * @return {string} the full description of the stats, as a html content.
+ * @param  {object} resStat - the response of the api stats.
+ * @return {string} the full description of the stats, as a html content.
  */
 function getFullStatDesc(resStat) {
   return `${generateClickableText(`./league.html?id=${resStat.league_id}`, resStat.league)},
@@ -30,13 +28,17 @@ function getFullStatDesc(resStat) {
    rated ${resStat.rating}`;
 }
 
+
+/**
+ * A player object used to modelize a player.
+ */
 function Player() {}
 
 
 /**
  * Get the bio of the player.
  *
- * @return {string} the bio of the player.
+ * @return {string} the bio of the player.
  */
 Player.prototype.getBio = function() {
   return `
@@ -49,7 +51,7 @@ Player.prototype.getBio = function() {
 /**
  * Get the full name of the player.
  *
- * @return {string} name + first name of the player.
+ * @return {string} name + first name of the player.
  */
 Player.prototype.getFullName = function() {
   return `${this.firstname} ${this.lastname}`;

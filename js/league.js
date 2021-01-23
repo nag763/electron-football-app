@@ -1,44 +1,43 @@
-const querystring = require('querystring');
+const QUERY_STRING = require('querystring');
 const $ = require('jquery');
 
 import {generateGetRequest} from './utils/httputils.js';
-import {generateHTMLtr, generateHTMLtd, generateHTMLtable} from './utils/htmlutils.js';
 import {User} from './classes/user.js';
 import {League} from './classes/league.js';
 
-const query = querystring.parse(global.location.search);
-const idToDisplay = JSON.parse(query['?id']);
+const QUERY = QUERY_STRING.parse(global.location.search);
+const ID_TO_DISPLAY = JSON.parse(QUERY['?id']);
 
-const urlForInfo = `leagues/league/${idToDisplay}`;
-const urlForRounds = `fixtures/rounds/${idToDisplay}`;
-const urlForTable = `leagueTable/${idToDisplay}`;
+const URL_FOR_INFO = `leagues/league/${ID_TO_DISPLAY}`;
+const URL_FOR_ROUNDS = `fixtures/rounds/${ID_TO_DISPLAY}`;
+const URL_FOR_TABLE = `leagueTable/${ID_TO_DISPLAY}`;
 
 // Fetching the league info
-generateGetRequest(urlForInfo).then((response) => {
-  const leagueDisplayed = League.fromResponse(response);
+generateGetRequest(URL_FOR_INFO).then((response) => {
+  const LEAGUE = League.fromResponse(response);
 
-  $('#title').text(leagueDisplayed.name);
-  $('#logo').attr('src', leagueDisplayed.logo);
-  $('#subtitle').text(leagueDisplayed.getDescription());
+  $('#title').text(LEAGUE.name);
+  $('#logo').attr('src', LEAGUE.logo);
+  $('#subtitle').text(LEAGUE.getDescription());
 
   $('#profiling').click(() => {
-    if (User.isLeagueIdInProfile(leagueDisplayed.id)) {
-      User.removeLeague(leagueDisplayed);
+    if (User.isLeagueIdInProfile(LEAGUE.id)) {
+      User.removeLeague(LEAGUE);
     } else {
-      User.addLeague(leagueDisplayed);
+      User.addLeague(LEAGUE);
     }
-    $('#profiling').text(User.getActionAssociatedWithLeagueId(leagueDisplayed.id));
-  }).text(User.getActionAssociatedWithLeagueId(leagueDisplayed.id));
+    $('#profiling').text(User.getActionAssociatedWithLeagueId(LEAGUE.id));
+  }).text(User.getActionAssociatedWithLeagueId(LEAGUE.id));
 
-  generateGetRequest(urlForTable).then((response) => {
-    leagueDisplayed.setTablesFromResponse(response);
-    leagueDisplayed.generateHTMLTablesForStandings().forEach((table) => {
+  generateGetRequest(URL_FOR_TABLE).then((response) => {
+    LEAGUE.setTablesFromResponse(response);
+    LEAGUE.generateHTMLTablesForStandings().forEach((table) => {
       $('#rankings').append(table);
     });
   });
 
-  generateGetRequest(urlForRounds).then((response) => {
-    leagueDisplayed.settRoundsFromResponse(response);
-    $('#next_rounds').append(leagueDisplayed.generateHTMLForRounds());
+  generateGetRequest(URL_FOR_ROUNDS).then((response) => {
+    LEAGUE.settRoundsFromResponse(response);
+    $('#next_rounds').append(LEAGUE.generateHTMLForRounds());
   });
 });
