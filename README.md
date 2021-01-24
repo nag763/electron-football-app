@@ -4,7 +4,7 @@
 
 <p align="center"><img src="https://github.com/nag763/electron-football-app/blob/main/icons/icon.png"></img></p>
 
-<h2 align="center">UnFootball<h2>
+<h2 align="center">UnFootball</h2>
 <h4 align="center">An electron based football app</h4>
 
 ![program.gif](./program.gif)
@@ -51,6 +51,8 @@ npm start
   - Ubuntu OS
 
 ## Project architecture
+
+- bin : binaries
 
 - doc : Documentation of the application
 
