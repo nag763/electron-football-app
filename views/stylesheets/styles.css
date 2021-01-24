@@ -43,9 +43,15 @@ div.card {
   background-color: #2b2b2b;
 }
 
-
+/** List group elements **/
 ul.list-group-flush li{
   background-color: #1a1a1a;
   border-color: #2b2b2b;
   color: white;
+}
+
+/** Select for the player input **/
+select {
+  background-color: #1a1a1a;
+  color : white;
 }
