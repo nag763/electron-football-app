@@ -110,13 +110,12 @@ Team.prototype.setSquad = function(response) {
     player.fullname = `${element.firstname} ${element.lastname}`;
     player.position = element.position;
     player.nationality = element.nationality;
-    player.age = element.age;
-    player.birthPlace = element.birth_place;
-    player.height = element.height;
-    player.weight = element.weight;
+    player.age = element.age || 'Unknown';
+    player.birthPlace = element.birth_place || 'Unknown';
+    player.height = element.height || 'Unknown';
+    player.weight = element.weight || 'Unknown';
     return player;
-  },
-  );
+  }).sort(function(a, b){ return a.fullname.localeCompare(b.fullname)})
 };
 
 
