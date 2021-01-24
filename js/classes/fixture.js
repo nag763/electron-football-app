@@ -5,7 +5,7 @@ import {
   generateClickableText,
 } from '../utils/htmlutils.js';
 
-const isDefined = (value) => value === undefined || value === null;
+const isUndefined = (value) => value === undefined || value === null;
 
 /**
   * Class Constructor.
@@ -59,7 +59,7 @@ Fixture.prototype.preciseLeague = function() {
   * @return {string} N/A if the goal numbers are undefined, otherwise the score
   */
 Fixture.prototype.fullscore = function() {
-  if ([this.goalsHomeTeam, this.goalsAwayTeam].every(isDefined)) {
+  if ([this.goalsHomeTeam, this.goalsAwayTeam].every(isUndefined)) {
     return 'N/A';
   } else {
     return `${this.goalsHomeTeam}-${this.goalsAwayTeam}`;
@@ -72,7 +72,7 @@ Fixture.prototype.fullscore = function() {
   * @return {string} the time of the match if known
   */
 Fixture.prototype.eventHourTime = function() {
-  if (!isDefined(this.eventDate)) {
+  if (!isUndefined(this.eventDate)) {
     return dateFormat(this.eventDate, 'HH:MM - dd/mm');
   } else {
     return 'Unknown';
@@ -86,7 +86,7 @@ Fixture.prototype.eventHourTime = function() {
   */
 Fixture.prototype.toTableData = function() {
   const tableData = [];
-  if ([this.leagueId, this.leagueLogo].every(isDefined)) {
+  if ([this.leagueId, this.leagueLogo].every(isUndefined)) {
     tableData.push(this.preciseLeague());
   } else {
     tableData.push(
@@ -95,7 +95,7 @@ Fixture.prototype.toTableData = function() {
             this.preciseLeague()),
     );
   }
-  if ([this.homeTeamId, this.homeTeamLogo].every(isDefined)) {
+  if ([this.homeTeamId, this.homeTeamLogo].every(isUndefined)) {
     tableData.push(this.preciseLeague());
   } else {
     tableData.push(
@@ -104,7 +104,7 @@ Fixture.prototype.toTableData = function() {
             this.homeTeamName),
     );
   }
-  if ([this.awayTeamId, this.awayTeamLogo].every(isDefined)) {
+  if ([this.awayTeamId, this.awayTeamLogo].every(isUndefined)) {
     tableData.push(this.preciseLeague());
   } else {
     tableData.push(
@@ -115,7 +115,7 @@ Fixture.prototype.toTableData = function() {
   }
   tableData.push(this.fullscore());
   tableData.push(this.eventHourTime());
-  tableData.push(this.elapsedTime);
+  tableData.push(String(this.elapsedTime).concat("'"));
   tableData.push(this.status);
   tableData.push(
       generateClickableText(
