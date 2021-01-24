@@ -68,7 +68,7 @@ npm start
 
 -   [X] Do JSDOC
 
--   [ ] Catch errors
+-   [X] Catch errors
 
 -   [ ] Handle XSS atacks
 
