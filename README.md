@@ -89,3 +89,7 @@ npm start
 -   [X] Red card not displayed anymore.
 
 -   [X] Latest fixtures in team.html not displaying final score.
+
+-   [ ] Issue with the away coach never being displayed.
+
+-   [ ] If the starting XI is not available an error is being displayed.
