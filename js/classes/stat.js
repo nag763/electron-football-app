@@ -35,7 +35,7 @@ Stat.createFromResponseArray = function(response) {
     stat.teamId = element.team_id;
     stat.league = element.league;
     stat.leagueId = element.league_id;
-    stat.rating = element.rating;
+    stat.rating = element.rating || '?';
     stat.season = element.season;
 
 
