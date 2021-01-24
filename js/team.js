@@ -52,7 +52,7 @@ generateGetRequest(URL_FOR_TEAM).then((response) => {
     }
     $('#profiling').text(User.getActionAssociatedWithTeamId(team.id));
   }).text(User.getActionAssociatedWithTeamId(team.id));
-});
+}).catch((error) => alert(error));
 
 generateGetRequest(URL_LATEST_FIXTURES).then((response) => {
   const table = $('#latestFixtures');

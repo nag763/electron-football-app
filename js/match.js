@@ -15,7 +15,7 @@ generateGetRequest(`lineups/${ID_TO_DISPLAY}`).then((response) => {
   $('#coachs').append(generateHTMLtr([lineups.homeTeamCoach, lineups.awayTeamCoach.coach]));
   $('#lineups').append(lineups.generateHTMLStartingXITR());
   $('#substitutes').append(lineups.generateHTMLBenchTR());
-});
+}).catch((error) => alert(error));
 
 
 generateGetRequest(`events/${ID_TO_DISPLAY}`).then((response) => {

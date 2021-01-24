@@ -46,7 +46,7 @@ async function displayFixtures(url, header) {
       generateHTMLtr(fixture.toTableData())),
     );
     filterFavoritesIfAppliable();
-  });
+  }).catch((error) => alert(error));
 }
 
 /**

@@ -40,4 +40,4 @@ generateGetRequest(URL_FOR_INFO).then((response) => {
     LEAGUE.settRoundsFromResponse(response);
     $('#next_rounds').append(LEAGUE.generateHTMLForRounds());
   });
-});
+}).catch((error) => alert(error));

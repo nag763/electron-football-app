@@ -111,11 +111,13 @@ Team.prototype.setSquad = function(response) {
     player.position = element.position;
     player.nationality = element.nationality;
     player.age = element.age || 'Unknown';
-    player.birthPlace = element.birth_place || 'Unknown';
+    player.birthPlace = element.birth_place || 'Unknown';
     player.height = element.height || 'Unknown';
-    player.weight = element.weight || 'Unknown';
+    player.weight = element.weight || 'Unknown';
     return player;
-  }).sort(function(a, b){ return a.fullname.localeCompare(b.fullname)})
+  }).sort(function(a, b) {
+    return a.fullname.localeCompare(b.fullname);
+  });
 };
 
 

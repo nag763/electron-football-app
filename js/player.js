@@ -40,4 +40,4 @@ generateGetRequest(`players/player/${ID_TO_DISPLAY}`).then((response) => {
   $('#select').append(PLAYER.availableStats.join('\n')).change(function() {
     displayStats(STATS_AVAILABLE[$('#select').val()]);
   });
-});
+}).catch((error) => alert(error));

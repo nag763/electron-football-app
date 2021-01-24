@@ -1,6 +1,6 @@
 const $ = require('jquery');
 const RSS_PARSER = require('rss-parser');
-let {shell} = require('electron');
+const {shell} = require('electron');
 
 import {User} from './classes/user.js';
 import {generateGetRequest} from './utils/httputils.js';
@@ -61,7 +61,7 @@ $('#searchbar').keypress(function(e) {
         $('#latest_news').append(teams.map((element) =>
           generateClikableLi(`./team.html?id=${element.team_id}`, element.name),
         ).join('\n'));
-      });
+      }).catch((error) => alert(error));
 
       generateGetRequest(URL_SEARCH_LEAGUE.concat(userInput)).then((response) => {
         const leagues = response.data.api.leagues.sort(

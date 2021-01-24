@@ -115,7 +115,7 @@ Fixture.prototype.toTableData = function() {
   }
   tableData.push(this.fullscore());
   tableData.push(this.eventHourTime());
-  tableData.push(String(this.elapsedTime).concat("'"));
+  tableData.push(String(this.elapsedTime).concat('\''));
   tableData.push(this.status);
   tableData.push(
       generateClickableText(

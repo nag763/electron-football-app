@@ -33,7 +33,7 @@ async function generateGetRequest(path) {
   return axios.request(options).then(function(response) {
     return response;
   }).catch(function(error) {
-    console.error(error);
+    throw Error(error);
   });
 }
 
