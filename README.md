@@ -93,3 +93,5 @@ npm start
 -   [ ] Issue with the away coach never being displayed.
 
 -   [ ] If the starting XI is not available an error is being displayed.
+
+-   [ ] Issue with latest infos, if 60 < mins, only the mins are displayed but not the hours.
