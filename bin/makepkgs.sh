@@ -1,5 +1,7 @@
 #!usr/bin/sh
 
+rm -rf ./UnFootball*
+
 electron-packager ../ --icon=../icons/icon.png --platform=linux --overwrite
 electron-packager ../ --icon=../icons/icon.ico --platform=win32 --overwrite
 electron-packager ../ --icon=../icons/icon.icns --platform=darwin --overwrite
