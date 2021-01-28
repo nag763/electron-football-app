@@ -1,8 +1,8 @@
 
 /home/usr/Documents/ESIG/NODEJS/js/fixtures.js
-  75:34  error  Unexpected 'this'  no-invalid-this
-  86:21  error  Unexpected 'this'  no-invalid-this
-  97:19  error  Unexpected 'this'  no-invalid-this
+   79:34  error  Unexpected 'this'  no-invalid-this
+   90:21  error  Unexpected 'this'  no-invalid-this
+  101:19  error  Unexpected 'this'  no-invalid-this
 
 ✖ 3 problems (3 errors, 0 warnings)
 

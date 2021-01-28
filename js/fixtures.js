@@ -47,8 +47,8 @@ async function displayFixtures(url, header) {
     );
     filterFavoritesIfAppliable();
   }).catch((error) => {
-    if(!navigator.onLine){
-      alert("You aren't connected to internet")
+    if (!navigator.onLine) {
+      alert('You aren\'t connected to internet');
     }
   });
 }

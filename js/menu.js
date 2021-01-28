@@ -69,8 +69,8 @@ $('#searchbar').keypress(function(e) {
           generateClikableLi(`./team.html?id=${element.team_id}`, element.name),
         ).join('\n'));
       }).catch((error) => {
-        if(!navigator.onLine){
-          alert("You aren't connected to internet");
+        if (!navigator.onLine) {
+          alert('You aren\'t connected to internet');
         }
       });
 
@@ -110,6 +110,6 @@ $('#lock').click(() => {
 
 getLatestRedditRSS();
 
-if(!navigator.onLine){
-  alert("You aren't connected to internet");
+if (!navigator.onLine) {
+  alert('You aren\'t connected to internet');
 }

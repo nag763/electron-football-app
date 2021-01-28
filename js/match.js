@@ -15,10 +15,11 @@ generateGetRequest(`lineups/${ID_TO_DISPLAY}`).then((response) => {
   $('#coachs').append(generateHTMLtr([lineups.homeTeamCoach, lineups.awayTeamCoach]));
   $('#lineups').append(lineups.generateHTMLStartingXITR());
   $('#substitutes').append(lineups.generateHTMLBenchTR());
-}).catch((error) =>   {
-  if(!navigator.onLine){
-  alert("You aren't connected to internet");
-}});
+}).catch((error) => {
+  if (!navigator.onLine) {
+    alert('You aren\'t connected to internet');
+  }
+});
 
 
 generateGetRequest(`events/${ID_TO_DISPLAY}`).then((response) => {

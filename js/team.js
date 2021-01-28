@@ -53,8 +53,8 @@ generateGetRequest(URL_FOR_TEAM).then((response) => {
     $('#profiling').text(User.getActionAssociatedWithTeamId(team.id));
   }).text(User.getActionAssociatedWithTeamId(team.id));
 }).catch((error) => {
-  if(!navigator.onLine){
-    alert("You aren't connected to internet");
+  if (!navigator.onLine) {
+    alert('You aren\'t connected to internet');
   }
 });
 
