@@ -68,7 +68,11 @@ $('#searchbar').keypress(function(e) {
         $('#latest_news').append(teams.map((element) =>
           generateClikableLi(`./team.html?id=${element.team_id}`, element.name),
         ).join('\n'));
-      }).catch((error) => alert(error));
+      }).catch((error) => {
+        if(!navigator.onLine){
+          alert("You aren't connected to internet");
+        }
+      });
 
       generateGetRequest(URL_SEARCH_LEAGUE.concat(userInput)).then((response) => {
         const leagues = response.data.api.leagues.sort(
@@ -105,3 +109,7 @@ $('#lock').click(() => {
 
 
 getLatestRedditRSS();
+
+if(!navigator.onLine){
+  alert("You aren't connected to internet");
+}

@@ -40,4 +40,8 @@ generateGetRequest(`players/player/${ID_TO_DISPLAY}`).then((response) => {
   $('#select').append(PLAYER.availableStats.join('\n')).change(function() {
     displayStats(STATS_AVAILABLE[$('#select').val()]);
   });
-}).catch((error) => alert(error));
+}).catch((error) => {
+  if(!navigator.onLine){
+    alert("You aren't connected to internet");
+  }
+});

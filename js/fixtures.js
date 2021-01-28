@@ -46,7 +46,11 @@ async function displayFixtures(url, header) {
       generateHTMLtr(fixture.toTableData())),
     );
     filterFavoritesIfAppliable();
-  }).catch((error) => alert(error));
+  }).catch((error) => {
+    if(!navigator.onLine){
+      alert("You aren't connected to internet")
+    }
+  });
 }
 
 /**
