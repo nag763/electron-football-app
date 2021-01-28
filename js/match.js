@@ -12,7 +12,7 @@ const ID_TO_DISPLAY = JSON.parse(QUERY['?id']);
 generateGetRequest(`lineups/${ID_TO_DISPLAY}`).then((response) => {
   const lineups = Lineup.fromResponse(response);
   $('#title').text('').append(lineups.generateHTMLTitle());
-  $('#coachs').append(generateHTMLtr([lineups.homeTeamCoach, lineups.awayTeamCoach.coach]));
+  $('#coachs').append(generateHTMLtr([lineups.homeTeamCoach, lineups.awayTeamCoach]));
   $('#lineups').append(lineups.generateHTMLStartingXITR());
   $('#substitutes').append(lineups.generateHTMLBenchTR());
 }).catch((error) => alert(error));

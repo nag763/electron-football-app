@@ -90,7 +90,7 @@ npm start
 
 -   [X] Latest fixtures in team.html not displaying final score.
 
--   [ ] Issue with the away coach never being displayed.
+-   [X] Issue with the away coach never being displayed.
 
 -   [ ] If the starting XI is not available an error is being displayed.
 
