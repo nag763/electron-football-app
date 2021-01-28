@@ -24,9 +24,16 @@ async function getLatestRedditRSS() {
   feed.items.slice(0, 10).forEach((item) => {
     const diffMs = (now - new Date(item.pubDate));
     // Yes, I stole that from internet
+    const diffHrs = Math.floor((diffMs % 86400000) / 3600000);
     const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+    let content;
+    if (diffHrs != 0) {
+      content = `<li class="list-group-item">${item.title} (${diffHrs} hours and ${diffMins} mns ago)</li>`;
+    } else {
+      content = `<li class="list-group-item">${item.title} (${diffMins} mns ago)</li>`;
+    }
     $('#latest_news').append(
-        `<li class="list-group-item">${item.title} (${diffMins} mns ago)</li>`,
+        content,
     );
   });
 }
