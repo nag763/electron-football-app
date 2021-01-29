@@ -81,17 +81,3 @@ npm start
 -   [ ] Make a better UI
 
 -   [ ] Implement UT and CI
-
-## Known issues
-
--   [X] Players not fetched from gets on researchs
-
--   [X] Red card not displayed anymore.
-
--   [X] Latest fixtures in team.html not displaying final score.
-
--   [X] Issue with the away coach never being displayed.
-
--   [X] If the starting XI is not available an error is being displayed.
-
--   [X] Issue with latest infos, if 60 < mins, only the mins are displayed but not the hours.
