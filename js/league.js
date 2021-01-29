@@ -1,15 +1,10 @@
 const QUERY_STRING = require('querystring');
 const $ = require('jquery');
 
-import {
-  generateGetRequest,
-} from './utils/httputils.js';
-import {
-  User,
-} from './classes/user.js';
-import {
-  League,
-} from './classes/league.js';
+import {generateGetRequest} from './utils/httputils.js';
+import {User} from './classes/user.js';
+import {League} from './classes/league.js';
+import {ErrorHandler} from './utils/errorhandler.js';
 
 const QUERY = QUERY_STRING.parse(global.location.search);
 const ID_TO_DISPLAY = JSON.parse(QUERY['?id']);
@@ -46,8 +41,4 @@ generateGetRequest(URL_FOR_INFO).then((response) => {
     LEAGUE.settRoundsFromResponse(response);
     $('#next_rounds').append(LEAGUE.generateHTMLForRounds());
   });
-}).catch((error) => {
-  if (!navigator.onLine) {
-    alert('You aren\'t connected to internet');
-  }
-});
+}).catch((error) => ErrorHandler.onResponse(error));

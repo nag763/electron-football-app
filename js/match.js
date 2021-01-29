@@ -5,6 +5,7 @@ import {generateGetRequest} from './utils/httputils.js';
 import {generateHTMLtr} from './utils/htmlutils.js';
 import {Lineup} from './classes/lineups.js';
 import {Events} from './classes/events.js';
+import {ErrorHandler} from './utils/errorhandler.js';
 
 const QUERY = QUERY_STRING.parse(global.location.search);
 const ID_TO_DISPLAY = JSON.parse(QUERY['?id']);
@@ -15,11 +16,7 @@ generateGetRequest(`lineups/${ID_TO_DISPLAY}`).then((response) => {
   $('#coachs').append(generateHTMLtr([lineups.homeTeamCoach, lineups.awayTeamCoach]));
   $('#lineups').append(lineups.generateHTMLStartingXITR());
   $('#substitutes').append(lineups.generateHTMLBenchTR());
-}).catch((error) => {
-  if (!navigator.onLine) {
-    alert('You aren\'t connected to internet');
-  }
-});
+}).catch((error) => ErrorHandler.onResponse(error));
 
 
 generateGetRequest(`events/${ID_TO_DISPLAY}`).then((response) => {

@@ -4,6 +4,7 @@ const $ = require('jquery');
 import {generateGetRequest} from './utils/httputils.js';
 import {Team} from './classes/team.js';
 import {User} from './classes/user.js';
+import {ErrorHandler} from './utils/errorhandler.js';
 
 
 const QUERY = QUERY_STRING.parse(global.location.search);
@@ -52,11 +53,7 @@ generateGetRequest(URL_FOR_TEAM).then((response) => {
     }
     $('#profiling').text(User.getActionAssociatedWithTeamId(team.id));
   }).text(User.getActionAssociatedWithTeamId(team.id));
-}).catch((error) => {
-  if (!navigator.onLine) {
-    alert('You aren\'t connected to internet');
-  }
-});
+}).catch((error) => ErrorHandler.onResponse(error));
 
 generateGetRequest(URL_LATEST_FIXTURES).then((response) => {
   const table = $('#latestFixtures');

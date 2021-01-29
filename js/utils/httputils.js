@@ -33,7 +33,11 @@ async function generateGetRequest(path) {
   return axios.request(options).then(function(response) {
     return response;
   }).catch(function(error) {
-    throw Error(error);
+    if (error.response) {
+      throw Error(error.response.status);
+    } else {
+      throw Error('Unreachable');
+    }
   });
 }
 

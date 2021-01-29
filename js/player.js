@@ -6,6 +6,7 @@ const ID_TO_DISPLAY = JSON.parse(QUERY['?id']);
 
 import {generateGetRequest} from './utils/httputils.js';
 import {Player} from './classes/player.js';
+import {ErrorHandler} from './utils/errorhandler.js';
 
 /**
 * Display the stats in the view.
@@ -40,8 +41,4 @@ generateGetRequest(`players/player/${ID_TO_DISPLAY}`).then((response) => {
   $('#select').append(PLAYER.availableStats.join('\n')).change(function() {
     displayStats(STATS_AVAILABLE[$('#select').val()]);
   });
-}).catch((error) => {
-  if (!navigator.onLine) {
-    alert('You aren\'t connected to internet');
-  }
-});
+}).catch((error) => ErrorHandler.onResponse(error));

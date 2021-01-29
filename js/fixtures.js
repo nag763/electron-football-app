@@ -6,6 +6,7 @@ import {generateHTMLtr} from './utils/htmlutils.js';
 import {generateGetRequest} from './utils/httputils.js';
 import {Fixture} from './classes/fixture.js';
 import {User} from './classes/user.js';
+import {ErrorHandler} from './utils/errorhandler.js';
 
 const QUERY = QUERY_STRING.parse(global.location.search);
 
@@ -46,11 +47,7 @@ async function displayFixtures(url, header) {
       generateHTMLtr(fixture.toTableData())),
     );
     filterFavoritesIfAppliable();
-  }).catch((error) => {
-    if (!navigator.onLine) {
-      alert('You aren\'t connected to internet');
-    }
-  });
+  }).catch((error) => ErrorHandler.onResponse(error));
 }
 
 /**

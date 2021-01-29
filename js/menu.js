@@ -5,6 +5,7 @@ const {shell} = require('electron');
 import {User} from './classes/user.js';
 import {generateGetRequest} from './utils/httputils.js';
 import {generateClikableLi} from './utils/htmlutils.js';
+import {ErrorHandler} from './utils/errorhandler.js';
 
 const ENTER_KEY = 13;
 const URL_SEARCH_LEAGUE = 'leagues/search/';
@@ -68,11 +69,7 @@ $('#searchbar').keypress(function(e) {
         $('#latest_news').append(teams.map((element) =>
           generateClikableLi(`./team.html?id=${element.team_id}`, element.name),
         ).join('\n'));
-      }).catch((error) => {
-        if (!navigator.onLine) {
-          alert('You aren\'t connected to internet');
-        }
-      });
+      }).catch((error) => ErrorHandler.onResponse(error));
 
       generateGetRequest(URL_SEARCH_LEAGUE.concat(userInput)).then((response) => {
         const leagues = response.data.api.leagues.sort(
@@ -109,7 +106,3 @@ $('#lock').click(() => {
 
 
 getLatestRedditRSS();
-
-if (!navigator.onLine) {
-  alert('You aren\'t connected to internet');
-}
