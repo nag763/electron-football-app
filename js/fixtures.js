@@ -73,7 +73,7 @@ function filterFavoritesIfAppliable() {
     const favorites = User.getFavoritesText();
     $('#fixtures tr').filter(function() {
       // The league and teams infos are only on the 3 first tds
-      const arrayOfDisplayed = $(this).children('td').slice(0, 3).map(function() {
+      const arrayOfDisplayed = $(this).children('td').slice(0, 3).map(function() { // eslint-disable-line no-invalid-this
         return $(this).text().trim(); // eslint-disable-line no-invalid-this
       }).get();
       $(this).toggle(favorites.some((element) => arrayOfDisplayed.includes(element))); // eslint-disable-line no-invalid-this
@@ -84,7 +84,7 @@ function filterFavoritesIfAppliable() {
 }
 
 $('#datepicker').change(function(field) {
-  dateDisplayed = $(this).val();
+  dateDisplayed = $(this).val(); // eslint-disable-line no-invalid-this
   displayFixtures(getDateUrl(), getDateHeader());
 }).attr('max', dateFormat(new Date(new Date().setFullYear(new Date().getFullYear() + 1)), 'yyyy-mm-dd'))
     .attr('value', dateFormat(dateDisplayed, 'yyyy-mm-dd'));
@@ -95,7 +95,7 @@ $('#favs').click(() => {
 
 // Not mine, taken directly from w3s
 $('#searchBar').on('keyup', function() {
-  const value = $(this).val().toLowerCase();
+  const value = $(this).val().toLowerCase(); // eslint-disable-line no-invalid-this
   $('#fixtures tr').filter(function() {
     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1); // eslint-disable-line no-invalid-this
   });
