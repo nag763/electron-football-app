@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/httputils.js</title>
+    <title>JSDoc: Source: utils/errorhandler.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/httputils.js</h1>
+    <h1 class="page-title">Source: utils/errorhandler.js</h1>
 
     
 
@@ -28,7 +28,6 @@
         <article>
             <pre class="prettyprint source linenums"><code>const fs = require('fs');
 const path = require('path');
-const axios = require('axios').default;
 
 const key = function readApiKey() {
   return fs.readFileSync(
@@ -36,41 +35,29 @@ const key = function readApiKey() {
       .trim();
 }();
 
+/** Class to handle common errors when using the app **/
+function ErrorHandler() {}
+
+
 /**
- * Generate a get request to the remote server
+ * Class to handle common errors while using the app.
  *
- * @param {string} path - The path to the remote server side
- *
- * @return {respones} a response element
+ * @param  {object} error - the current axios error.
  */
-async function generateGetRequest(path) {
-  const url = 'https://api-football-v1.p.rapidapi.com/v2/'.concat(path);
-
-  const options = {
-    method: 'GET',
-    url: url,
-    params: {
-      timezone: 'Europe/Paris',
-    },
-    headers: {
-      'x-rapidapi-key': key,
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-    },
-  };
-
-  return axios.request(options).then(function(response) {
-    return response;
-  }).catch(function(error) {
-    if (error.response) {
-      throw Error(error.response.status);
-    } else {
-      throw Error('Unreachable');
-    }
-  });
-}
+ErrorHandler.onResponse = function(error) {
+  if (!navigator.onLine) {
+    alert('You aren\'t connected to internet');
+  } else if (key.length == 0) {
+    alert('You don\'t have any api key registered, please make sure you got one.');
+  } else if (error != undefined &amp;&amp; error != null) {
+    alert('The remote server responded with the following error\n'
+        .concat(`${error}.\n`)
+        .concat('If the issue persists, starts the debugger (CTRL+SHIFT+I) or open an issue on Github.'));
+  }
+};
 
 export {
-  generateGetRequest,
+  ErrorHandler,
 };
 </code></pre>
         </article>
