@@ -119,7 +119,9 @@ Fixture.prototype.toTableData = function() {
   tableData.push(this.status);
   tableData.push(
       generateClickableText(
-          `./match.html?id=${this.fixtureId}`,
+          `./match.html?id=${this.fixtureId}`
+          .concat(`&homeTeamLogo=${this.homeTeamLogo}`)
+          .concat(`&awayTeamLogo=${this.awayTeamLogo}`),
           'More informations'),
   );
   return tableData;

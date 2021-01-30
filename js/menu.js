@@ -23,7 +23,6 @@ async function getLatestRedditRSS() {
   const feed = await PARSER.parseURL('https://www.reddit.com/r/soccer/new.rss');
   $('#latest_news li').remove();
   $('#latest_news').append(feed.items.slice(0, 10).map((item) => {
-    console.log(item);
     const diffMs = (now - new Date(item.pubDate));
     // Yes, I stole that from internet
     const diffHrs = Math.floor((diffMs % 86400000) / 3600000);
