@@ -9,7 +9,7 @@
     "fix": "eslint js/**  --fix"
   },
   "keywords": [],
-  "author": "Loic",
+  "author": "LABEYE Loic",
   "license": "MIT",
   "devDependencies": {
     "electron": "^11.2.1",
