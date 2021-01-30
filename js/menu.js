@@ -22,20 +22,23 @@ async function getLatestRedditRSS() {
   $('#title').text('Latest news');
   const feed = await PARSER.parseURL('https://www.reddit.com/r/soccer/new.rss');
   $('#latest_news li').remove();
-  feed.items.slice(0, 10).forEach((item) => {
+  $('#latest_news').append(feed.items.slice(0, 10).map((item) => {
+    console.log(item);
     const diffMs = (now - new Date(item.pubDate));
     // Yes, I stole that from internet
     const diffHrs = Math.floor((diffMs % 86400000) / 3600000);
     const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-    let content;
+    let content = '<li class="list-group-item">';
     if (diffHrs != 0) {
-      content = `<li class="list-group-item">${item.title} (${diffHrs} hours and ${diffMins} mns ago)</li>`;
+      content += `${item.title} (${diffHrs} hours and ${diffMins} mns ago)</li>`;
     } else {
-      content = `<li class="list-group-item">${item.title} (${diffMins} mns ago)</li>`;
+      content += `${item.title} (${diffMins} mns ago)`;
     }
-    $('#latest_news').append(
-        content,
-    );
+    content += ` <i class="fa fa-link" aria-hidden="true" id=${item.link}></i></li>`;
+    return content;
+  }).join('\n'));
+  $('.fa-link').on('click', function() {
+    shell.openExternal($(this).attr('id')); // eslint-disable-line no-invalid-this
   });
 }
 
