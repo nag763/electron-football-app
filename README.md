@@ -72,6 +72,8 @@ npm start
 
 -   [X] Catch errors
 
+-   [ ] Make better empty response handlers
+
 -   [ ] Handle XSS atacks
 
 -   [ ] Toasts for errors
