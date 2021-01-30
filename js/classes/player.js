@@ -71,10 +71,12 @@ Player.fromResponse = function(response) {
   );
   const CURRENT_INFO = PLAYER_INFO[0];
   const player = new Player();
+  player.id = CURRENT_INFO.player_id;
   player.firstname = CURRENT_INFO.firstname;
   player.lastname = CURRENT_INFO.lastname;
   player.fullname = `${CURRENT_INFO.firstname} ${CURRENT_INFO.lastname}`;
   player.age = CURRENT_INFO.age;
+  player.picture = `https://media.api-sports.io/football/players/${player.id}.png`
   player.position = CURRENT_INFO.position;
   player.height = CURRENT_INFO.height || 'Unknown';
   player.weight = CURRENT_INFO.weight || 'Unknown';

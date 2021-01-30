@@ -108,6 +108,7 @@ Team.prototype.setSquad = function(response) {
   this.squad = response.data.api.players.map((element) => {
     const player = new Player();
     player.id = element.player_id;
+    player.picture = `https://media.api-sports.io/football/players/${player.id}.png`
     player.fullname = `${element.firstname} ${element.lastname}`;
     player.position = element.position;
     player.nationality = element.nationality;
@@ -131,7 +132,7 @@ Team.prototype.getSquadAsTr = function() {
   return this.squad.map((player) =>
     generateHTMLtr(
         [
-          generateClickableText(`./player.html?id=${player.id}`, player.fullname),
+          generateClickableWithImage(`./player.html?id=${player.id}`, player.picture, player.fullname),
           player.position,
           player.nationality,
           player.age,
