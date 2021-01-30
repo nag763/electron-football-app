@@ -34,7 +34,7 @@ function displayStats(stats) {
 generateGetRequest(`players/player/${ID_TO_DISPLAY}`).then((response) => {
   const PLAYER = Player.fromResponse(response);
   const STATS_AVAILABLE = PLAYER.stats;
-  $('#picture').attr('src', PLAYER.picture)
+  $('#picture').attr('src', PLAYER.picture);
   $('#playerName').text(PLAYER.getFullName());
   $('#desc').text(PLAYER.getBio());
   $('#statdesc');

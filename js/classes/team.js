@@ -1,5 +1,5 @@
 import {
-  generateHTMLtr, generateClickableWithImage, generateClickableText,
+  generateHTMLtr, generateClickableWithImage,
 } from '../utils/htmlutils.js';
 import {Fixture} from './fixture.js';
 import {Player} from './player.js';
@@ -108,7 +108,7 @@ Team.prototype.setSquad = function(response) {
   this.squad = response.data.api.players.map((element) => {
     const player = new Player();
     player.id = element.player_id;
-    player.picture = `https://media.api-sports.io/football/players/${player.id}.png`
+    player.picture = `https://media.api-sports.io/football/players/${player.id}.png`;
     player.fullname = `${element.firstname} ${element.lastname}`;
     player.position = element.position;
     player.nationality = element.nationality;

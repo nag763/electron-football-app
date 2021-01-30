@@ -9,11 +9,11 @@ import {ErrorHandler} from './utils/errorhandler.js';
 
 const QUERY = QUERY_STRING.parse(global.location.search);
 const ID_TO_DISPLAY = JSON.parse(QUERY['?id']);
-console.log(QUERY['homeTeamLogo'])
+console.log(QUERY['homeTeamLogo']);
 const ID_LOGO_HT = QUERY['homeTeamLogo'];
 const ID_LOGO_AT = QUERY['awayTeamLogo'];
 
-$('#logos').text('').append(`<img src="${ID_LOGO_HT}"/><img src="${ID_LOGO_AT}"/>`)
+$('#logos').text('').append(`<img src="${ID_LOGO_HT}"/><img src="${ID_LOGO_AT}"/>`);
 
 generateGetRequest(`lineups/${ID_TO_DISPLAY}`).then((response) => {
   const lineups = Lineup.fromResponse(response);
@@ -27,5 +27,5 @@ generateGetRequest(`lineups/${ID_TO_DISPLAY}`).then((response) => {
 
 generateGetRequest(`events/${ID_TO_DISPLAY}`).then((response) => {
   const events = Events.fromResponse(response);
-  $('#events').append(events.generateHTMLevents() || '<li class="list-group-item">Not available</li>');
+  $('#events').append(events.generateHTMLevents() || '<li class="list-group-item">Not available</li>');
 });
