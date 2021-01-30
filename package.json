@@ -1,7 +1,7 @@
 {
   "name": "UnFootball",
   "version": "1.1.3",
-  "description": "",
+  "description": "A lightweight football desktop app",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
