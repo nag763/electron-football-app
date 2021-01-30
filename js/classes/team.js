@@ -19,6 +19,7 @@ function Team() {}
 Team.fromResponse = function(response) {
   const TEAM_INFO = response.data.api.teams[0];
   const team = new Team();
+  team.id = TEAM_INFO.team_id;
   team.name = TEAM_INFO.name;
   team.logo = TEAM_INFO.logo;
   team.founded = TEAM_INFO.founded;
