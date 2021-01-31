@@ -9,3 +9,7 @@ electron-packager ../ --icon=../icons/icon.icns --platform=darwin --overwrite
 zip -r UnFootballv${1}-win32-x64.zip UnFootball-win32-x64/*
 zip -r UnFootballv${1}-linux-x64.zip UnFootball-linux-x64/*
 zip -r UnFootballv${1}-darwin-x64.zip UnFootball-darwin-x64/*
+
+md5sum UnFootballv${1}-win32-x64.zip
+md5sum UnFootballv${1}-linux-x64.zip
+md5sum UnFootballv${1}-darwin-x64.zip
