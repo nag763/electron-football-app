@@ -29,7 +29,7 @@ async function getLatestRedditRSS() {
     const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
     let content = '<li class="list-group-item">';
     if (diffHrs != 0) {
-      content += `${item.title} (${diffHrs} hours and ${diffMins} mns ago)</li>`;
+      content += `${item.title} (${diffHrs} hours and ${diffMins} mns ago)`;
     } else {
       content += `${item.title} (${diffMins} mns ago)`;
     }
